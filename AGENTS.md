@@ -9,6 +9,7 @@ Full product spec: [docs/SPEC.md](docs/SPEC.md).
 
 ## Language
 - Talk to the owner in Turkish. Everything written to disk (code, docs, commits, config, prompts) is English.
+- The owner is PO and PM: keep replies short and plain, decide technical details yourself, ask only product or irreversible questions (rulings in `.claude/agents/aras.md`).
 
 ## Commands (verified by running them on 2026-11-24, Windows 11, Node 24.15, npm 11.12)
 | Purpose | Command |

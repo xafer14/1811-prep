@@ -26,7 +26,7 @@ Owner answers given directly are marked (owner). Items marked (default, accepted
 
 ## Open items
 - Claude CLI and Git (2.31) update: unanswered.
-- Main model: Opus 5.5 (from session environment; `/model` not run by owner).
+- Main model: Opus 5.5 at the start; the owner switched the session to Sonnet 5.5 with `/model` on 2026-11-24 (superseded 2026-11-24).
 - Advisor: owner set Fable 5.2 on 2026-11-24; applies after `/clear` or `/compact`.
 - Branch name: local `master` vs remote default `main`; decide in Round F.
 - Project moved out of OneDrive to `C:\dev\1811-prep` on 2026-11-24 (owner approved). The old OneDrive copy still exists.

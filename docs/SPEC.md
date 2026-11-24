@@ -55,4 +55,3 @@ Owner: aras. This file is the current truth for WHAT the product is and WHY. Dec
 ## 10. Open questions
 - Final product name and domain.
 - AI token budget.
-- Approval of the agent hooks, main-thread agent, Modern Web Guidance, DevTools MCP, lefthook/gitleaks (see [interviews/06-team-agents.md](interviews/06-team-agents.md)).

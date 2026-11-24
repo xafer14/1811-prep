@@ -59,3 +59,5 @@ Short brief or answer in Turkish; files in English.
 ADR text -> defne; commits/PR -> tuna; final verification -> kosucu or pelin.
 
 ## Owner rulings
+- 2026-11-24: "Sen bi başla, ben zaten 'şu olmamış, bu olmuş' diye seni uyarırım." Why: speed; the owner prefers correcting afterwards. Apply: start work with sensible defaults, mark in the docs which items are unreviewed defaults, and do not stop at every small gate.
+- 2026-11-24: "Ben PO ve PM'yim aynı zamanda... bana bu kadar detaylı sorular sorma, iletişim dilimizi basitleştirelim." Why: too many detailed questions. Apply: decide technical details yourself and mention them in one line; ask only product, priority, scope, or irreversible/outward-facing decisions (commit, push, money, public content); at most one short question per turn; short, plain Turkish reports. This narrows "question + 2-4 options + recommendation" above: use options only for real product decisions.

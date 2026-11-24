@@ -1,0 +1,38 @@
+# build output
+dist/
+.astro/
+.wrangler/
+
+# dependencies
+node_modules/
+
+# test and tool output
+coverage/
+playwright-report/
+test-results/
+.lighthouseci/
+
+# logs
+npm-debug.log*
+*.log
+
+# environment and secrets
+.env*
+!.env.example
+
+# personal agent files
+CLAUDE.local.md
+.claude/settings.local.json
+.claude/agent-memory-local/
+.codex-log/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+
+# downloaded tools (pinned, see scripts/gitleaks.mjs)
+.tools/
+
+# hook state (local)
+.claude/state/

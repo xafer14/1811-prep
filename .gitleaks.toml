@@ -1,0 +1,12 @@
+# gitleaks config: default rules plus a path allowlist for non-project folders.
+title = "1811-prep gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Downloaded tools and installed dependencies are not project files"
+paths = [
+  '''^\.tools/''',
+  '''^node_modules/''',
+]

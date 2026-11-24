@@ -1,0 +1,9 @@
+dist/
+.astro/
+node_modules/
+coverage/
+playwright-report/
+test-results/
+package-lock.json
+# Docs and agent instructions are prose; formatting them is not enforced.
+*.md

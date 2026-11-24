@@ -1,0 +1,16 @@
+# Git hooks (lefthook). Install once per clone: npx lefthook install
+# The real gate is `npm run verify`; CI runs the same script.
+pre-commit:
+  commands:
+    secrets:
+      run: node scripts/gitleaks.mjs git --staged --redact --no-banner
+    format:
+      glob: '*.{js,mjs,ts,json,yml,astro,svelte,css}'
+      run: npx prettier --check --ignore-unknown {staged_files}
+    ssot:
+      run: node scripts/check-ssot.mjs
+
+pre-push:
+  commands:
+    verify:
+      run: npm run verify

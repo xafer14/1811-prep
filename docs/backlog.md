@@ -1,0 +1,20 @@
+# Backlog
+
+Owner: aras. Ordered by priority. Status: todo | doing | done | blocked.
+
+| ID | User story / item | Acceptance criteria | Owner | Status |
+|---|---|---|---|---|
+| B-001 | As the owner, I verify official standards in a real browser so calculators use primary data. | ozan prepares a checklist of the ~10 blocked official pages (FBI, DEA, ATF, USMS, State DS, USPIS, Navy, Marine Corps, Air Force, Coast Guard); owner records value, URL, date; research notes updated. | ozan + owner | todo |
+| B-002 | Content schema for organizations and standards. | Collections `organizations`, `fitnessTests`, `bodyComposition`; every value requires `source`, `verifiedAt`, `evidence`; build fails on missing fields. | baran | todo |
+| B-003 | As a candidate, I compare my self-test results and body measurements to one organization's minimums. | Army AFT, ICE/HSI PFT-P, USSS APAT calculators; per-event pass/below + margin; WHtR check with as-of date; 100% branch coverage on scoring logic. | baran (logic), yigit (UI), pelin (tests) | todo |
+| B-004 | Safety screen and time-to-ready range. | 5-6 question screen + PAR-Q+ link shown before guidance; range in weeks labeled "estimate"; no injury flag. | yigit, baran | todo |
+| B-005 | Organization pages and compare page. | 11 MVP organizations; unverified values labeled with link; non-affiliation disclaimer; axe clean. | yigit | todo |
+| B-006 | Methodology, privacy, terms, accessibility pages. | Drafts ready for attorney review; methodology lists every rule and source. | defne + owner | todo |
+| B-007 | Newsletter signup (18+). | Posts to provider; honeypot; unchecked 18+ box; no tool data in the request. | yigit, sinan | todo |
+| B-008 | Security headers and hash CSP. | `_headers` + Astro CSP; securityheaders-style check passes; tool works under CSP. | sinan, yigit | todo |
+| B-009 | Privacy-safe success measurement plan. | Plan for the SPEC metrics without analytics on tool inputs; proposal if a tool is needed. | derya | todo |
+| B-010 | Deploy pipeline to Cloudflare. | CI deploys `main`; token only in GitHub secrets (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`). | tuna, baran | todo |
+| B-011 | Network audit of tool inputs. | Recorded evidence that no input leaves the browser. | sinan | todo |
+| B-012 | E2E, axe, Lighthouse CI wiring. | Done 2026-11-24: Playwright Chromium installed, `e2e/home.spec.ts` (axe WCAG 2.2 AA, no third-party requests, CSP, no console errors). Open: Lighthouse budgets >= 90 (DevTools MCP has `lighthouse_audit`); every new route added to `ROUTES`. | pelin | doing |
+| B-013 | Legal review before launch. | US attorney + Turkish KVKK check done; US virtual mailbox address set. | owner | todo |
+| B-014 | Final name and domain. | Name chosen; domain registered by owner. | owner | todo |

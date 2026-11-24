@@ -4,7 +4,7 @@ owner: ozan
 status: current
 last_verified: 2026-11-24
 review_by: 2027-02-22
-sources: [https://testpp.fbijobs.gov/special-agents/physical-requirements, https://www.fbijobs.gov/file-repository/forms_pft-self-evaluation-form.pdf/download, https://www.dea.gov/sites/default/files/2026-07/508_Special%20Agent%20Test%20Preparation%20Guide_Version%207.pdf, https://www.dea.gov/sites/default/files/2024-04/DEA%20PTA%20GUIDE_February%202023.pdf, https://www.atf.gov/careers/pre-employment-physical-task-test, https://www.secretservice.gov/careers/special-agent/study-guide-and-fitness-standards, https://www.ice.gov/careers/how-apply/physical-fitness-test, https://www.usajobs.gov/job/882959600, https://www.ice.gov/doclib/foia/policy/handbookHSI_22-05_07.19.2022.pdf, https://www.ice.gov/doclib/foia/policy/6006.1_PhysicalFitnessTestingForLE_AppsTrainees.pdf, https://careers.state.gov/career-paths/foreign-service/foreign-service-specialist/diplomatic-security-special-agent/becoming-a-diplomatic-security-service-special-agent/physical-fitness-and-physical-readiness-test/the-diplomatic-security-service-physical-readiness-test-guide/, https://careers.state.gov/wp-content/uploads/2024/09/PRT-participants-guide.pdf, https://www.ncis.navy.mil/Careers/Special-Agents/, https://www.irs.gov/irm/part9/irm_09-002-002, https://www.irs.gov/irm/part9/irm_09-011-005, http://www.jobs.irs.gov/resources/job-descriptions/irs-criminal-investigation-special-agent, https://www.uspis.gov/fast, https://www.uspis.gov/wp-content/uploads/2022/06/New-Applicant-_BIT-Student-FAST-Handbook_June-2022.pdf, https://www.uspis.gov/careers/postal-inspectors, https://www.usmarshals.gov/careers/deputy-us-marshals/fitness-standards, https://www.usmarshals.gov/careers/enforcement-officer/federal-enforcement-officer-fitness-standards, https://www.dodig.mil/Components/DCIS/Becoming-a-Special-Agent/, https://www.dodig.mil/Portals/48/Documents/Components/DCIS/prt.pdf, https://www.fletc.gov/criminal-investigator-training-program, https://www.fletc.gov/physical-performance-requirements, https://www.fletc.gov/physical-fitness-standards, https://www.fletc.gov/peb-scores, https://www.fletc.gov/sites/default/files/pprs_fy-2023_final-version-10-2022-barcode_0.pdf, https://www.fws.gov/policy-library/223fw8, https://oig.usaid.gov/node/1343, https://fisheries.noaa.gov/resource/document/medical-standards-sworn-personnel, https://www.osi.af.mil/AFOSI-Careers/Civilians/FAQs/, https://www.epa.gov/enforcement/special-agent-eligibility-requirements, https://www.opm.gov/policy-data-oversight/classification-qualifications/general-schedule-qualification-standards/1800/criminal-investigation-series-1811, https://www.gao.gov/new.items/d07121.pdf, https://www.usajobs.gov/job/883120800, https://www.usajobs.gov/job/845107400, https://www.cbp.gov/sites/default/files/assets/documents/2023-Dec/Applicant-FAQs%20%28508%29.pdf, https://365.military.com/military-fitness/do-get-your-first-pull-or-improve-double-digits, https://www.foxnews.com/politics/patel-defends-fbi-pull-up-test-hirono-decries-gender-bias-senate-showdown, https://www.stewsmithfitness.com/blogs/news/2025-fbi-physical-fitness-test-new-standards-and-requirements-pullups-added]
+sources: [docs/verification/live-page-checklist.md, https://testpp.fbijobs.gov/special-agents/physical-requirements, https://www.fbijobs.gov/file-repository/forms_pft-self-evaluation-form.pdf/download, https://www.dea.gov/sites/default/files/2026-07/508_Special%20Agent%20Test%20Preparation%20Guide_Version%207.pdf, https://www.dea.gov/sites/default/files/2024-04/DEA%20PTA%20GUIDE_February%202023.pdf, https://www.atf.gov/careers/pre-employment-physical-task-test, https://www.secretservice.gov/careers/special-agent/study-guide-and-fitness-standards, https://www.ice.gov/careers/how-apply/physical-fitness-test, https://www.usajobs.gov/job/882959600, https://www.ice.gov/doclib/foia/policy/handbookHSI_22-05_07.19.2022.pdf, https://www.ice.gov/doclib/foia/policy/6006.1_PhysicalFitnessTestingForLE_AppsTrainees.pdf, https://careers.state.gov/career-paths/foreign-service/foreign-service-specialist/diplomatic-security-special-agent/becoming-a-diplomatic-security-service-special-agent/physical-fitness-and-physical-readiness-test/the-diplomatic-security-service-physical-readiness-test-guide/, https://careers.state.gov/wp-content/uploads/2024/09/PRT-participants-guide.pdf, https://www.ncis.navy.mil/Careers/Special-Agents/, https://www.irs.gov/irm/part9/irm_09-002-002, https://www.irs.gov/irm/part9/irm_09-011-005, http://www.jobs.irs.gov/resources/job-descriptions/irs-criminal-investigation-special-agent, https://www.uspis.gov/fast, https://www.uspis.gov/wp-content/uploads/2022/06/New-Applicant-_BIT-Student-FAST-Handbook_June-2022.pdf, https://www.uspis.gov/careers/postal-inspectors, https://www.usmarshals.gov/careers/deputy-us-marshals/fitness-standards, https://www.usmarshals.gov/careers/enforcement-officer/federal-enforcement-officer-fitness-standards, https://www.dodig.mil/Components/DCIS/Becoming-a-Special-Agent/, https://www.dodig.mil/Portals/48/Documents/Components/DCIS/prt.pdf, https://www.fletc.gov/criminal-investigator-training-program, https://www.fletc.gov/physical-performance-requirements, https://www.fletc.gov/physical-fitness-standards, https://www.fletc.gov/peb-scores, https://www.fletc.gov/sites/default/files/pprs_fy-2023_final-version-10-2022-barcode_0.pdf, https://www.fws.gov/policy-library/223fw8, https://oig.usaid.gov/node/1343, https://fisheries.noaa.gov/resource/document/medical-standards-sworn-personnel, https://www.osi.af.mil/AFOSI-Careers/Civilians/FAQs/, https://www.epa.gov/enforcement/special-agent-eligibility-requirements, https://www.opm.gov/policy-data-oversight/classification-qualifications/general-schedule-qualification-standards/1800/criminal-investigation-series-1811, https://www.gao.gov/new.items/d07121.pdf, https://www.usajobs.gov/job/883120800, https://www.usajobs.gov/job/845107400, https://www.cbp.gov/sites/default/files/assets/documents/2023-Dec/Applicant-FAQs%20%28508%29.pdf, https://365.military.com/military-fitness/do-get-your-first-pull-or-improve-double-digits, https://www.foxnews.com/politics/patel-defends-fbi-pull-up-test-hirono-decries-gender-bias-senate-showdown, https://www.stewsmithfitness.com/blogs/news/2025-fbi-physical-fitness-test-new-standards-and-requirements-pullups-added]
 superseded_by:
 ---
 
@@ -17,16 +17,70 @@ Evidence levels: **read** = I fetched the official page/PDF text myself. **excer
 ## Summary
 - Fitness tests are NOT uniform: at least 8 distinct pre-employment tests exist (FBI, DEA, ATF, USSS, ICE/HSI, State DS, USPIS, USMS), each with different events, scoring systems and pass rules. A single "federal standard" cannot be hard-coded.
 - Three scoring models: fixed per-event minimums (ICE/HSI, ATF, USMS, State DS, USPIS), point systems with a total plus per-event floor (FBI, DEA, USSS), and percentile on the FLETC PEB (NCIS, FWS, many OIGs).
-- Only two pass marks were confirmed by me directly from an official page (read): ICE/HSI PFT-P (page dated 02/06/2025) and USSS APAT (cumulative 20 points, no zeros; page undated). Everything else is excerpt-level.
-- FBI changed its test in Nov 2025 (pull-ups replace sit-ups; total reportedly 12 -> 10 points). Official numbers could not be fetched; the figure is excerpt/secondary. Treat FBI as "link out" in v1.
-- DEA 2026 guide (Version 7) is reported to drop the 300 m sprint from the hiring test and require 12 points (excerpt); older guides conflict and "applying under an earlier announcement" may use the old standard.
-- ATF, USMS and State DS publish age/sex-banded minimums; ATF and USMS minimums for men 20-29 / women 20-29 are identical in the excerpts (see Contradictions: possibly same table, needs live check).
+- (superseded 2026-11-24, see Verification update) Only two pass marks were confirmed by me directly from an official page (read): ICE/HSI PFT-P (page dated 02/06/2025) and USSS APAT (cumulative 20 points, no zeros; page undated). Everything else is excerpt-level.
+- (superseded 2026-11-24, see Verification update) FBI changed its test in Nov 2025 (pull-ups replace sit-ups; total reportedly 12 -> 10 points). Official numbers could not be fetched; the figure is excerpt/secondary. Treat FBI as "link out" in v1.
+- (superseded 2026-11-24, see Verification update) DEA 2026 guide (Version 7) is reported to drop the 300 m sprint from the hiring test and require 12 points (excerpt); older guides conflict and "applying under an earlier announcement" may use the old standard.
+- (superseded 2026-11-24, see Verification update) ATF, USMS and State DS publish age/sex-banded minimums; ATF and USMS minimums for men 20-29 / women 20-29 are identical in the excerpts (see Contradictions: possibly same table, needs live check).
+- Since 2026-11-24, FBI, DEA, ATF, USSS, ICE/HSI, USMS and USPIS are verified from official documents (see Verification update); State DS and FLETC PEB are still excerpt-level.
 - Several agencies have NO published pre-employment fitness test (IRS-CI, TIGTA, most OIGs, EPA-CID, NOAA, AFOSI, CGIS, Army CID civilian): they require a pre-employment medical and fitness thereafter (annual PEB/own PFT). Check each USAJOBS announcement.
 - FLETC CITP has no published pass/fail PT test in what I could read: it requires Physical Performance Requirements (PPR) certification on arrival and teaches the PEB; the sending agency usually sets any PT pass mark (e.g., ICE: PFT three times during CITP/HSISAT).
 - Body-composition rules for entry: none found as a published numeric pre-employment cutoff at any agency. Body fat appears only in the FLETC PEB and agency post-hire annual programs. The universal rule is the OPM 1811 medical standard.
 - The tool should present each agency's own scale and link/date-stamp it, not convert between agencies.
 
+## Verification update 2026-11-24 (owner-supplied official documents)
+
+The owner saved the official pages and PDFs from a real browser; text was extracted with `pdftotext`. File names and SHA-256 prefixes are in [live-page-checklist](../verification/live-page-checklist.md). Evidence level for everything in this section: **read-file** (stronger than excerpt). Full scoring tables stay in the original PDFs until they are entered into `src/content/` (backlog B-002).
+
+| Agency | Verified fact | Document |
+|---|---|---|
+| FBI | PFT events in fixed order, max 5 min break: pull-ups/chin-ups (untimed), 300 m sprint, push-ups (untimed), 1.5-mile run. Pass = at least 10 total points and at least 1 point in each of the four events. A passing Phase I score stays valid while the applicant remains eligible. Full 0-10 point scales (with -2 for the worst run and sprint bands) for women and men are in the form. | PFT Self-Evaluation Form, "Last updated May 2026" |
+| DEA | Applies to the announcement released July 2026; earlier announcements may differ. Hiring PTA = sit-ups, push-ups, 1.5-mile run (run points doubled). Pass = at least 12 total, at least 1 point per event, no negative score. The 300 m sprint is only used in Basic Agent Training. Scales run -2 to 10 (Appendix A). | Special Agent Test Preparation Guide, Version 7 (2026) |
+| ATF | Three events by age and sex (table below). Failing any minimum ends the application; no second chance. | ATF PTT page, "Last Updated: October 1, 2026" |
+| USSS | Four events scored 0-8 each; pass = at least 20 total points and no zero. Scales in the table below. At FLETC the trainee must reach at least 6 points and at least 1 point in 3 of the 4 core elements. | Study Guide & Fitness Standards page (undated, printed 2026-11-24) |
+| ICE HSI | PFT-P standards in the 2022 handbook match the 2025 ICE page exactly: 32 sit-ups in 1 min, 220-yard sprint in 47.73 s or less, 22 push-ups in 1 min, 1.5-mile run in 14:25 or less; any miss fails. PFT-P must be at most 90 days old at reporting; selectees get two attempts; trainees retest within 45 days after a failure. | HSI Handbook 22-05 (19 Jul 2022) and ICE page (2025-02-06) |
+| USMS | Same three events plus sit-and-reach; bands in the table below. ATF and USMS minimums are the same table. | Fitness Standards page (printed 2026-11-24) |
+| USPIS | Minimums per event and a combined score (below). Two attempts; two consecutive failures remove the applicant; a passing score is valid one year. | FAST Handbook, June 2024 version |
+| State DSS | Events only: push-ups (2 min), sit-ups (2 min), 1.5-mile run. The page with passing scores was not supplied. | DSS PRT Guide page (printed 2026-11-24) |
+| FLETC PEB | Five components: body composition, Illinois agility run, sit and reach, bench press, 1.5-mile run. 75% in all categories except body composition = Fitness Certificate; 90% = Distinguished. Score charts were not supplied. "For reference only." | FLETC PEB page (printed 2026-11-24) |
+
+ATF and USMS minimums (ATF table ends at "Age 40"; USMS table has 40-49 and 50-59):
+
+| Age | Men: sit-ups / push-ups / 1.5 mi | Women: sit-ups / push-ups / 1.5 mi |
+|---|---|---|
+| 21-29 (USMS 20-29) | 40 / 33 / 12:18 | 35 / 16 / 14:55 |
+| 30-39 | 36 / 27 / 12:51 | 27 / 14 / 15:26 |
+| 40 and over (ATF); 40-49 (USMS) | 31 / 21 / 13:53 | 22 / 11 / 16:27 |
+| 50-59 (USMS only) | 26 / 15 / 14:55 | 17 / 7 / 17:24 |
+
+USMS also requires sit-and-reach minimums: men 17.5, 16.5, 15.3, 14.5 in; women 20.0, 19.0, 18.0, 17.9 in (same bands). ATF's table shows the ATF age bands for 40 as "Age 40" with 13:53 / 16:27 runs.
+
+USSS APAT scale (points 0-8; the run column was mapped from the text layout, confirm against the PDF when entering data):
+
+| Pts | Push-ups | Sit-ups | Illinois agility (s) | 1.5-mile run |
+|---|---|---|---|---|
+| 0 | 14 or less | 22 or less | 23.89 or higher | 19:41 or higher |
+| 1 | 15-16 | 23-28 | 23.88-22.18 | 19:40-16:53 |
+| 2 | 17-19 | 29-30 | 22.17-21.66 | 16:52-16:09 |
+| 3 | 20-22 | 31-33 | 21.65-21.13 | 16:08-15:26 |
+| 4 | 23-26 | 34-36 | 21.12-20.60 | 15:25-14:43 |
+| 5 | 27-29 | 37-41 | 20.59-20.23 | 14:42-14:12 |
+| 6 | 30-37 | 42-45 | 20.22-19.44 | 14:11-13:07 |
+| 7 | 38-43 | 46-49 | 19.43-18.65 | 13:06-12:02 |
+| 8 | 44 or more | 50 or more | 18.64 or lower | 12:01 or lower |
+
+USPIS FAST minimums (each must be met, and the combined score must be at least 140, or the Advanced Basic ability group; meeting only the per-event minimums does not reach 140):
+
+| Event | Men | Women |
+|---|---|---|
+| Push-ups, 1 min | 29 reps (34 points) | 10 reps (36 points) |
+| Sit-ups, 1 min | 30 reps (50 points) | 22 reps (42 points) |
+| 1.5-mile run | 15:46 or less (34 points) | 17:54 or less (39 points) |
+
+Still open: entry age lines (FBI 36 vs 38, ATF 37 vs 40), State DSS passing scores, FLETC PEB score charts, and the FBI, DEA and USPIS full scoring tables (kept in the PDFs until data entry).
+
 ## Comparison table
+
+Rows below were written from search excerpts. Where the Verification update above covers an agency, the Verification update wins (superseded 2026-11-24).
 
 | Agency | Test name | Events | Minimum standard | When taken | Body comp / medical rule | Source | Evidence |
 |---|---|---|---|---|---|---|---|
@@ -103,8 +157,8 @@ Searched, no pre-employment test numbers found. "Medical" = OPM 1811 medical sta
 - Disclaimer: self-test only, not official, rules change; non-affiliation.
 
 ## Decisions needed
-1. How to present FBI/DEA (not readable as primary)? Options: A) link-out only; B) show excerpt-level numbers labeled "unverified"; C) hold until a human reads live pages. Recommendation: A for v1, upgrade after a manual read.
-2. Which agencies get calculators in v1? Options: A) read-level only (ICE, USSS-points entry); B) add excerpt-level banded (ATF, USMS, State, USPIS) with unverified flag; C) all. Recommendation: B after a human verifies those 4 pages once, then ship.
+1. (resolved 2026-11-24: FBI and DEA are now verified from official documents, so both get calculators; see Verification update) How to present FBI/DEA (not readable as primary)? Options: A) link-out only; B) show excerpt-level numbers labeled "unverified"; C) hold until a human reads live pages. Recommendation: A for v1, upgrade after a manual read.
+2. (updated 2026-11-24: FBI, DEA, ATF, USSS, ICE/HSI, USMS and USPIS are verified; State DS stays link-out until its passing-score page is supplied) Which agencies get calculators in v1? Options: A) read-level only (ICE, USSS-points entry); B) add excerpt-level banded (ATF, USMS, State, USPIS) with unverified flag; C) all. Recommendation: B after a human verifies those 4 pages once, then ship.
 3. Age/sex banding for ATF/USMS/State: store full official tables or only age 21-29 bands? Options: A) full tables with attribution; B) only link. Recommendation: A for tables fetched and read by a human (public agency data, with source/date).
 4. Handle "announcement-specific" standards (DEA, USSS)? Options: A) ask user which announcement; B) assume current. Recommendation: A.
 5. FLETC PEB percentiles: include FLETC tables? Options: A) link; B) include. Recommendation: A in v1; add B after reading the tables.
@@ -117,12 +171,12 @@ Searched, no pre-employment test numbers found. "Medical" = OPM 1811 medical sta
 - Safety: users self-testing push-ups/runs; add safety disclaimer.
 
 ## Contradictions
-- FBI points: 10 (current excerpt, after 2025-11-02) vs 12 (older pages/Feb 2025 guide) vs 9 (older candidate guide) vs old note's "10 with pull-ups/chin-ups" vs "Feb 2025 guide lists sit-ups with pull-ups not pass/fail". Also event list: pull-ups (current excerpt) vs sit-ups (older). Not resolved; official page unreadable.
-- DEA hiring PTA: 3 events + 12 points (Version 7 excerpt) vs 4 events incl. 300 m (Feb 2023 guide) vs 9-point conditional threshold (2023).
-- ATF and USMS use the same excerpt minimums for 20-29 (M 12:18/33/40; F 14:55/16/35); may be genuinely the same FLETC-derived table or a search-summary mixup. Verify both pages.
+- (resolved 2026-11-24: 10 total points, at least 1 per event; events are pull-ups, 300 m sprint, push-ups, 1.5-mile run; FBI form updated May 2026) FBI points: 10 (current excerpt, after 2025-11-02) vs 12 (older pages/Feb 2025 guide) vs 9 (older candidate guide) vs old note's "10 with pull-ups/chin-ups" vs "Feb 2025 guide lists sit-ups with pull-ups not pass/fail". Also event list: pull-ups (current excerpt) vs sit-ups (older). Not resolved; official page unreadable.
+- (resolved 2026-11-24: Version 7 read in full; 3 events, 12 points, 300 m not used in hiring; earlier announcements may differ) DEA hiring PTA: 3 events + 12 points (Version 7 excerpt) vs 4 events incl. 300 m (Feb 2023 guide) vs 9-point conditional threshold (2023).
+- (resolved 2026-11-24: both pages read; ATF and USMS use the same table) ATF and USMS use the same excerpt minimums for 20-29 (M 12:18/33/40; F 14:55/16/35); may be genuinely the same FLETC-derived table or a search-summary mixup. Verify both pages.
 - USMS/ATF minimums are 1 min push-ups/sit-ups with age bands, ICE flat 22/32/14:25 - not comparable.
 - State DS PRT: fixed minimums (current guide excerpt) vs 2016 percentile categories (older form).
-- USPIS: "FAST" three events (excerpt) vs old note's "Applicant Physical Assessment... third component" and Certificate of Wellness.
+- (resolved 2026-11-24: FAST handbook June 2024 read; the older note of three failed attempts is replaced by two consecutive failures) USPIS: "FAST" three events (excerpt) vs old note's "Applicant Physical Assessment... third component" and Certificate of Wellness.
 - ICE PFT-P timing: "within 90 days before academy" (2022 handbook) vs retest within 45 days (2025 page); not strictly conflicting.
 - NCIS "25th percentile" vs FWS 2012 "25th percentile" - consistent; FLETC says tables are "for reference only," so agency use varies.
 - IRS-CI: USAJOBS-style "pre-employment PFT" language in one announcement summary vs IRS site with no pre-employment test; announcement not identified as IRS.

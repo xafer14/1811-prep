@@ -4,7 +4,7 @@ Owner: aras. Ordered by priority. Status: todo | doing | done | blocked.
 
 | ID | User story / item | Acceptance criteria | Owner | Status |
 |---|---|---|---|---|
-| B-001 | As the owner, I verify official standards in a real browser so calculators use primary data. | ozan prepares a checklist of the ~10 blocked official pages (FBI, DEA, ATF, USMS, State DS, USPIS, Navy, Marine Corps, Air Force, Coast Guard); owner records value, URL, date; research notes updated. | ozan + owner | todo |
+| B-001 | As the owner, I verify official standards in a real browser so calculators use primary data. | Checklist: [docs/verification/live-page-checklist.md](verification/live-page-checklist.md). 2026-11-24: owner sent 15 PDFs; DEA, Army, Navy, USMS, USPIS, HSI and USSS done; FBI and ATF fitness done (age lines open); Marine Corps, Air Force, State DSS, FLETC partial; Space Force, Coast Guard, DCIS missing. Research notes updated. | ozan + owner | doing |
 | B-002 | Content schema for organizations and standards. | Collections `organizations`, `fitnessTests`, `bodyComposition`; every value requires `source`, `verifiedAt`, `evidence`; build fails on missing fields. | baran | todo |
 | B-003 | As a candidate, I compare my self-test results and body measurements to one organization's minimums. | Army AFT, ICE/HSI PFT-P, USSS APAT calculators; per-event pass/below + margin; WHtR check with as-of date; 100% branch coverage on scoring logic. | baran (logic), yigit (UI), pelin (tests) | todo |
 | B-004 | Safety screen and time-to-ready range. | 5-6 question screen + PAR-Q+ link shown before guidance; range in weeks labeled "estimate"; no injury flag. | yigit, baran | todo |

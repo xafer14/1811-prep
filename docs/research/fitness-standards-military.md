@@ -4,7 +4,7 @@ owner: ozan
 status: current
 last_verified: 2026-11-24
 review_by: 2027-02-22
-sources: [https://www.army.mil/aft/, https://www.army.mil/e2/downloads/rv7/aft/AFT_Scoring_Scales_250601.pdf, https://home.army.mil/carson/8117/8345/8209/ARMY_DIR_2026-13_ABCP.pdf, https://www.army.mil/article/291880, https://www.army.mil/article/284799, https://www.army.mil/article/288357, https://www.army.mil/article/258758, https://www.army.mil/article/267217, https://www.mynavyhr.navy.mil/Portals/55/Messages/NAVADMIN/NAV2025/NAV25264.pdf, https://www.mynavyhr.navy.mil/Portals/55/Support/Culture%20Resilience/Physical/Guide-5A%20Physical%20Readiness%20Test.pdf, https://www.navy.com/joining/requirements, https://www.marines.mil/News/Press-Releases/Press-Release-Display/Article/4363803/marine-corps-announces-updated-physical-fitness-standards/, https://www.marines.mil/News/Press-Releases/Press-Release-Display/Article/4414812/marine-corps-revises-body-composition-standards/, https://www.marines.mil/News/Messages/Messages-Display/Article/4363582/, https://www.marines.mil/News/Messages/Messages-Display/Article/4414762/, https://www.marines.mil/News/Messages/Messages-Display/Article/4417219/, https://www.marines.mil/News/Messages/Messages-Display/Article/4566548/, https://www.fitness.marines.mil/BCP_Standards/, https://www.fitness.marines.mil/pft-cft_standards17/, https://www.marines.com/become/requirements.html, https://www.af.mil/News/Article-Display/Article/4371953/air-force-updates-fitness-test-requirements/, https://www.af.mil/Fitness/, https://myairforcebenefits.us.af.mil/Air-Force-updates-fitness-test-requirements, https://static.e-publishing.af.mil/production/1/af_a1/publication/afman36-2905/dafman36-2905.pdf, https://static.e-publishing.af.mil/production/1/sf_s1/publication/spfman36-2905/spfman36-2905.pdf, https://www.spaceforce.mil/News/Article-Display/Article/4371955/space-force-publishes-further-guidance-on-physical-fitness/, https://www.airforce.com/how-to-join/join-the-air-force, https://static.e-publishing.af.mil/production/1/af_a1/publication/dafman36-2032/dafman36-2032.pdf, https://www.mycg.uscg.mil/News/Article/4588057/coast-guard-reinstates-standard-body-composition-screenings-for-all-members/, https://content.govdelivery.com/accounts/USDHSCG/bulletins/40fea89, https://content.govdelivery.com/accounts/USDHSCG/bulletins/427ee4d, https://www.forcecom.uscg.mil/Portals/3/Documents/TCCM/Documents/Helmsmannew.pdf, https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodi/130803p.PDF, https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodi/613003_vol1.pdf, https://www.militarytimes.com/news/your-military/2026/09/09/pentagon-codifies-fitness-standards-across-branches/, https://usa.gov/join-military, https://aws.navy.com/joining/requirements/physical-screening-test, https://www.military.com/military-fitness/military-workouts/special-operations-fitness/overview-special-ops-prep-courses-and-pre-selection-programs]
+sources: [docs/verification/live-page-checklist.md, https://www.army.mil/aft/, https://www.army.mil/e2/downloads/rv7/aft/AFT_Scoring_Scales_250601.pdf, https://home.army.mil/carson/8117/8345/8209/ARMY_DIR_2026-13_ABCP.pdf, https://www.army.mil/article/291880, https://www.army.mil/article/284799, https://www.army.mil/article/288357, https://www.army.mil/article/258758, https://www.army.mil/article/267217, https://www.mynavyhr.navy.mil/Portals/55/Messages/NAVADMIN/NAV2025/NAV25264.pdf, https://www.mynavyhr.navy.mil/Portals/55/Support/Culture%20Resilience/Physical/Guide-5A%20Physical%20Readiness%20Test.pdf, https://www.navy.com/joining/requirements, https://www.marines.mil/News/Press-Releases/Press-Release-Display/Article/4363803/marine-corps-announces-updated-physical-fitness-standards/, https://www.marines.mil/News/Press-Releases/Press-Release-Display/Article/4414812/marine-corps-revises-body-composition-standards/, https://www.marines.mil/News/Messages/Messages-Display/Article/4363582/, https://www.marines.mil/News/Messages/Messages-Display/Article/4414762/, https://www.marines.mil/News/Messages/Messages-Display/Article/4417219/, https://www.marines.mil/News/Messages/Messages-Display/Article/4566548/, https://www.fitness.marines.mil/BCP_Standards/, https://www.fitness.marines.mil/pft-cft_standards17/, https://www.marines.com/become/requirements.html, https://www.af.mil/News/Article-Display/Article/4371953/air-force-updates-fitness-test-requirements/, https://www.af.mil/Fitness/, https://myairforcebenefits.us.af.mil/Air-Force-updates-fitness-test-requirements, https://static.e-publishing.af.mil/production/1/af_a1/publication/afman36-2905/dafman36-2905.pdf, https://static.e-publishing.af.mil/production/1/sf_s1/publication/spfman36-2905/spfman36-2905.pdf, https://www.spaceforce.mil/News/Article-Display/Article/4371955/space-force-publishes-further-guidance-on-physical-fitness/, https://www.airforce.com/how-to-join/join-the-air-force, https://static.e-publishing.af.mil/production/1/af_a1/publication/dafman36-2032/dafman36-2032.pdf, https://www.mycg.uscg.mil/News/Article/4588057/coast-guard-reinstates-standard-body-composition-screenings-for-all-members/, https://content.govdelivery.com/accounts/USDHSCG/bulletins/40fea89, https://content.govdelivery.com/accounts/USDHSCG/bulletins/427ee4d, https://www.forcecom.uscg.mil/Portals/3/Documents/TCCM/Documents/Helmsmannew.pdf, https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodi/130803p.PDF, https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodi/613003_vol1.pdf, https://www.militarytimes.com/news/your-military/2026/09/09/pentagon-codifies-fitness-standards-across-branches/, https://usa.gov/join-military, https://aws.navy.com/joining/requirements/physical-screening-test, https://www.military.com/military-fitness/military-workouts/special-operations-fitness/overview-special-ops-prep-courses-and-pre-selection-programs]
 superseded_by:
 ---
 
@@ -21,8 +21,58 @@ All URLs accessed 2026-11-24. Marker key: (excerpt) = official .mil page returne
 - Navy: PRT unchanged (push-ups, plank, 1.5-mile run) but now twice a year in 2026; BCA now uses sex-neutral WHtR step with 0.55 cutoff (NAVADMIN 264/25 (excerpt); OPNAVINST 6110.1L).
 - Air Force/Space Force: new 100-point fitness assessment, composite >= 75 plus component minimums, WHtR = 20 points with no minimum; official scoring resumed 2026-07-01 per af.mil pages (conflicting 2026-09-01 elsewhere). 2026 scoring charts could not be located.
 - Coast Guard: no new test found; COMDTINST 1020.8I body-composition screening (waist-circumference based) still in force, WHtR change "under review" as of ALCOAST 079/26 and 272/26 (excerpt).
-- Official scoring tables are mostly 403-blocked or non-machine-readable; only the Army AFT table and Army AD 2026-13 were read directly. Everything else is excerpt-grade.
+- (superseded 2026-11-24, see Verification update: the Army AFT table, Navy Guide-4 and Guide-5A, the older Marine order and the Air Force scoring charts are now read) Official scoring tables are mostly 403-blocked or non-machine-readable; only the Army AFT table and Army AD 2026-13 were read directly. Everything else is excerpt-grade.
 - Enlistment max ages (active duty): Army 35, Navy 41, USMC 28, USAF 42, USSF 42, USCG 41, min 17 (https://usa.gov/join-military).
+
+## Verification update 2026-11-24 (owner-supplied official documents)
+
+The owner saved official PDFs from a real browser; text was extracted with `pdftotext` (raw mode gives clean rows). File names and SHA-256 prefixes: [live-page-checklist](../verification/live-page-checklist.md). Evidence level here: **read-file**. Full scoring tables stay in the original PDFs until they are entered into `src/content/` (backlog B-002).
+
+### Army Fitness Test (AFT), approved 15 May 2025, effective 1 June 2025
+Minimum passing standard = 60 points per event. The 60-point values below, by age group, as "M|C (male and combat standard) / F". Passing totals (350 combat, 300 other) are in the Army findings below.
+
+| Age | Deadlift, 3 reps (lb) | Hand-release push-ups, 2 min | Sprint-drag-carry | Plank | Two-mile run |
+|---|---|---|---|---|---|
+| 17-21 | 150 / 120 | 15 / 11 | 2:28 / 3:15 | 1:30 / 1:30 | 19:57 / 22:55 |
+| 22-26 | 150 / 120 | 14 / 11 | 2:31 / 3:15 | 1:25 / 1:25 | 19:45 / 22:45 |
+| 27-31 | 150 / 120 | 14 / 11 | 2:32 / 3:15 | 1:20 / 1:20 | 19:45 / 22:45 |
+| 32-36 | 140 / 120 | 13 / 11 | 2:36 / 3:22 | 1:15 / 1:15 | 20:44 / 22:50 |
+| 37-41 | 140 / 120 | 12 / 10 | 2:41 / 3:27 | 1:10 / 1:10 | 20:44 / 22:59 |
+| 42-46 | 140 / 120 | 11 / 10 | 2:45 / 3:42 | 1:10 / 1:10 | 22:04 / 23:15 |
+| 47-51 | 140 / 120 | 11 / 10 | 2:53 / 3:51 | 1:10 / 1:10 | 22:04 / 23:30 |
+| 52-56 | 140 / 120 | 10 / 10 | 3:00 / 4:03 | 1:10 / 1:10 | 22:50 / 24:00 |
+| 57-61 | 140 / 120 | 10 / 10 | 3:12 / 4:48 | 1:10 / 1:10 | 23:36 / 24:48 |
+| 62+ | 140 / 120 | 10 / 10 | 3:16 / 4:48 | 1:10 / 1:10 | 23:36 / 25:00 |
+
+The 61-to-60 point jump in the two-mile run (17:07 to 19:57 for 17-21 M|C) is real: the table steps in larger increments at the bottom.
+
+### Navy PRT (Guide-5A, DEC 2025) and body composition (Guide-4, JUN 2026)
+PRT: push-ups (2 min), forearm plank, 1.5-mile run (or alternate cardio); passed with Probationary (the lowest passing category, 45 points) or higher in every modality. Values below are for altitudes under 5,000 ft (Table 4-1); the same guide has separate, slower tables for 5,000 ft and above (Table 4-2).
+
+| Age | Men: push-ups / plank / 1.5 mi | Women: push-ups / plank / 1.5 mi |
+|---|---|---|
+| 17-19 | 42 / 1:11 / 12:45 | 19 / 1:01 / 15:00 |
+| 20-24 | 37 / 1:10 / 13:30 | 16 / 1:00 / 15:30 |
+| 25-29 | 34 / 1:09 / 14:00 | 13 / 0:59 / 16:08 |
+| 30-34 | 31 / 1:07 / 14:30 | 11 / 0:58 / 16:45 |
+| 35-39 | 27 / 1:06 / 15:00 | 9 / 0:56 / 17:00 |
+| 40-44 | 24 / 1:05 / 15:30 | 7 / 0:55 / 17:15 |
+| 45-49 | 21 / 1:03 / 16:08 | 5 / 0:54 / 17:23 |
+| 50-54 | 19 / 1:02 / 16:45 | 2 / 0:53 / 17:30 |
+| 55-59 | 10 / 1:01 / 17:09 | 2 / 0:52 / 18:34 |
+| 60-64 | 8 / 1:00 / 18:52 | 2 / 0:51 / 19:43 |
+| 65+ | 4 / 0:58 / 20:35 | 1 / 0:50 / 20:52 |
+
+Body composition assessment (BCA), two steps: Step 1 divides the waist (at the navel) by the height; the ratio is rounded down to four decimals. At 0.5499 or less the Sailor is within standards and Step 2 is not needed. At 0.5500 or more, Step 2 estimates body fat from the height-waist difference (rounded height minus rounded waist) and the weight using Tables 2 and 3 of the guide; the maximum is 26% for men and 36% for women. Over the limit means Not Within Standards, which fails the physical assessment for the cycle unless the High-Performance BCA Exemption applies (Guide-1). Height is rounded up to the nearest half inch and weight to the nearest pound.
+
+### Marine Corps (MCO 6100.13A with Change 4 of 23 Mar 2022 and an administrative Change 5)
+Older order, partly superseded: it sets the minimum passing PFT score at 150 points total (3rd class 150-199, 2nd class 200-234, 1st class 235-300) and has the hybrid pull-up/push-up, crunch or plank, and 3-mile run (or 5,000 m row) tables, plus the combat fitness test. It has no waist-to-height rule. The 2026 changes (MARADMIN 613/25 and 066/26: sex-neutral 210 points for combat arms, waist-to-height 0.52) were NOT in the supplied documents and remain excerpt-level.
+
+### Air Force (Tab 2, PFRA scoring charts, effective 1 Mar 2026)
+Scoring charts for nine components: waist-to-height ratio (20 points), push-ups, hand-release push-ups, sit-ups, cross-leg reverse crunch, forearm plank, 2-mile run, 20-m HAMR, and the 2-km walk. The file has no composite pass mark (75) or component minimums; those are in the governing manual (DAFMAN 36-2905), which was not supplied. The charts are effective 1 March 2026; the official-testing start (2026-07-01 vs 2026-09-01) is still unconfirmed.
+
+### Not supplied
+Space Force and Coast Guard documents, the 2026 Marine MARADMINs, and the Air Force pass rules.
 
 ## Per-branch findings
 
@@ -34,7 +84,7 @@ All URLs accessed 2026-11-24. Marker key: (excerpt) = official .mil page returne
   - 2MR 17-21: 19:57 / 22:55; 42-46: 22:04 / 23:15.
   - SDC 17-21: 2:28 / 3:15; 42-46: 2:45 / 3:42.
   - PLK 17-21: 1:30 / 1:30; 42-46: 1:10 / 1:10.
-  - MDL and HRP 60-point rows could not be extracted reliably (sparse table, labels detached): (unverified).
+  - (resolved 2026-11-24: MDL and HRP 60-point rows are in the Verification update) MDL and HRP 60-point rows could not be extracted reliably (sparse table, labels detached): (unverified).
 - Combat Field Test (CFT): pass/fail, 7 events (1-mile run, 30 push-ups, 100 m sprint, 16 sandbag lifts at 65 in, 50 m two-can carry, 50 m movement drill, 1-mile run), 30 minutes, age/sex neutral, 24 combat MOSs; diagnostic period ~365 days from 2026-04-17, record testing 2027-04-17 (https://www.army.mil/article/291880 excerpt; https://www.army.mil/aft/).
 - Body composition: AD 2026-13 (signed copy read): WHtR < 0.55 sole standard; >= 0.55 flagged and enrolled; measured twice per calendar year; confirmation measure by a different team same day; height/weight tables and tape test discontinued; no separation until a 180-day HQDA assessment; to be folded into AR 600-9 within 2 years; 7-day gap required between AFT/CFT and WHtR. The directive does not state its signature date in the extracted text (likely 2026; unverified). AR 600-9 (16 Jul 2019) remains the base regulation.
 - Accession body composition: not found for Army in current form (AR 601-210 / DoDI 6130.03 not retrieved).
@@ -101,7 +151,7 @@ Deterministic and primary-grade:
 - Marine WHtR <= 0.52; Air Force/Navy/DoD WHtR 0.55 (excerpt-grade).
 - Age limits and Air Force body-fat accession caps (26/36).
 Volatile or unpublished:
-- Navy Guide-5A, Air Force 2026 charts, Marine 2026 event minimums, Coast Guard PRP events and WHtR rule, Space Force charts: not machine-readable or not located.
+- (updated 2026-11-24: Navy Guide-4 and Guide-5A and the Air Force charts are read; still missing: Marine 2026 event minimums, Coast Guard PRP events and WHtR rule, Space Force charts, Air Force pass rules) Navy Guide-5A, Air Force 2026 charts, Marine 2026 event minimums, Coast Guard PRP events and WHtR rule, Space Force charts: not machine-readable or not located.
 - Many rules are directives that expire when regulations are revised (AD 2026-13 expires on AR 600-9 revision; Army CFT diagnostic until 2027-04).
 - Combat-MOS lists differ (21 vs 24 MOS on Army pages; "80+" across DoD).
 - Tape/body-fat fallback tables: Army discontinued; Navy, USMC, AF still use body-fat step with tables not retrieved.
@@ -135,7 +185,7 @@ Volatile or unpublished:
 - Army combat MOS count: 21 (AFT FAQ) vs 24 (CFT FAQ) (https://www.army.mil/aft/).
 - DoDI 1308.03 date: 10 Mar 2022 (esd.whs.mil excerpt) vs 10 May 2022 (AD 2026-13 reference) vs reissue 31 Aug 2026 (secondary).
 - Army accession: 2023 army.mil says FSPC dual-track; Oct 2025 report says single-track (secondary).
-- Army 2MR row jump: 61 pts = 17:07 but 60 pts = 19:57 for 17-21 M/C in the same PDF (possible parse error; check the PDF).
+- (resolved 2026-11-24: the jump is real, see Verification update) Army 2MR row jump: 61 pts = 17:07 but 60 pts = 19:57 for 17-21 M/C in the same PDF (possible parse error; check the PDF).
 
 ## Open questions
 

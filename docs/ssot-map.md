@@ -16,6 +16,7 @@ Precedence when sources disagree: measured result (tests, Lighthouse, running ap
 | Persona roles and owner rulings | `.claude/agents/<name>.md` |
 | Military fitness and body-composition figures | [docs/research/fitness-standards-military.md](research/fitness-standards-military.md) (moves to `src/content/` when data is entered) |
 | Federal 1811 fitness figures | [docs/research/fitness-standards-federal.md](research/fitness-standards-federal.md) (moves to `src/content/` when data is entered) |
+| Live-page verification checklist (B-001) | [docs/verification/live-page-checklist.md](verification/live-page-checklist.md) |
 | Other researched facts | `docs/research/<topic>.md`, indexed in [docs/research/README.md](research/README.md) |
 | Lessons | `docs/lessons/<area>.md` |
 | Capability proposals | [docs/proposals/](proposals/) |

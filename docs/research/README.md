@@ -28,6 +28,8 @@ Owner widened scope to military branches + all federal 1811 agencies and chose a
 
 Status 2026-11-24: A1-A5 and A7 decided in [02-product](../interviews/02-product.md); A6 and A8 decided in [05-security-privacy](../interviews/05-security-privacy.md). Rounds C-F decisions: [docs/interviews](../interviews/).
 
+Update 2026-11-24: the owner supplied 15 official PDFs; Army, Navy, FBI, DEA, ATF, USSS, ICE/HSI, USMS and USPIS standards are now read from official documents. Status per page: [live-page-checklist](../verification/live-page-checklist.md). Items A2 and A3 below are updated by it.
+
 Decisions this research raised:
 - A1. Body composition: several services replaced height/weight tables with waist-to-height ratio (Army: WHtR < 0.55 is the only standard per Army Directive 2026-13, read; Marine Corps <= 0.52; Navy/Air Force 0.55; Coast Guard still waist-based under review). The tool needs a waist input and per-service method with an as-of date. Conflicts with step 1 of the hybrid model as written.
 - A2. Scoring at launch: only Army AFT (military) and ICE/HSI PFT-P and USSS APAT (federal) were read from primary pages; the rest is excerpt-level. Options: calculators only for read-level tests, others link-out until a human verifies the live pages.

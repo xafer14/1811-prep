@@ -25,7 +25,7 @@ Owner answers given directly are marked (owner). Items marked (default, accepted
 - Safety: a 5-6 question ACSM-style screen plus a PAR-Q+ link is shown before any training guidance. Time-to-ready is a range in weeks labeled "estimate". No injury-risk flag. (B11, default accepted 2026-11-24)
 
 ## Scoring scope at launch (B10, default accepted 2026-11-24)
-- Calculators only for tests whose standards were read on an official page: Army AFT, ICE/HSI PFT-P, USSS APAT.
+- Calculators only for tests whose standards were read on an official page: Army AFT, ICE/HSI PFT-P, USSS APAT. (superseded 2026-11-24: more standards verified from owner-supplied documents; current list in [SPEC](../SPEC.md) section 5)
 - All other organizations: official minimums shown as "unverified, check source" with a link, until the owner verifies the live page in a browser (checklist item in [backlog](../backlog.md)).
 - The 5-federal-agency MVP scope stays; FBI, DEA, ATF are link-out until verified.
 

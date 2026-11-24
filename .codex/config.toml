@@ -1,0 +1,8 @@
+# Project-level Codex config. Codex loads it only after the project is trusted.
+# Which keys Codex honors at project level is not fully documented (unverified 2026-11-24);
+# see README.md "Codex setup" for user-level settings.
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+network_access = false

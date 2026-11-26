@@ -26,6 +26,8 @@ All URLs accessed 2026-11-24. Marker key: (excerpt) = official .mil page returne
 
 ## Verification update 2026-11-24 (owner-supplied official documents)
 
+Numbers for standards entered in `src/content/standards/` and `src/content/body-composition/` (2026-11-24) are owned by those data files; the tables in this section are the evidence record and the data file wins if they ever differ.
+
 The owner saved official PDFs from a real browser; text was extracted with `pdftotext` (raw mode gives clean rows). File names and SHA-256 prefixes: [live-page-checklist](../verification/live-page-checklist.md). Evidence level here: **read-file**. Full scoring tables stay in the original PDFs until they are entered into `src/content/` (backlog B-002).
 
 ### Army Fitness Test (AFT), approved 15 May 2025, effective 1 June 2025

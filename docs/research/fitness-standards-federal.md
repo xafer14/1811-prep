@@ -29,6 +29,8 @@ Evidence levels: **read** = I fetched the official page/PDF text myself. **excer
 
 ## Verification update 2026-11-24 (owner-supplied official documents)
 
+Numbers for standards entered in `src/content/standards/` and `src/content/body-composition/` (2026-11-24) are owned by those data files; the tables in this section are the evidence record and the data file wins if they ever differ.
+
 The owner saved the official pages and PDFs from a real browser; text was extracted with `pdftotext`. File names and SHA-256 prefixes are in [live-page-checklist](../verification/live-page-checklist.md). Evidence level for everything in this section: **read-file** (stronger than excerpt). Full scoring tables stay in the original PDFs until they are entered into `src/content/` (backlog B-002).
 
 | Agency | Verified fact | Document |

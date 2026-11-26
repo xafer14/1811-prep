@@ -35,7 +35,7 @@ Owner: aras. This file is the current truth for WHAT the product is and WHY. Dec
 6. Methodology page documents every rule, source, and limitation.
 
 ## 6. Content model
-- `Organization` (`kind: military | federal | state`), `FitnessTest` (events, minimums per bracket), `BodyCompositionStandard`, `HiringStage`, `Guide` (MDX), `GlossaryTerm`.
+- Content collections (schema: `src/lib/standards/schema.ts`, data: `src/content/`): `organizations` (`kind: military | federal | state`), `standards` (events with minimums per age and sex), `bodyComposition` (waist-to-height rules). Planned: `HiringStage`, `Guide` (MDX), `GlossaryTerm`, and a points-based standard type for the FBI, DEA and Secret Service.
 - Every standard value carries `source` (URL), `verifiedAt` (date), and `evidence` (`read` | `excerpt`).
 
 ## 7. Routes

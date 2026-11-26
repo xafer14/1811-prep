@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import Compare from '../components/Compare.svelte';
+import Base from '../layouts/Base.astro';
+
+const organizations = (await getCollection('organizations')).map((entry) => entry.data);
+const standards = (await getCollection('standards')).map((entry) => entry.data);
+const bodyRules = (await getCollection('bodyComposition')).map((entry) => entry.data);
+---
+
+<Base
+  wide
+  title="Compare organizations | 1811 Prep"
+  description="The official fitness minimums of US military branches and federal agencies, side by side."
+>
+  <h1>Compare organizations</h1>
+  <p>
+    The official fitness minimums of each organization, side by side for the same kind of event.
+    Choose an age and the set of minimums you want to see. Every number comes from an official
+    document, linked at the bottom of the page.
+  </p>
+  <p>
+    <strong>Your privacy:</strong> the age you choose only selects a column of the official tables.
+    It stays in this page and is not sent anywhere or saved.
+  </p>
+  <Compare client:load {organizations} {standards} {bodyRules} />
+  <p>
+    Want to check your own results?
+    <a href="/readiness/">Use the readiness tool</a>.
+  </p>
+</Base>

@@ -114,7 +114,7 @@ Numbers entered in `src/content/` are owned by the data files; this section is t
 - The Space Force manual gives 60 points for cardiorespiratory (Air Force: 50), so the two services do not share the same scoring charts; the Space Force charts stay pending.
 
 ### Owner statement on entry ages (no document)
-On 2026-11-26 the owner wrote "fbi 37 atf 40" for the maximum entry ages. No document was supplied; it is recorded as unverified in [domain-1811-hiring](domain-1811-hiring.md).
+On 2026-11-26 the owner wrote "fbi 37 atf 40" for the maximum entry ages. No document was supplied at that time (superseded 2026-11-26: both ages were then verified from official pages, see [domain-1811-hiring](domain-1811-hiring.md)).
 
 ### Still open
 Marine Corps body fat limits (MCO 6110.3A) and the Combat Fitness Test; Space Force scoring charts (myFitness); Coast Guard.

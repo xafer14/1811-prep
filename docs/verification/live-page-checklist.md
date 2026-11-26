@@ -40,9 +40,9 @@ Legend: done = values read from the official document and entered in the researc
 
 | # | Page | Status | What is still missing |
 |---|---|---|---|
-| A1 | FBI | partial | Entry age: the owner states 37 (no document; unverified). Fitness test: done (form, May 2026) |
+| A1 | FBI | done | Entry age verified: at least 23 and younger than 37, age waiver for veterans (FBI FAQ page). Fitness test: done (form, May 2026) |
 | A2 | DEA | done | |
-| A3 | ATF | partial | Maximum age: the owner states 40 (no document; unverified). Fitness test: done (page, 1 Oct 2026) |
+| A3 | ATF | done | Maximum age verified: at least 21 at application, not older than 40 at appointment (ATF packet, updated 4 Aug 2026). Fitness test: done (page, 1 Oct 2026) |
 | A4 | Army | done | |
 | A5 | Navy | done | |
 | A6 | Marine Corps | done | Entered: PFT minimums with the combat arms option (MCO 6100.13A, MARADMIN 613/25) and the waist-to-height rule (MARADMIN 066/26). Open, not blocking: body fat limits (MCO 6110.3A) and the Combat Fitness Test |
@@ -81,6 +81,8 @@ Folder: `New folder (3)` on the owner's desktop. SHA-256 prefixes identify the e
 | ADVANCE NOTIFICATION OF CHANGES TO THE MARINE CORPS PHYSICAL FITNESS TEST AND BODY COMPOSITION EVALUATION PROCESS (MARADMIN 613/25).pdf | 85ce4c99dbeb071a | Marine Corps |
 | CHANGE 1 TO THE ADVANCE NOTIFICATION ... (MARADMIN 066/26).pdf | ab5b1d8511f51929 | Marine Corps |
 | dafman36-2905.pdf (AFMAN 36-2905, 24 Mar 2026) | 49efde8361e922cf | Air Force |
+| How old do you have to be to become an agent_ - FBI.pdf | 0c42d6f235adf8c9 | FBI entry age |
+| Special Agent Informational Packet _ ATF.pdf | 15e259aede4b22c0 | ATF entry age |
 
 Web pages the owner pointed to on 2026-11-26 (secondary sources, never the only source of a number): Military.com "Marine Corps Physical Fitness Test" and "Marine Corps Body Composition Program" (both updated 2026-09-23), and Forever Wingman "Air Force BMT PT Test" (a veteran's blog dated 2026-08-01).
 

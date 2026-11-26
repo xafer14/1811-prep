@@ -71,3 +71,15 @@ export function statusLabel(status: EventResult['status']): string {
       return 'No published minimum for your age';
   }
 }
+
+/** A minimum in plain words: "at least 33 reps", "12:18 or faster". */
+export function describeMinimum(
+  unit: StandardEvent['unit'],
+  better: StandardEvent['better'],
+  value: number,
+  system: UnitSystem,
+): string {
+  const text = formatValue(unit, value, system);
+  if (better === 'higher') return `at least ${text}`;
+  return unit === 'seconds' ? `${text} or faster` : `at most ${text}`;
+}

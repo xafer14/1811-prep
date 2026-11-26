@@ -31,11 +31,11 @@ Owner: aras. This file is the current truth for WHAT the product is and WHY. Dec
 2. Event comparison: user enters self-test results; the tool compares each event to that organization's official minimum and shows pass/below and the margin. No overall "ready" verdict.
 3. Time-to-ready: a range in weeks labeled "estimate", based on gap size and self-reported activity; shown only after the safety screen.
 4. Safety screen: 5-6 ACSM-style questions plus a PAR-Q+ link before any training guidance. No injury-risk flag.
-5. Scoring scope at launch: calculators only for standards read on an official page or document. Verified as of 2026-11-24: Army AFT, Navy PRT and body-composition rule, FBI, DEA, ATF, USSS, ICE/HSI (plus US Marshals and Postal Inspectors for later batches). Marine Corps (2026 changes), Air Force (pass rules), Space Force and Coast Guard show minimums marked "unverified, check source" with a link until the owner supplies the official document (see [live-page-checklist](verification/live-page-checklist.md)).
+5. Scoring scope at launch: calculators only for standards read on an official page or document. Verified and entered as data as of 2026-11-26: Army AFT, Navy PRT and body-composition rule, FBI, DEA, ATF, USSS, ICE/HSI, US Marshals (Postal Inspectors are verified but not entered yet). Marine Corps (2026 changes), Air Force (pass rules), Space Force and Coast Guard show minimums marked "unverified, check source" with a link until the owner supplies the official document (see [live-page-checklist](verification/live-page-checklist.md)).
 6. Methodology page documents every rule, source, and limitation.
 
 ## 6. Content model
-- Content collections (schema: `src/lib/standards/schema.ts`, data: `src/content/`): `organizations` (`kind: military | federal | state`), `standards` (events with minimums per age and sex), `bodyComposition` (waist-to-height rules). Planned: `HiringStage`, `Guide` (MDX), `GlossaryTerm`, and a points-based standard type for the FBI, DEA and Secret Service.
+- Content collections (schema: `src/lib/standards/schema.ts`, data: `src/content/`): `organizations` (`kind: military | federal | state`), `standards` (events with minimums per age and sex), `bodyComposition` (waist-to-height rules). `pointStandards` (tests scored in points with a total and a minimum per event: FBI, DEA, Secret Service). Planned: `HiringStage`, `Guide` (MDX), `GlossaryTerm`.
 - Every standard value carries `source` (URL), `verifiedAt` (date), and `evidence` (`read` | `excerpt`).
 
 ## 7. Routes

@@ -38,7 +38,7 @@ This project's Baseline target is Baseline Widely available.
 - Astro static output; one Svelte island only for the readiness tool. Why: minimal JS, Lighthouse >= 90 ([ADR 0001](docs/decisions/0001-stack-astro-svelte-ts6.md)).
 - TypeScript stays on 6.x. Why: typescript-eslint does not accept 7.x yet.
 - Every standard value needs `source`, `verifiedAt`, `evidence` (`read` | `excerpt`). Why: facts change often; users must see the date and source.
-- Standards data lives in `src/content/` (schema `src/lib/standards/schema.ts`, logic `src/lib/standards/evaluate.ts`); those files own the numbers they contain, research notes are the evidence record.
+- Standards data lives in `src/content/` (schema `src/lib/standards/schema.ts`, logic `src/lib/standards/evaluate.ts` and `points.ts`); those files own the numbers they contain, research notes are the evidence record.
 - Calculators only for standards with `evidence: read`. Why: no verdicts on unverified numbers ([ADR 0003](docs/decisions/0003-readiness-hybrid-model.md)).
 - Tool inputs stay in browser memory: never localStorage, URLs, logs, analytics, or third-party scripts. Why: consumer health data laws ([ADR 0004](docs/decisions/0004-browser-only-tool-data.md)).
 - BMI is informational only; results are per-event comparisons, never an overall "ready" verdict.

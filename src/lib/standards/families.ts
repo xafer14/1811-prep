@@ -4,11 +4,13 @@
  */
 export const EVENT_FAMILIES = [
   { id: 'push-ups', label: 'Push-ups' },
+  { id: 'pull-ups', label: 'Pull-ups' },
   { id: 'sit-ups', label: 'Sit-ups' },
   { id: 'plank', label: 'Plank' },
   { id: 'deadlift', label: 'Deadlift' },
   { id: 'sprint', label: 'Sprint' },
   { id: 'sprint-drag-carry', label: 'Sprint-drag-carry' },
+  { id: 'agility-run', label: 'Agility run' },
   { id: 'run-1-5-mile', label: '1.5-mile run' },
   { id: 'run-2-mile', label: 'Two-mile run' },
   { id: 'sit-and-reach', label: 'Sit and reach' },

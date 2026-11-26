@@ -1,0 +1,464 @@
+{
+  "id": "fbi-pft",
+  "organization": "fbi",
+  "name": "FBI Physical Fitness Test (PFT)",
+  "source": {
+    "document": "FBI Physical Fitness Test (PFT) Self-Evaluation Form, scoring scales",
+    "url": "https://www.fbijobs.gov/file-repository/forms_pft-self-evaluation-form.pdf/download",
+    "documentDate": "Last updated May 2026",
+    "verifiedAt": "2026-11-26",
+    "evidence": "read"
+  },
+  "scoring": "points",
+  "rule": {
+    "minTotal": 10,
+    "minPerEvent": 1
+  },
+  "caveat": "The events must be done in this order with no more than five minutes between them. A minimum score is 10 total points with at least 1 point in each of the four events.",
+  "events": [
+    {
+      "id": "pull-ups",
+      "name": "Pull-ups or chin-ups (untimed)",
+      "family": "pull-ups",
+      "unit": "reps",
+      "better": "higher",
+      "scales": [
+        {
+          "sex": "male",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 1,
+              "value": 2
+            },
+            {
+              "points": 2,
+              "value": 4
+            },
+            {
+              "points": 3,
+              "value": 6
+            },
+            {
+              "points": 4,
+              "value": 8
+            },
+            {
+              "points": 5,
+              "value": 10
+            },
+            {
+              "points": 6,
+              "value": 12
+            },
+            {
+              "points": 7,
+              "value": 14
+            },
+            {
+              "points": 8,
+              "value": 16
+            },
+            {
+              "points": 9,
+              "value": 18
+            },
+            {
+              "points": 10,
+              "value": 20
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 1,
+              "value": 1
+            },
+            {
+              "points": 2,
+              "value": 2
+            },
+            {
+              "points": 3,
+              "value": 3
+            },
+            {
+              "points": 4,
+              "value": 4
+            },
+            {
+              "points": 5,
+              "value": 5
+            },
+            {
+              "points": 6,
+              "value": 6
+            },
+            {
+              "points": 7,
+              "value": 7
+            },
+            {
+              "points": 8,
+              "value": 8
+            },
+            {
+              "points": 9,
+              "value": 9
+            },
+            {
+              "points": 10,
+              "value": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprint",
+      "name": "300-meter sprint",
+      "family": "sprint",
+      "unit": "seconds",
+      "better": "lower",
+      "scales": [
+        {
+          "sex": "male",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": -2,
+          "steps": [
+            {
+              "points": 0,
+              "value": 55
+            },
+            {
+              "points": 1,
+              "value": 52.4
+            },
+            {
+              "points": 2,
+              "value": 51
+            },
+            {
+              "points": 3,
+              "value": 49.4
+            },
+            {
+              "points": 4,
+              "value": 47.9
+            },
+            {
+              "points": 5,
+              "value": 46
+            },
+            {
+              "points": 6,
+              "value": 44.9
+            },
+            {
+              "points": 7,
+              "value": 43.9
+            },
+            {
+              "points": 8,
+              "value": 42.9
+            },
+            {
+              "points": 9,
+              "value": 41.9
+            },
+            {
+              "points": 10,
+              "value": 40.9
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": -2,
+          "steps": [
+            {
+              "points": 0,
+              "value": 67.4
+            },
+            {
+              "points": 1,
+              "value": 64.9
+            },
+            {
+              "points": 2,
+              "value": 62.4
+            },
+            {
+              "points": 3,
+              "value": 59.9
+            },
+            {
+              "points": 4,
+              "value": 57.4
+            },
+            {
+              "points": 5,
+              "value": 55.9
+            },
+            {
+              "points": 6,
+              "value": 53.9
+            },
+            {
+              "points": 7,
+              "value": 52.9
+            },
+            {
+              "points": 8,
+              "value": 51.9
+            },
+            {
+              "points": 9,
+              "value": 50.9
+            },
+            {
+              "points": 10,
+              "value": 49.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "push-ups",
+      "name": "Push-ups (untimed)",
+      "family": "push-ups",
+      "unit": "reps",
+      "better": "higher",
+      "scales": [
+        {
+          "sex": "male",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": -2,
+          "steps": [
+            {
+              "points": 0,
+              "value": 20
+            },
+            {
+              "points": 1,
+              "value": 30
+            },
+            {
+              "points": 2,
+              "value": 33
+            },
+            {
+              "points": 3,
+              "value": 40
+            },
+            {
+              "points": 4,
+              "value": 44
+            },
+            {
+              "points": 5,
+              "value": 50
+            },
+            {
+              "points": 6,
+              "value": 54
+            },
+            {
+              "points": 7,
+              "value": 57
+            },
+            {
+              "points": 8,
+              "value": 61
+            },
+            {
+              "points": 9,
+              "value": 65
+            },
+            {
+              "points": 10,
+              "value": 71
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": -2,
+          "steps": [
+            {
+              "points": 0,
+              "value": 5
+            },
+            {
+              "points": 1,
+              "value": 14
+            },
+            {
+              "points": 2,
+              "value": 19
+            },
+            {
+              "points": 3,
+              "value": 22
+            },
+            {
+              "points": 4,
+              "value": 27
+            },
+            {
+              "points": 5,
+              "value": 30
+            },
+            {
+              "points": 6,
+              "value": 33
+            },
+            {
+              "points": 7,
+              "value": 36
+            },
+            {
+              "points": 8,
+              "value": 39
+            },
+            {
+              "points": 9,
+              "value": 42
+            },
+            {
+              "points": 10,
+              "value": 45
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "name": "1.5-mile run",
+      "family": "run-1-5-mile",
+      "unit": "seconds",
+      "better": "lower",
+      "scales": [
+        {
+          "sex": "male",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": -2,
+          "steps": [
+            {
+              "points": 0,
+              "value": "13:29"
+            },
+            {
+              "points": 1,
+              "value": "12:24"
+            },
+            {
+              "points": 2,
+              "value": "12:14"
+            },
+            {
+              "points": 3,
+              "value": "11:34"
+            },
+            {
+              "points": 4,
+              "value": "11:09"
+            },
+            {
+              "points": 5,
+              "value": "10:34"
+            },
+            {
+              "points": 6,
+              "value": "10:14"
+            },
+            {
+              "points": 7,
+              "value": "9:54"
+            },
+            {
+              "points": 8,
+              "value": "9:34"
+            },
+            {
+              "points": 9,
+              "value": "9:19"
+            },
+            {
+              "points": 10,
+              "value": "8:59"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": -2,
+          "steps": [
+            {
+              "points": 0,
+              "value": "14:59"
+            },
+            {
+              "points": 1,
+              "value": "13:59"
+            },
+            {
+              "points": 2,
+              "value": "13:34"
+            },
+            {
+              "points": 3,
+              "value": "12:59"
+            },
+            {
+              "points": 4,
+              "value": "12:29"
+            },
+            {
+              "points": 5,
+              "value": "11:56"
+            },
+            {
+              "points": 6,
+              "value": "11:34"
+            },
+            {
+              "points": 7,
+              "value": "11:14"
+            },
+            {
+              "points": 8,
+              "value": "11:05"
+            },
+            {
+              "points": 9,
+              "value": "10:44"
+            },
+            {
+              "points": 10,
+              "value": "10:34"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

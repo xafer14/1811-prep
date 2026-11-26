@@ -1,0 +1,360 @@
+{
+  "id": "dea-pta",
+  "organization": "dea",
+  "name": "DEA Physical Task Assessment (PTA), hiring process",
+  "source": {
+    "document": "DEA Special Agent Selection Test Preparation Guide, Version 7, Appendix A",
+    "url": "https://www.dea.gov/sites/default/files/2026-07/508_Special%20Agent%20Test%20Preparation%20Guide_Version%207.pdf",
+    "documentDate": "Applies to the Special Agent announcement released in July 2026",
+    "verifiedAt": "2026-11-26",
+    "evidence": "read"
+  },
+  "scoring": "points",
+  "rule": {
+    "minTotal": 12,
+    "minPerEvent": 1
+  },
+  "caveat": "The run points count twice in the total. Applicants under announcements before July 2026 may have a different standard. The 300-meter sprint is only used later, in Basic Agent Training.",
+  "events": [
+    {
+      "id": "sit-ups",
+      "name": "Sit-ups (1 min)",
+      "family": "sit-ups",
+      "unit": "reps",
+      "better": "higher",
+      "scales": [
+        {
+          "sex": "male",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": -2,
+          "steps": [
+            {
+              "points": 0,
+              "value": 32
+            },
+            {
+              "points": 1,
+              "value": 38
+            },
+            {
+              "points": 2,
+              "value": 39
+            },
+            {
+              "points": 3,
+              "value": 43
+            },
+            {
+              "points": 4,
+              "value": 45
+            },
+            {
+              "points": 5,
+              "value": 48
+            },
+            {
+              "points": 6,
+              "value": 50
+            },
+            {
+              "points": 7,
+              "value": 52
+            },
+            {
+              "points": 8,
+              "value": 54
+            },
+            {
+              "points": 9,
+              "value": 56
+            },
+            {
+              "points": 10,
+              "value": 58
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": -2,
+          "steps": [
+            {
+              "points": 0,
+              "value": 30
+            },
+            {
+              "points": 1,
+              "value": 35
+            },
+            {
+              "points": 2,
+              "value": 37
+            },
+            {
+              "points": 3,
+              "value": 41
+            },
+            {
+              "points": 4,
+              "value": 43
+            },
+            {
+              "points": 5,
+              "value": 47
+            },
+            {
+              "points": 6,
+              "value": 49
+            },
+            {
+              "points": 7,
+              "value": 51
+            },
+            {
+              "points": 8,
+              "value": 53
+            },
+            {
+              "points": 9,
+              "value": 55
+            },
+            {
+              "points": 10,
+              "value": 57
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "push-ups",
+      "name": "Push-ups",
+      "family": "push-ups",
+      "unit": "reps",
+      "better": "higher",
+      "scales": [
+        {
+          "sex": "male",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": -2,
+          "steps": [
+            {
+              "points": 0,
+              "value": 20
+            },
+            {
+              "points": 1,
+              "value": 30
+            },
+            {
+              "points": 2,
+              "value": 33
+            },
+            {
+              "points": 3,
+              "value": 40
+            },
+            {
+              "points": 4,
+              "value": 44
+            },
+            {
+              "points": 5,
+              "value": 50
+            },
+            {
+              "points": 6,
+              "value": 54
+            },
+            {
+              "points": 7,
+              "value": 57
+            },
+            {
+              "points": 8,
+              "value": 61
+            },
+            {
+              "points": 9,
+              "value": 65
+            },
+            {
+              "points": 10,
+              "value": 71
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": -2,
+          "steps": [
+            {
+              "points": 0,
+              "value": 5
+            },
+            {
+              "points": 1,
+              "value": 14
+            },
+            {
+              "points": 2,
+              "value": 19
+            },
+            {
+              "points": 3,
+              "value": 22
+            },
+            {
+              "points": 4,
+              "value": 27
+            },
+            {
+              "points": 5,
+              "value": 30
+            },
+            {
+              "points": 6,
+              "value": 33
+            },
+            {
+              "points": 7,
+              "value": 36
+            },
+            {
+              "points": 8,
+              "value": 39
+            },
+            {
+              "points": 9,
+              "value": 42
+            },
+            {
+              "points": 10,
+              "value": 45
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "name": "1.5-mile run (points count twice)",
+      "family": "run-1-5-mile",
+      "unit": "seconds",
+      "better": "lower",
+      "scales": [
+        {
+          "sex": "male",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": -2,
+          "steps": [
+            {
+              "points": 0,
+              "value": "13:29"
+            },
+            {
+              "points": 1,
+              "value": "12:24"
+            },
+            {
+              "points": 2,
+              "value": "12:14"
+            },
+            {
+              "points": 3,
+              "value": "11:34"
+            },
+            {
+              "points": 4,
+              "value": "11:09"
+            },
+            {
+              "points": 5,
+              "value": "10:34"
+            },
+            {
+              "points": 6,
+              "value": "10:14"
+            },
+            {
+              "points": 7,
+              "value": "9:54"
+            },
+            {
+              "points": 8,
+              "value": "9:34"
+            },
+            {
+              "points": 9,
+              "value": "9:19"
+            },
+            {
+              "points": 10,
+              "value": "8:59"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 10,
+          "ageMax": null,
+          "floorPoints": -2,
+          "steps": [
+            {
+              "points": 0,
+              "value": "14:59"
+            },
+            {
+              "points": 1,
+              "value": "13:59"
+            },
+            {
+              "points": 2,
+              "value": "13:34"
+            },
+            {
+              "points": 3,
+              "value": "12:59"
+            },
+            {
+              "points": 4,
+              "value": "12:29"
+            },
+            {
+              "points": 5,
+              "value": "11:56"
+            },
+            {
+              "points": 6,
+              "value": "11:34"
+            },
+            {
+              "points": 7,
+              "value": "11:14"
+            },
+            {
+              "points": 8,
+              "value": "11:05"
+            },
+            {
+              "points": 9,
+              "value": "10:44"
+            },
+            {
+              "points": 10,
+              "value": "10:34"
+            }
+          ]
+        }
+      ],
+      "multiplier": 2
+    }
+  ]
+}

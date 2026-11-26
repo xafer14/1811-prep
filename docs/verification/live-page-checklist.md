@@ -45,9 +45,9 @@ Legend: done = values read from the official document and entered in the researc
 | A3 | ATF | partial | Maximum age line (37 or 40). Fitness test: done (page, 1 Oct 2026) |
 | A4 | Army | done | |
 | A5 | Navy | done | |
-| A6 | Marine Corps | partial | 2026 changes (MARADMIN 613/25 and 066/26) and the waist-to-height rule. The older order is read |
-| A7 | Air Force | partial | Pass rules (composite 75, component minimums) and the official start date. Scoring charts are read |
-| A8 | Space Force | missing | Everything |
+| A6 | Marine Corps | partial | The 2026 changes (MARADMIN 613/25 and 066/26, higher total for combat arms) and the waist-to-height rule. Per-event minimums are entered from the order (MCO 6100.13A) and match Military.com, except one value (see the military note) |
+| A7 | Air Force | partial | The pass rules in DAFMAN 36-2905 (composite 75, component minimums) and the waist-to-height rule. The lowest scoring row of each chart (asterisk) is entered as the component minimum; the chart legend is missing, so this is an assumption |
+| A8 | Space Force | partial | The main assessment: its scoring charts are in the myFitness calculator, not in the manual. Entered from the manual: the waist-to-height rule and the 2-kilometer walk standard |
 | A9 | Coast Guard | missing | Everything |
 | B1 | US Marshals | done | |
 | B2 | State Dept. DSS | partial | The "minimum satisfactory passing scores" page |
@@ -77,5 +77,8 @@ Folder: `New folder (3)` on the owner's desktop. SHA-256 prefixes identify the e
 | Tab 2. PFRA Scoring Charts, cao 17 Mar 26.pdf | 24052f9a00b6b6ae | Air Force |
 | The Diplomatic Security Service Physical Readiness Test Guide - Careers.pdf | 86a06c2ee51d1e6a | State Dept. DSS |
 | handbookHSI_22-05_07.19.2022.pdf | c2c02018620c7160 | ICE HSI |
+| spfman36-2905.pdf (Space Force manual, 26 Sep 2025, Change 3 of 24 Apr 2026) | 30684b0bc81be159 | Space Force |
+
+Web pages the owner pointed to on 2026-11-26 (secondary sources, never the only source of a number): Military.com "Marine Corps Physical Fitness Test" and "Marine Corps Body Composition Program" (both updated 2026-09-23), and Forever Wingman "Air Force BMT PT Test" (a veteran's blog dated 2026-08-01).
 
 Related: [backlog B-001](../backlog.md), [military standards](../research/fitness-standards-military.md), [federal standards](../research/fitness-standards-federal.md).

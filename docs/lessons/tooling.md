@@ -26,3 +26,4 @@ superseded_by:
 - Cause: Playwright reuses a server already listening on port 4321 (`reuseExistingServer: true`), so the tests ran against the stale dev server instead of the build.
 - Rule: restart the dev server (and delete `.astro`) after changing the content schema or data files; run e2e against a fresh build.
 - Guard: proposed. Make `playwright.config.ts` start its own build and preview (`reuseExistingServer: false`) so dev-server state can never affect e2e results; it needs the dev server stopped, which CI already guarantees.
+- Update 2026-11-26: the same stale cache broke the production build after an optional-with-default field was added to the organization schema (unchanged files kept entries parsed with the old schema). Guard promoted for builds: `npm run build` now runs `astro build --force`, which clears the content cache (builds take about a second). The dev server still needs a restart after schema changes.

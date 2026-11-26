@@ -1,0 +1,18 @@
+{
+  "id": "army-whtr",
+  "organization": "army",
+  "name": "Army waist-to-height ratio",
+  "source": {
+    "document": "Army Directive 2026-13 (Army Body Composition Program)",
+    "url": "https://home.army.mil/carson/8117/8345/8209/ARMY_DIR_2026-13_ABCP.pdf",
+    "verifiedAt": "2026-11-24",
+    "evidence": "read"
+  },
+  "method": "whtr",
+  "limit": 0.55,
+  "ifOver": "Does not meet the Army body composition standard. Height/weight tables and the tape test were discontinued.",
+  "notes": [
+    "The ratio must be less than 0.55; exactly 0.55 does not meet the standard.",
+    "No fitness score exempts a soldier from the standard."
+  ]
+}

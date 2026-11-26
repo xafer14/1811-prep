@@ -1,0 +1,72 @@
+{
+  "id": "hsi-pftp",
+  "organization": "ice-hsi",
+  "name": "HSI Pre-Employment Physical Fitness Test (PFT-P)",
+  "effectiveDate": "2025-02-06",
+  "source": {
+    "document": "ICE Physical Fitness Test page and HSI Handbook 22-05 (the two give identical standards)",
+    "url": "https://www.ice.gov/careers/how-apply/physical-fitness-test",
+    "documentDate": "Page last updated 2025-02-06; handbook dated 19 July 2022",
+    "verifiedAt": "2026-11-24",
+    "evidence": "read"
+  },
+  "completeness": "complete",
+  "events": [
+    {
+      "id": "sit-ups",
+      "name": "Sit-ups (1 min)",
+      "unit": "reps",
+      "better": "higher",
+      "minimums": [
+        {
+          "sex": "any",
+          "ageMin": 10,
+          "ageMax": null,
+          "value": 32
+        }
+      ]
+    },
+    {
+      "id": "sprint",
+      "name": "220-yard sprint",
+      "unit": "seconds",
+      "better": "lower",
+      "minimums": [
+        {
+          "sex": "any",
+          "ageMin": 10,
+          "ageMax": null,
+          "value": 47.73
+        }
+      ]
+    },
+    {
+      "id": "push-ups",
+      "name": "Push-ups (1 min)",
+      "unit": "reps",
+      "better": "higher",
+      "minimums": [
+        {
+          "sex": "any",
+          "ageMin": 10,
+          "ageMax": null,
+          "value": 22
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "name": "1.5-mile run",
+      "unit": "seconds",
+      "better": "lower",
+      "minimums": [
+        {
+          "sex": "any",
+          "ageMin": 10,
+          "ageMax": null,
+          "value": "14:25"
+        }
+      ]
+    }
+  ]
+}

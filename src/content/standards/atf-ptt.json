@@ -1,0 +1,147 @@
+{
+  "id": "atf-ptt",
+  "organization": "atf",
+  "name": "ATF Pre-Employment Physical Task Test (PTT)",
+  "source": {
+    "document": "ATF Pre-Employment Physical Task Test page",
+    "url": "https://www.atf.gov/careers/pre-employment-physical-task-test",
+    "documentDate": "Last Updated: October 1, 2026",
+    "verifiedAt": "2026-11-24",
+    "evidence": "read"
+  },
+  "completeness": "complete",
+  "events": [
+    {
+      "id": "sit-ups",
+      "name": "Sit-ups (1 min)",
+      "unit": "reps",
+      "better": "higher",
+      "minimums": [
+        {
+          "sex": "male",
+          "ageMin": 21,
+          "ageMax": 29,
+          "value": 40
+        },
+        {
+          "sex": "female",
+          "ageMin": 21,
+          "ageMax": 29,
+          "value": 35
+        },
+        {
+          "sex": "male",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": 36
+        },
+        {
+          "sex": "female",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": 27
+        },
+        {
+          "sex": "male",
+          "ageMin": 40,
+          "ageMax": null,
+          "value": 31
+        },
+        {
+          "sex": "female",
+          "ageMin": 40,
+          "ageMax": null,
+          "value": 22
+        }
+      ]
+    },
+    {
+      "id": "push-ups",
+      "name": "Push-ups (1 min)",
+      "unit": "reps",
+      "better": "higher",
+      "minimums": [
+        {
+          "sex": "male",
+          "ageMin": 21,
+          "ageMax": 29,
+          "value": 33
+        },
+        {
+          "sex": "female",
+          "ageMin": 21,
+          "ageMax": 29,
+          "value": 16
+        },
+        {
+          "sex": "male",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": 27
+        },
+        {
+          "sex": "female",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": 14
+        },
+        {
+          "sex": "male",
+          "ageMin": 40,
+          "ageMax": null,
+          "value": 21
+        },
+        {
+          "sex": "female",
+          "ageMin": 40,
+          "ageMax": null,
+          "value": 11
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "name": "1.5-mile run",
+      "unit": "seconds",
+      "better": "lower",
+      "minimums": [
+        {
+          "sex": "male",
+          "ageMin": 21,
+          "ageMax": 29,
+          "value": "12:18"
+        },
+        {
+          "sex": "female",
+          "ageMin": 21,
+          "ageMax": 29,
+          "value": "14:55"
+        },
+        {
+          "sex": "male",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": "12:51"
+        },
+        {
+          "sex": "female",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": "15:26"
+        },
+        {
+          "sex": "male",
+          "ageMin": 40,
+          "ageMax": null,
+          "value": "13:53"
+        },
+        {
+          "sex": "female",
+          "ageMin": 40,
+          "ageMax": null,
+          "value": "16:27"
+        }
+      ]
+    }
+  ]
+}

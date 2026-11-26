@@ -1,0 +1,239 @@
+{
+  "id": "usms-peb",
+  "organization": "usms",
+  "name": "U.S. Marshals Service Physical Efficiency Battery (Deputy U.S. Marshals)",
+  "source": {
+    "document": "USMS Deputy U.S. Marshals Fitness Standards page (men and women tabs)",
+    "url": "https://www.usmarshals.gov/careers/deputy-us-marshals/fitness-standards",
+    "documentDate": "No date shown; page printed 2026-11-24",
+    "verifiedAt": "2026-11-24",
+    "evidence": "read"
+  },
+  "completeness": "complete",
+  "events": [
+    {
+      "id": "run",
+      "name": "1.5-mile run",
+      "unit": "seconds",
+      "better": "lower",
+      "minimums": [
+        {
+          "sex": "male",
+          "ageMin": 20,
+          "ageMax": 29,
+          "value": "12:18"
+        },
+        {
+          "sex": "female",
+          "ageMin": 20,
+          "ageMax": 29,
+          "value": "14:55"
+        },
+        {
+          "sex": "male",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": "12:51"
+        },
+        {
+          "sex": "female",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": "15:26"
+        },
+        {
+          "sex": "male",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": "13:53"
+        },
+        {
+          "sex": "female",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": "16:27"
+        },
+        {
+          "sex": "male",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": "14:55"
+        },
+        {
+          "sex": "female",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": "17:24"
+        }
+      ]
+    },
+    {
+      "id": "push-ups",
+      "name": "Push-ups (1 min)",
+      "unit": "reps",
+      "better": "higher",
+      "minimums": [
+        {
+          "sex": "male",
+          "ageMin": 20,
+          "ageMax": 29,
+          "value": 33
+        },
+        {
+          "sex": "female",
+          "ageMin": 20,
+          "ageMax": 29,
+          "value": 16
+        },
+        {
+          "sex": "male",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": 27
+        },
+        {
+          "sex": "female",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": 14
+        },
+        {
+          "sex": "male",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": 21
+        },
+        {
+          "sex": "female",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": 11
+        },
+        {
+          "sex": "male",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": 15
+        },
+        {
+          "sex": "female",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": 7
+        }
+      ]
+    },
+    {
+      "id": "sit-ups",
+      "name": "Sit-ups (1 min)",
+      "unit": "reps",
+      "better": "higher",
+      "minimums": [
+        {
+          "sex": "male",
+          "ageMin": 20,
+          "ageMax": 29,
+          "value": 40
+        },
+        {
+          "sex": "female",
+          "ageMin": 20,
+          "ageMax": 29,
+          "value": 35
+        },
+        {
+          "sex": "male",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": 36
+        },
+        {
+          "sex": "female",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": 27
+        },
+        {
+          "sex": "male",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": 31
+        },
+        {
+          "sex": "female",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": 22
+        },
+        {
+          "sex": "male",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": 26
+        },
+        {
+          "sex": "female",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": 17
+        }
+      ]
+    },
+    {
+      "id": "sit-and-reach",
+      "name": "Sit and reach",
+      "unit": "inches",
+      "better": "higher",
+      "minimums": [
+        {
+          "sex": "male",
+          "ageMin": 20,
+          "ageMax": 29,
+          "value": 17.5
+        },
+        {
+          "sex": "female",
+          "ageMin": 20,
+          "ageMax": 29,
+          "value": 20
+        },
+        {
+          "sex": "male",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": 16.5
+        },
+        {
+          "sex": "female",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": 19
+        },
+        {
+          "sex": "male",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": 15.3
+        },
+        {
+          "sex": "female",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": 18
+        },
+        {
+          "sex": "male",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": 14.5
+        },
+        {
+          "sex": "female",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": 17.9
+        }
+      ]
+    }
+  ]
+}

@@ -80,6 +80,13 @@ describe('content files', () => {
     }
   });
 
+  it('gives every event a family, at most once per standard except where noted', () => {
+    for (const item of standards.values()) {
+      const families = item.events.map((event) => event.family);
+      expect(new Set(families).size, `${item.id} repeats a family`).toBe(families.length);
+    }
+  });
+
   it('only ships read-level evidence with a verification date', () => {
     for (const item of [...standards.values(), ...bodyStandards.values()]) {
       expect(item.source.evidence, item.id).toBe('read');
@@ -268,6 +275,7 @@ describe('schema guards', () => {
       {
         id: 'run',
         name: 'Run',
+        family: 'run-1-5-mile',
         unit: 'seconds',
         better: 'lower',
         minimums,

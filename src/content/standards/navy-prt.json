@@ -14,6 +14,7 @@
     {
       "id": "push-ups",
       "name": "Push-ups (2 min)",
+      "family": "push-ups",
       "unit": "reps",
       "better": "higher",
       "minimums": [
@@ -154,6 +155,7 @@
     {
       "id": "plank",
       "name": "Forearm plank",
+      "family": "plank",
       "unit": "seconds",
       "better": "higher",
       "minimums": [
@@ -294,6 +296,7 @@
     {
       "id": "run",
       "name": "1.5-mile run",
+      "family": "run-1-5-mile",
       "unit": "seconds",
       "better": "lower",
       "minimums": [

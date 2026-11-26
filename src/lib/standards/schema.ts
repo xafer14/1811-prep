@@ -1,5 +1,6 @@
 import { z } from 'astro/zod';
 import { TIME_PATTERN, parseTime } from '../time';
+import { FAMILY_IDS } from './families';
 
 const isoDate = z.iso.date();
 const slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'use a kebab-case id');
@@ -45,6 +46,8 @@ const minimumSchema = z
 const eventSchema = z.object({
   id: slug,
   name: z.string().min(1),
+  /** Which kind of effort this is, so organizations can be compared side by side. */
+  family: z.enum(FAMILY_IDS),
   unit: z.enum(['reps', 'seconds', 'pounds', 'inches']),
   /** higher = more is better (reps); lower = less is better (run time). */
   better: z.enum(['higher', 'lower']),

@@ -15,6 +15,7 @@
     {
       "id": "sit-ups",
       "name": "Sit-ups (1 min)",
+      "family": "sit-ups",
       "unit": "reps",
       "better": "higher",
       "minimums": [
@@ -29,6 +30,7 @@
     {
       "id": "sprint",
       "name": "220-yard sprint",
+      "family": "sprint",
       "unit": "seconds",
       "better": "lower",
       "minimums": [
@@ -43,6 +45,7 @@
     {
       "id": "push-ups",
       "name": "Push-ups (1 min)",
+      "family": "push-ups",
       "unit": "reps",
       "better": "higher",
       "minimums": [
@@ -57,6 +60,7 @@
     {
       "id": "run",
       "name": "1.5-mile run",
+      "family": "run-1-5-mile",
       "unit": "seconds",
       "better": "lower",
       "minimums": [

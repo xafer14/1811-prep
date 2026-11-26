@@ -29,9 +29,12 @@ test.describe('compare page', () => {
 
   test('groups military branches and federal agencies side by side', async ({ page }) => {
     const headers = table(page).getByRole('columnheader');
-    await expect(headers.filter({ hasText: 'Military branches' })).toHaveAttribute('colspan', '2');
+    await expect(headers.filter({ hasText: 'Military branches' })).toHaveAttribute('colspan', '5');
     await expect(headers.filter({ hasText: 'Federal agencies' })).toHaveAttribute('colspan', '6');
     for (const name of [
+      'Air Force',
+      'Marine Corps',
+      'Space Force',
       'Army',
       'Navy',
       'ATF',
@@ -44,7 +47,12 @@ test.describe('compare page', () => {
       await expect(headers.filter({ hasText: name }).first()).toBeVisible();
     }
     await expect(page.getByText('Not shown yet, because the official numbers')).toBeVisible();
-    await expect(page.getByText('Air Force, Coast Guard, Marine Corps, Space Force')).toBeVisible();
+    await expect(page.getByText('Military branches: Coast Guard')).toBeVisible();
+    // Organizations shown only in part say what is still missing.
+    await expect(page.getByText('Shown only in part')).toBeVisible();
+    await expect(page.getByText(/myFitness calculator, not in the manual/).first()).toBeVisible();
+    await expect(page.getByText(/waiting for DAFMAN 36-2905/)).toBeVisible();
+    await expect(page.getByText(/waiting for the current Marine Corps orders/)).toBeVisible();
     // Every federal agency now has verified numbers, so no federal list is shown.
     await expect(page.getByText('Federal agencies:')).toHaveCount(0);
   });
@@ -59,6 +67,15 @@ test.describe('compare page', () => {
     await expect(row(page, 'Two-mile run')).toContainText('19:45 or faster');
     await expect(row(page, 'Body composition')).toContainText('Waist-to-height ratio below 0.55');
     await expect(row(page, 'Also applies')).toContainText('total score');
+    // Marine Corps (order), Air Force (chart) and Space Force (manual).
+    await expect(row(page, 'Three-mile run')).toContainText('27:40 or faster');
+    await expect(row(page, 'Two-mile run')).toContainText('19:55 or faster'); // Air Force, 25-29
+    await expect(row(page, '2-kilometer walk (medical alternative)')).toContainText(
+      '16:16 or faster',
+    );
+    await expect(row(page, 'Body composition')).toContainText('rounded down to 2 decimals');
+    await expect(row(page, 'Also applies')).toContainText('composite score of at least 75');
+    await expect(row(page, 'Also applies')).toContainText('at least 150 points in total');
     // Tests scored in points show the level worth one point and the total rule.
     await expect(row(page, 'Pull-ups')).toContainText('at least 2 reps'); // FBI, men
     await expect(row(page, 'Pull-ups')).toContainText('Worth 1 point');

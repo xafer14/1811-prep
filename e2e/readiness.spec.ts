@@ -170,6 +170,56 @@ test.describe('readiness tool', () => {
     await expect(results.getByText('Meets the total required: 23 of 20 points')).toBeVisible();
   });
 
+  test('compares Marine Corps results with the order and says what is not included yet', async ({
+    page,
+  }) => {
+    await choose(page, /U\.S\. Marine Corps/);
+    await fillAbout(page, '25', 'Male');
+    await page.getByLabel('Pull-ups', { exact: true }).fill('4');
+    await page.getByLabel('Plank', { exact: true }).fill('1:20');
+    await page.getByLabel('3-mile run').fill('28:00');
+    await compare(page);
+
+    const results = page.locator('.results');
+    await expect(results.getByText('1 of 3 entered events meet the minimum.')).toBeVisible();
+    await expect(results.getByText('Minimum: 5 reps.')).toBeVisible();
+    await expect(results.getByText('Minimum: 27:40.')).toBeVisible();
+    await expect(results.getByText(/at least 150 points in total/)).toBeVisible();
+    await expect(results.getByText('Not included yet for Marine Corps:')).toBeVisible();
+    await expect(results.getByText(/waiting for the current Marine Corps orders/)).toBeVisible();
+  });
+
+  test('compares Air Force results with the chart minimums and warns about the asterisk', async ({
+    page,
+  }) => {
+    await choose(page, /U\.S\. Air Force/);
+    await fillAbout(page, '25', 'Male');
+    await page.getByLabel('Push-ups (1 min)').fill('30');
+    await page.getByLabel('2-mile run').fill('20:30');
+    await compare(page);
+
+    const results = page.locator('.results');
+    await expect(results.getByText('1 of 2 entered events meet the minimum.')).toBeVisible();
+    await expect(results.getByText(/reads it as the component minimum/)).toBeVisible();
+    await expect(results.getByText(/composite score of at least 75/)).toBeVisible();
+    await expect(results.getByText('Not included yet for Air Force:')).toBeVisible();
+  });
+
+  test('checks the Space Force waist-to-height ratio and the walk standard', async ({ page }) => {
+    await choose(page, /U\.S\. Space Force/);
+    await fillAbout(page, '30', 'Female');
+    await page.getByLabel(/^Height \(inches\)/).fill('64');
+    await page.getByLabel(/^Waist \(inches\)/).fill('35.2');
+    await page.getByLabel(/^2-kilometer walk/).fill('17:00');
+    await compare(page);
+
+    const results = page.locator('.results');
+    await expect(results.getByText('Not within the limit')).toBeVisible(); // 35.2 / 64 = 0.55
+    await expect(results.getByText(/26% for men and 36% for women/)).toBeVisible();
+    await expect(results.locator('.status').filter({ hasText: 'Meets the minimum' })).toBeVisible();
+    await expect(results.getByText('Not included yet for Space Force:')).toBeVisible();
+  });
+
   test('checks the Navy waist-to-height ratio and explains what happens next', async ({ page }) => {
     await choose(page, /U\.S\. Navy/);
     await fillAbout(page, '25', 'Male');

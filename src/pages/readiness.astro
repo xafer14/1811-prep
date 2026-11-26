@@ -5,6 +5,7 @@ import Base from '../layouts/Base.astro';
 
 const organizations = (await getCollection('organizations')).map((entry) => entry.data);
 const standards = (await getCollection('standards')).map((entry) => entry.data);
+const pointStandards = (await getCollection('pointStandards')).map((entry) => entry.data);
 const bodyRules = (await getCollection('bodyComposition')).map((entry) => entry.data);
 ---
 
@@ -25,5 +26,5 @@ const bodyRules = (await getCollection('bodyComposition')).map((entry) => entry.
   <noscript>
     <p>This tool needs JavaScript. Nothing you type is sent anywhere.</p>
   </noscript>
-  <Readiness client:only="svelte" {organizations} {standards} {bodyRules} />
+  <Readiness client:only="svelte" {organizations} {standards} {pointStandards} {bodyRules} />
 </Base>

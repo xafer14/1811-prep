@@ -18,17 +18,29 @@
     type Sex,
     type StandardResult,
   } from '../lib/standards/evaluate';
-  import type { BodyCompositionStandard, Organization, Standard } from '../lib/standards/schema';
+  import {
+    evaluatePointsStandard,
+    type PointsEventResult,
+    type PointsStandardResult,
+  } from '../lib/standards/points';
+  import type {
+    BodyCompositionStandard,
+    Organization,
+    PointsStandard,
+    Standard,
+  } from '../lib/standards/schema';
 
   interface Props {
     organizations: Organization[];
     standards: Standard[];
+    pointStandards: PointsStandard[];
     bodyRules: BodyCompositionStandard[];
   }
   interface ResultSet {
     org: Organization;
     system: UnitSystem;
     items: { standard: Standard; result: StandardResult }[];
+    points: { standard: PointsStandard; result: PointsStandardResult }[];
     body: {
       rule: BodyCompositionStandard;
       result: BodyCompositionResult;
@@ -44,7 +56,7 @@
     { kind: 'state', label: 'State agencies' },
   ] as const;
 
-  let { organizations, standards, bodyRules }: Props = $props();
+  let { organizations, standards, pointStandards, bodyRules }: Props = $props();
 
   // Everything typed stays in memory in this component: no storage, no URL, no network.
   let system = $state<UnitSystem>('us');
@@ -61,7 +73,9 @@
   const touched: Record<string, boolean> = {};
 
   const hasData = (id: string): boolean =>
-    standards.some((s) => s.organization === id) || bodyRules.some((b) => b.organization === id);
+    standards.some((s) => s.organization === id) ||
+    pointStandards.some((s) => s.organization === id) ||
+    bodyRules.some((b) => b.organization === id);
   const available = $derived(organizations.filter((o) => hasData(o.id)));
   const unavailable = $derived(organizations.filter((o) => !hasData(o.id)));
   const groups = $derived(
@@ -74,13 +88,14 @@
   const orgId = $derived(chosenOrg || available[0]?.id || '');
   const org = $derived(available.find((o) => o.id === orgId));
   const orgStandards = $derived(standards.filter((s) => s.organization === orgId));
+  const orgPoints = $derived(pointStandards.filter((s) => s.organization === orgId));
   const orgBody = $derived(bodyRules.filter((b) => b.organization === orgId));
   const variant = $derived(orgStandards.flatMap((s) => s.variants)[0]);
 
   const eventKey = (standardId: string, eventId: string): string => `${standardId}__${eventId}`;
 
   function eventFields(): { key: string; unit: Standard['events'][number]['unit'] }[] {
-    return orgStandards.flatMap((s) =>
+    return [...orgStandards, ...orgPoints].flatMap((s) =>
       s.events.map((e) => ({ key: eventKey(s.id, e.id), unit: e.unit })),
     );
   }
@@ -192,6 +207,16 @@
       };
     });
 
+    const points = orgPoints.map((standard) => {
+      const entries: Record<string, number | undefined> = {};
+      for (const event of standard.events) {
+        entries[event.id] = numberOf(
+          parseEventValue(event.unit, texts[eventKey(standard.id, event.id)] ?? '', system),
+        );
+      }
+      return { standard, result: evaluatePointsStandard(standard, { age, sex }, entries) };
+    });
+
     const height = numberOf(parseLength(texts.height ?? '', system, 'height'));
     const waist = numberOf(parseLength(texts.waist ?? '', system, 'waist'));
     const weight = numberOf(parseWeight(texts.weight ?? '', system));
@@ -211,7 +236,7 @@
         system === 'us' ? height * CM_PER_INCH : height,
       );
     }
-    return { org, system, items, body, bmi };
+    return { org, system, items, points, body, bmi };
   }
 
   async function onSubmit(event: SubmitEvent): Promise<void> {
@@ -232,7 +257,8 @@
     }
     const computed = compute();
     const enteredEvents =
-      computed?.items.reduce((sum, item) => sum + item.result.enteredCount, 0) ?? 0;
+      (computed?.items.reduce((sum, item) => sum + item.result.enteredCount, 0) ?? 0) +
+      (computed?.points.reduce((sum, item) => sum + item.result.scoredCount, 0) ?? 0);
     if (!computed || (enteredEvents === 0 && computed.body.length === 0)) {
       formError =
         'Enter at least one test result, or both your height and waist, then compare again.';
@@ -252,6 +278,23 @@
     const id = name === 'sex' ? 'f-sex-male' : `f-${name}`;
     document.getElementById(id)?.focus();
   }
+
+  function pointsStatus(event: PointsEventResult): string {
+    if (event.status === 'scored') {
+      return event.meetsEventMinimum
+        ? 'Meets the per-event minimum'
+        : 'Below the per-event minimum';
+    }
+    return event.status === 'not-entered' ? 'No result entered' : 'No published scale for you';
+  }
+
+  function pointsClass(event: PointsEventResult): string {
+    if (event.status !== 'scored') return 'not-entered';
+    return event.meetsEventMinimum ? 'meets' : 'below';
+  }
+
+  const plural = (count: number, word: string): string =>
+    `${count} ${word}${count === 1 ? '' : 's'}`;
 
   const symbol = (status: string): string =>
     status === 'meets' ? '✓' : status === 'below' ? '✗' : '–';
@@ -466,6 +509,24 @@
     </fieldset>
   {/each}
 
+  {#each orgPoints as standard (standard.id)}
+    <fieldset>
+      <legend>{standard.name}</legend>
+      <p class="hint">
+        This test is scored in points. Fill in the events you have tested; leave the others empty.
+      </p>
+      {#each standard.events as event (event.id)}
+        {@render field(
+          eventKey(standard.id, event.id),
+          event.name,
+          `Enter ${unitHint(event.unit, system)}.`,
+          false,
+          event.unit === 'seconds' ? 'text' : 'decimal',
+        )}
+      {/each}
+    </fieldset>
+  {/each}
+
   <button type="submit">Compare with the official minimums</button>
 </form>
 
@@ -519,6 +580,70 @@
       </ul>
       {#if item.result.completeness === 'minimums-only' && item.result.caveat}
         <p class="caveat"><strong>Not the whole requirement.</strong> {item.result.caveat}</p>
+      {/if}
+      <p class="source">
+        Source: {item.standard.source.document}{item.standard.source.documentDate
+          ? ` (${item.standard.source.documentDate})`
+          : ''}. Checked against the official document on {item.standard.source.verifiedAt}.
+        {#if item.standard.source.url}
+          <a href={item.standard.source.url} target="_blank" rel="noopener noreferrer">
+            Official source (opens in a new tab)
+          </a>
+        {/if}
+      </p>
+    {/each}
+
+    {#each results.points as item (item.standard.id)}
+      <h3>{item.standard.name}</h3>
+      {#if item.result.scoredCount > 0}
+        <p class="count">
+          {item.result.scoredCount} of {item.result.totalCount} events scored. Points counted so far:
+          {item.result.totalPoints}.
+          {#if item.result.eventsBelowMinimum > 0}
+            {plural(item.result.eventsBelowMinimum, 'event')} below the per-event minimum of
+            {plural(item.result.minPerEvent, 'point')}.
+          {/if}
+        </p>
+      {/if}
+      <ul class="event-list">
+        {#each item.result.events as ev (ev.eventId)}
+          <li class={`event ${pointsClass(ev)}`}>
+            <span class="event-name">{ev.eventName}</span>
+            <span class="status">
+              <span class="sym" aria-hidden="true">
+                {ev.status === 'scored' ? (ev.meetsEventMinimum ? '✓' : '✗') : '–'}
+              </span>{pointsStatus(ev)}
+            </span>
+            {#if ev.status === 'scored' && ev.value !== undefined && ev.points !== undefined}
+              <span class="detail">
+                Your result: {formatValue(ev.unit, ev.value, results.system)}. It earns {plural(
+                  ev.points,
+                  'point',
+                )}{ev.multiplier !== 1
+                  ? ` (counted ${ev.multiplier === 2 ? 'twice' : ev.multiplier + ' times'} in the total: ${ev.countedPoints})`
+                  : ''}. At least {plural(ev.minPoints, 'point')} needed in this event.
+              </span>
+            {/if}
+          </li>
+        {/each}
+      </ul>
+      {#if item.result.totalStatus === 'incomplete'}
+        <p class="notice">
+          Enter a result for every event to compare your total with the {item.result.minTotal} points
+          required.
+        </p>
+      {:else}
+        <p class="status-line">
+          <span class={`status ${item.result.totalStatus === 'meets' ? 'meets' : 'below'}`}>
+            <span class="sym" aria-hidden="true">
+              {item.result.totalStatus === 'meets' ? '✓' : '✗'}
+            </span>{item.result.totalStatus === 'meets' ? 'Meets' : 'Below'} the total required: {item
+              .result.totalPoints} of {item.result.minTotal} points
+          </span>
+        </p>
+      {/if}
+      {#if item.result.caveat}
+        <p class="caveat">{item.result.caveat}</p>
       {/if}
       <p class="source">
         Source: {item.standard.source.document}{item.standard.source.documentDate

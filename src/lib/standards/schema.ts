@@ -235,11 +235,23 @@ export const bodyCompositionSchema = z.object({
   effectiveDate: isoDate.optional(),
   source: sourceSchema,
   method: z.literal('whtr'),
-  /** The ratio must be strictly below this value. */
+  /** The limit of the ratio. */
   limit: z.number().positive(),
-  /** Round the ratio down to this many decimals before comparing (Navy: 4). */
+  /**
+   * How a ratio exactly equal to the limit counts: `over` (the ratio must be below the limit)
+   * or `within` (the ratio may equal the limit).
+   */
+  atLimit: z.enum(['within', 'over']).default('over'),
+  /** Round the ratio down to this many decimals before comparing (Navy: 4, Space Force: 2). */
   roundDownDecimals: z.number().int().min(0).max(6).optional(),
-  /** What happens when the ratio is not below the limit. */
+  /** Measurements are rounded down to this step, in inches, before the ratio is computed. */
+  measurementRounding: z
+    .object({
+      waistInches: z.number().positive().optional(),
+      heightInches: z.number().positive().optional(),
+    })
+    .optional(),
+  /** What happens when the ratio is over the limit. */
   ifOver: z.string().min(1),
   notes: z.array(z.string()).default([]),
 });

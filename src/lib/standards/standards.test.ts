@@ -267,6 +267,53 @@ describe('evaluateBodyComposition', () => {
   });
 });
 
+describe('Marine Corps and Air Force waist-to-height rules', () => {
+  const marine = bodyStandard('marine-whtr');
+  const airForce = bodyStandard('af-whtr');
+
+  it('follows the Marine Corps maximum-waist table, including the exact 0.52 rows', () => {
+    // From the table in MARADMIN 066/26: 70 in -> 36.0, 62.5 in -> 32.5, 75 in -> 39.0, 53 in -> 27.5.
+    expect(evaluateBodyComposition(marine, 36, 70).status).toBe('within');
+    expect(evaluateBodyComposition(marine, 36.5, 70).status).toBe('over');
+    expect(evaluateBodyComposition(marine, 32.5, 62.5).status).toBe('within');
+    expect(evaluateBodyComposition(marine, 33, 62.5).status).toBe('over');
+    expect(evaluateBodyComposition(marine, 39, 75).status).toBe('within');
+    expect(evaluateBodyComposition(marine, 27.5, 53).status).toBe('within');
+    expect(evaluateBodyComposition(marine, 28, 53).status).toBe('over');
+  });
+
+  it('rounds Marine Corps waist and height down to the half inch before dividing', () => {
+    // Raw ratio 36.6 / 70.4 = 0.5199 is under 0.52, but the rounded 36.5 / 70 = 0.5214 is over.
+    const result = evaluateBodyComposition(marine, 36.6, 70.4);
+    expect(result.usedWaistInches).toBe(36.5);
+    expect(result.usedHeightInches).toBe(70);
+    expect(result.status).toBe('over');
+  });
+
+  it('converts centimeters to inches before rounding', () => {
+    const result = evaluateBodyComposition(marine, 91.44, 177.8, 'cm'); // 36 in and 70 in
+    expect(result.usedWaistInches).toBe(36);
+    expect(result.usedHeightInches).toBe(70);
+    expect(result.status).toBe('within');
+  });
+
+  it('cuts the Air Force ratio off after two decimals and allows exactly 0.55', () => {
+    expect(evaluateBodyComposition(airForce, 39.5, 72).comparedRatio).toBe(0.54);
+    expect(evaluateBodyComposition(airForce, 39.5, 72).status).toBe('within');
+    // 40.0 / 72 = 0.5555 is cut off to 0.55, which is not above 0.55.
+    expect(evaluateBodyComposition(airForce, 40, 72).comparedRatio).toBe(0.55);
+    expect(evaluateBodyComposition(airForce, 40, 72).status).toBe('within');
+    // 40.5 / 72 = 0.5625 is cut off to 0.56, which is above 0.55 (high risk).
+    expect(evaluateBodyComposition(airForce, 40.5, 72).status).toBe('over');
+  });
+
+  it('rounds only the Air Force waist down, not the height', () => {
+    const result = evaluateBodyComposition(airForce, 39.9, 72.4);
+    expect(result.usedWaistInches).toBe(39.5);
+    expect(result.usedHeightInches).toBe(72.4);
+  });
+});
+
 describe('schema guards', () => {
   interface MinimumInput {
     sex: string;

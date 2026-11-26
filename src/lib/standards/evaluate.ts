@@ -118,8 +118,13 @@ export interface BodyCompositionResult {
   /** The ratio actually compared (rounded down when the standard says so). */
   comparedRatio: number;
   limit: number;
+  /** How a ratio exactly at the limit counts. */
+  atLimit: 'within' | 'over';
   status: 'within' | 'over';
   ifOver: string;
+  /** Measurements as used after rounding, in inches (only when the standard rounds them). */
+  usedWaistInches?: number | undefined;
+  usedHeightInches?: number | undefined;
 }
 
 function roundDown(value: number, decimals: number): number {
@@ -128,21 +133,55 @@ function roundDown(value: number, decimals: number): number {
   return Math.floor(value * factor + 1e-9) / factor;
 }
 
-/** Check a waist and height (same unit) against a waist-to-height rule. */
+function roundDownToStep(value: number, step: number): number {
+  return Math.floor(value / step + 1e-9) * step;
+}
+
+/**
+ * Check a waist and height (same unit, inches by default) against a waist-to-height rule.
+ * When the standard rounds measurements down (Marine Corps, Air Force waist), the measurements
+ * are first converted to inches and rounded.
+ */
 export function evaluateBodyComposition(
   standard: BodyCompositionStandard,
   waist: number,
   height: number,
+  unit: 'in' | 'cm' = 'in',
 ): BodyCompositionResult {
-  const ratio = waistToHeightRatio(waist, height);
+  const rounding = standard.measurementRounding;
+  let usedWaist = waist;
+  let usedHeight = height;
+  let usedWaistInches: number | undefined;
+  let usedHeightInches: number | undefined;
+  if (rounding?.waistInches !== undefined || rounding?.heightInches !== undefined) {
+    const toInches = unit === 'cm' ? 1 / 2.54 : 1;
+    usedWaistInches = waist * toInches;
+    usedHeightInches = height * toInches;
+    if (rounding.waistInches !== undefined) {
+      usedWaistInches = roundDownToStep(usedWaistInches, rounding.waistInches);
+    }
+    if (rounding.heightInches !== undefined) {
+      usedHeightInches = roundDownToStep(usedHeightInches, rounding.heightInches);
+    }
+    usedWaist = usedWaistInches;
+    usedHeight = usedHeightInches;
+  }
+  const ratio = waistToHeightRatio(usedWaist, usedHeight);
   const comparedRatio =
     standard.roundDownDecimals === undefined ? ratio : roundDown(ratio, standard.roundDownDecimals);
+  const within =
+    standard.atLimit === 'within'
+      ? comparedRatio <= standard.limit + 1e-9
+      : comparedRatio < standard.limit;
   return {
     standardId: standard.id,
     ratio,
     comparedRatio,
     limit: standard.limit,
-    status: comparedRatio < standard.limit ? 'within' : 'over',
+    atLimit: standard.atLimit,
+    status: within ? 'within' : 'over',
     ifOver: standard.ifOver,
+    usedWaistInches,
+    usedHeightInches,
   };
 }

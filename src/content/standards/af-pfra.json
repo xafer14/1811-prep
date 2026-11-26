@@ -4,13 +4,13 @@
   "name": "Air Force Physical Fitness Readiness Assessment (PFRA)",
   "effectiveDate": "2026-03-01",
   "source": {
-    "document": "USAF Physical Fitness Readiness Assessment scoring charts (Tab 2), the lowest scoring row of each component",
-    "documentDate": "Effective 1 Mar 26 (chart dated 17 Mar 26)",
+    "document": "AFMAN 36-2905, Air Force Physical Fitness Readiness Program (paragraphs 3.1 to 3.7, Table 3.1) with the USAF PFRA scoring charts (Tab 2): the lowest scoring row of each component",
+    "documentDate": "AFMAN dated 24 Mar 2026; scoring charts effective 1 Mar 2026",
     "verifiedAt": "2026-11-26",
     "evidence": "read"
   },
   "completeness": "minimums-only",
-  "caveat": "The chart marks the lowest scoring row of each component with an asterisk; the chart text we have does not explain the asterisk, so this tool reads it as the component minimum. Choose one event per group (strength, endurance, cardio). A composite score of at least 75 out of 100 is also required (60 points cardio, 20 endurance, 20 strength), which needs the full charts and is not calculated here. Confirm with DAFMAN 36-2905.",
+  "caveat": "These are the minimum repetitions or times of each component: below them a component scores zero, and meeting only the minimums does not reach the 75 points needed (AFMAN 36-2905, 3.7.4). Choose one event per group (muscular strength, core endurance, cardiorespiratory). A composite score of at least 75 out of 100 is also required (50 points cardiorespiratory, 15 muscular strength, 15 core endurance, 20 waist-to-height ratio, which has no minimum); the total needs the full charts and is not calculated here. The walk is for members medically cleared not to run: a pass or fail with no points.",
   "events": [
     {
       "id": "push-ups",
@@ -828,6 +828,75 @@
           "ageMin": 60,
           "ageMax": null,
           "value": 11
+        }
+      ]
+    },
+    {
+      "id": "walk",
+      "name": "2-kilometer walk (maximum time, only if medically cleared not to run)",
+      "family": "walk-2km",
+      "unit": "seconds",
+      "better": "lower",
+      "minimums": [
+        {
+          "sex": "male",
+          "ageMin": 17,
+          "ageMax": 29,
+          "value": "16:16"
+        },
+        {
+          "sex": "female",
+          "ageMin": 17,
+          "ageMax": 29,
+          "value": "17:22"
+        },
+        {
+          "sex": "male",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": "16:18"
+        },
+        {
+          "sex": "female",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": "17:28"
+        },
+        {
+          "sex": "male",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": "16:23"
+        },
+        {
+          "sex": "female",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": "17:49"
+        },
+        {
+          "sex": "male",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": "16:40"
+        },
+        {
+          "sex": "female",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": "18:11"
+        },
+        {
+          "sex": "male",
+          "ageMin": 60,
+          "ageMax": null,
+          "value": "16:58"
+        },
+        {
+          "sex": "female",
+          "ageMin": 60,
+          "ageMax": null,
+          "value": "18:53"
         }
       ]
     }

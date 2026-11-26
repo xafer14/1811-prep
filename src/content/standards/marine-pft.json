@@ -3,13 +3,14 @@
   "organization": "marine-corps",
   "name": "Marine Corps Physical Fitness Test (PFT)",
   "source": {
-    "document": "MCO 6100.13A (Marine Corps Physical Fitness and Combat Fitness Tests) with Changes 4 and 5, Tables 2-2, 2-4 and 2-5 (minimum rows)",
-    "documentDate": "Order dated 17 Jan 2018; Change 4 of 23 Mar 2022; administrative Change 5 of 2025. The same minimums appear in a Military.com table updated 2026-09-23",
+    "document": "MCO 6100.13A with Changes 4 and 5 (Tables 2-2, 2-4 and 2-5, minimum rows) and MARADMIN 613/25 (combat arms standard)",
+    "url": "https://www.marines.mil/News/Messages/Messages-Display/Article/4363582/advance-notification-of-changes-to-the-marine-corps-physical-fitness-test-and-b/",
+    "documentDate": "Order dated 17 Jan 2018 (Change 4 of 23 Mar 2022, administrative Change 5 of 2025); MARADMIN 613/25 of 18 Dec 2025, in force from 1 Jan 2026. The same minimums appear in a Military.com table updated 2026-09-23",
     "verifiedAt": "2026-11-26",
     "evidence": "read"
   },
   "completeness": "minimums-only",
-  "caveat": "These are the minimum for each event (worth 40 points; the female pull-up minimum is worth 60). A Marine does pull-ups or push-ups, and also needs at least 150 points in total on the PFT. The Marine Corps changed some standards on 2026-01-01 (for example a higher minimum total for combat arms); those changes were not in the order we have, so check the current Marine Corps orders.",
+  "caveat": "These are the minimum for each event (worth 40 points; the female pull-up minimum is worth 60). A Marine does pull-ups or push-ups, and needs at least 150 points in total on the PFT. Marines in a combat arms PMOS are scored with the male, age-normed minimums (choose the combat arms option) and need at least 210 points in total (MARADMIN 613/25, from 1 January 2026). The total needs the full scoring tables and is not calculated here.",
   "events": [
     {
       "id": "pull-ups",
@@ -340,6 +341,13 @@
           "value": "36:00"
         }
       ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "combat",
+      "label": "Combat arms PMOS (sex-neutral: the male minimums for everyone)",
+      "useSex": "male"
     }
   ]
 }

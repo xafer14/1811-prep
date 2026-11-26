@@ -69,15 +69,27 @@ const GROUPS: { kind: Organization['kind']; label: string }[] = [
 const familyLabel = (id: string): string =>
   EVENT_FAMILIES.find((family) => family.id === id)?.label ?? id;
 
+const stepText = (step: number): string => (step === 0.5 ? '1/2 inch' : `${step} inch`);
+
 function bodyRuleText(rules: BodyCompositionStandard[]): string | undefined {
   if (rules.length === 0) return undefined;
   return rules
     .map((rule) => {
-      const rounding =
-        rule.roundDownDecimals === undefined
-          ? ''
-          : ` (rounded down to ${rule.roundDownDecimals} decimals)`;
-      return `Waist-to-height ratio below ${rule.limit}${rounding}`;
+      const parts: string[] = [];
+      if (rule.roundDownDecimals !== undefined) {
+        parts.push(`ratio rounded down to ${rule.roundDownDecimals} decimals`);
+      }
+      const { waistInches, heightInches } = rule.measurementRounding ?? {};
+      if (waistInches !== undefined && heightInches !== undefined) {
+        parts.push(`waist and height rounded down to ${stepText(waistInches)}`);
+      } else if (waistInches !== undefined) {
+        parts.push(`waist rounded down to ${stepText(waistInches)}`);
+      } else if (heightInches !== undefined) {
+        parts.push(`height rounded down to ${stepText(heightInches)}`);
+      }
+      const limit = rule.atLimit === 'within' ? `${rule.limit} or less` : `below ${rule.limit}`;
+      const detail = parts.length > 0 ? ` (${parts.join('; ')})` : '';
+      return `Waist-to-height ratio ${limit}${detail}`;
     })
     .join('; ');
 }

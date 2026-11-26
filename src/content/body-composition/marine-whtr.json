@@ -1,0 +1,26 @@
+{
+  "id": "marine-whtr",
+  "organization": "marine-corps",
+  "name": "Marine Corps waist-to-height ratio",
+  "effectiveDate": "2026-01-01",
+  "source": {
+    "document": "MARADMIN 066/26, Change 1 to the Advance Notification of Changes to the Marine Corps Physical Fitness Test and Body Composition Evaluation Process (paragraphs 2, 3.d and 6)",
+    "url": "https://www.marines.mil/News/Messages/Messages-Display/Article/4414762/change-1-to-the-advance-notification-of-changes-to-the-marine-corps-physical-fi/",
+    "documentDate": "Signed 26 Feb 2026; effective 1 Jan 2026",
+    "verifiedAt": "2026-11-26",
+    "evidence": "read"
+  },
+  "method": "whtr",
+  "limit": 0.52,
+  "atLimit": "within",
+  "measurementRounding": {
+    "waistInches": 0.5,
+    "heightInches": 0.5
+  },
+  "ifOver": "A body fat evaluation follows (the multi-site tape test or a BIA scale; the standard body fat limits are those of MCO 6110.3A, which we do not have). Marines whose PFT and CFT scores are 285 or higher are allowed up to 26% body fat (men) and 36% (women); 250 or higher adds 1 percentage point to the usual limit. A Marine over the limit by both methods goes to the Body Composition Program.",
+  "notes": [
+    "The text says below 0.52, but the order's own maximum-waist table allows a ratio of exactly 0.52 (for example a 32.5 in waist at 62.5 in height), so the tool follows the table.",
+    "The waist is measured at the navel, twice, and the lower value is used. Waist and height are rounded down to 1/2 inch.",
+    "The standard is the same for every sex. Weight is still recorded in 2026 but is not used for the evaluation."
+  ]
+}

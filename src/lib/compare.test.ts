@@ -86,9 +86,21 @@ describe('buildComparison', () => {
 
   it('lists organizations that are shown only in part, with what is missing', () => {
     const { partial } = compare(25, 'male');
-    expect(partial.map((p) => p.name)).toEqual(['Air Force', 'Marine Corps', 'Space Force']);
+    expect(partial.map((p) => p.name)).toEqual(['Marine Corps', 'Space Force']);
     expect(partial.find((p) => p.name === 'Space Force')?.items[0]).toMatch(/myFitness/);
-    expect(partial.find((p) => p.name === 'Air Force')?.items[0]).toMatch(/DAFMAN 36-2905/);
+    expect(partial.find((p) => p.name === 'Marine Corps')?.items[0]).toMatch(/MCO 6110.3A/);
+  });
+
+  it('scores Marine Corps combat arms with the male minimums and lists the Air Force walk', () => {
+    const combat = compare(25, 'female', 'combat');
+    expect(cell(combat, 'pull-ups', 'marine-corps')[0]?.minimum).toBe('at least 5 reps');
+    expect(cell(compare(25, 'female'), 'pull-ups', 'marine-corps')[0]?.minimum).toBe(
+      'at least 3 reps',
+    );
+    const comparison = compare(25, 'male');
+    expect(cell(comparison, 'walk-2km', 'air-force')[0]?.minimum).toBe('16:16 or faster');
+    const at = (id: string) => comparison.columns.findIndex((c) => c.id === id);
+    expect(comparison.otherRule[at('marine-corps')]).toMatch(/at least 210 points/);
   });
 
   it('shows the Marine Corps minimums from the order, by age and sex', () => {
@@ -135,7 +147,7 @@ describe('buildComparison', () => {
       '18:53 or faster',
     );
     expect(comparison.bodyRule[at('space-force')]).toBe(
-      'Waist-to-height ratio below 0.55 (rounded down to 2 decimals)',
+      'Waist-to-height ratio below 0.55 (ratio rounded down to 2 decimals)',
     );
     // The Space Force has no fitness-test rows beyond the walk until its charts are available.
     expect(cell(comparison, 'run-2-mile', 'space-force')).toEqual([]);
@@ -211,7 +223,13 @@ describe('buildComparison', () => {
     const at = (id: string) => comparison.columns.findIndex((c) => c.id === id);
     expect(comparison.bodyRule[at('army')]).toBe('Waist-to-height ratio below 0.55');
     expect(comparison.bodyRule[at('navy')]).toBe(
-      'Waist-to-height ratio below 0.55 (rounded down to 4 decimals)',
+      'Waist-to-height ratio below 0.55 (ratio rounded down to 4 decimals)',
+    );
+    expect(comparison.bodyRule[at('marine-corps')]).toBe(
+      'Waist-to-height ratio 0.52 or less (waist and height rounded down to 1/2 inch)',
+    );
+    expect(comparison.bodyRule[at('air-force')]).toBe(
+      'Waist-to-height ratio 0.55 or less (ratio rounded down to 2 decimals; waist rounded down to 1/2 inch)',
     );
     expect(comparison.bodyRule[at('atf')]).toBeUndefined();
     expect(comparison.otherRule[at('army')]).toMatch(/total score/);

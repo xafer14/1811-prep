@@ -51,8 +51,7 @@ test.describe('compare page', () => {
     // Organizations shown only in part say what is still missing.
     await expect(page.getByText('Shown only in part')).toBeVisible();
     await expect(page.getByText(/myFitness calculator, not in the manual/).first()).toBeVisible();
-    await expect(page.getByText(/waiting for DAFMAN 36-2905/)).toBeVisible();
-    await expect(page.getByText(/waiting for the current Marine Corps orders/)).toBeVisible();
+    await expect(page.getByText(/MCO 6110.3A/).first()).toBeVisible();
     // Every federal agency now has verified numbers, so no federal list is shown.
     await expect(page.getByText('Federal agencies:')).toHaveCount(0);
   });
@@ -73,9 +72,12 @@ test.describe('compare page', () => {
     await expect(row(page, '2-kilometer walk (medical alternative)')).toContainText(
       '16:16 or faster',
     );
-    await expect(row(page, 'Body composition')).toContainText('rounded down to 2 decimals');
+    await expect(row(page, 'Body composition')).toContainText('ratio rounded down to 2 decimals');
+    await expect(row(page, 'Body composition')).toContainText('Waist-to-height ratio 0.52 or less'); // Marine Corps
+    await expect(row(page, 'Body composition')).toContainText('Waist-to-height ratio 0.55 or less'); // Air Force
     await expect(row(page, 'Also applies')).toContainText('composite score of at least 75');
     await expect(row(page, 'Also applies')).toContainText('at least 150 points in total');
+    await expect(row(page, 'Also applies')).toContainText('at least 210 points in total'); // combat arms
     // Tests scored in points show the level worth one point and the total rule.
     await expect(row(page, 'Pull-ups')).toContainText('at least 2 reps'); // FBI, men
     await expect(row(page, 'Pull-ups')).toContainText('Worth 1 point');

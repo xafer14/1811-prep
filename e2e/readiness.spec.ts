@@ -186,7 +186,7 @@ test.describe('readiness tool', () => {
     await expect(results.getByText('Minimum: 27:40.')).toBeVisible();
     await expect(results.getByText(/at least 150 points in total/)).toBeVisible();
     await expect(results.getByText('Not included yet for Marine Corps:')).toBeVisible();
-    await expect(results.getByText(/waiting for the current Marine Corps orders/)).toBeVisible();
+    await expect(results.getByText(/MCO 6110.3A/)).toBeVisible();
   });
 
   test('compares Air Force results with the chart minimums and warns about the asterisk', async ({
@@ -200,9 +200,42 @@ test.describe('readiness tool', () => {
 
     const results = page.locator('.results');
     await expect(results.getByText('1 of 2 entered events meet the minimum.')).toBeVisible();
-    await expect(results.getByText(/reads it as the component minimum/)).toBeVisible();
+    await expect(results.getByText(/does not reach the 75 points needed/)).toBeVisible();
     await expect(results.getByText(/composite score of at least 75/)).toBeVisible();
-    await expect(results.getByText('Not included yet for Air Force:')).toBeVisible();
+    // The Air Force manual is now complete for this tool, so nothing is listed as missing.
+    await expect(results.getByText('Not included yet for Air Force:')).toHaveCount(0);
+  });
+
+  test('applies the Marine Corps combat arms option and rounds measurements down', async ({
+    page,
+  }) => {
+    await choose(page, /U\.S\. Marine Corps/);
+    await fillAbout(page, '25', 'Female');
+    await page.getByLabel('Pull-ups', { exact: true }).fill('4');
+    await page.getByLabel(/^Height \(inches\)/).fill('70.4');
+    await page.getByLabel(/^Waist \(inches\)/).fill('36.6');
+    await compare(page);
+    const results = page.locator('.results');
+    await expect(results.getByText('Minimum: 3 reps.')).toBeVisible(); // female column
+    // Raw ratio 0.5199 is under 0.52, but the rounded 36.5 / 70 = 0.5214 is over.
+    await expect(results.getByText('Not within the limit')).toBeVisible();
+    await expect(results.getByText('a height of 70 in and a waist of 36.5 in')).toBeVisible();
+
+    await page.getByRole('checkbox', { name: /Combat arms PMOS/ }).check();
+    await compare(page);
+    await expect(results.getByText('Minimum: 5 reps.')).toBeVisible(); // male column
+  });
+
+  test('checks the Air Force waist-to-height ratio (0.55 is still within)', async ({ page }) => {
+    await choose(page, /U\.S\. Air Force/);
+    await fillAbout(page, '30', 'Male');
+    await page.getByLabel(/^Height \(inches\)/).fill('72');
+    await page.getByLabel(/^Waist \(inches\)/).fill('40');
+    await compare(page);
+    const results = page.locator('.results');
+    await expect(results.getByText('Within the limit')).toBeVisible();
+    await expect(results.getByText('It is rounded down to 0.55')).toBeVisible();
+    await expect(results.getByText('The limit is 0.55 or less')).toBeVisible();
   });
 
   test('checks the Space Force waist-to-height ratio and the walk standard', async ({ page }) => {

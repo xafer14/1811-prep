@@ -40,13 +40,13 @@ Legend: done = values read from the official document and entered in the researc
 
 | # | Page | Status | What is still missing |
 |---|---|---|---|
-| A1 | FBI | partial | Entry age line (36 or 38). Fitness test: done (form, May 2026) |
+| A1 | FBI | partial | Entry age: the owner states 37 (no document; unverified). Fitness test: done (form, May 2026) |
 | A2 | DEA | done | |
-| A3 | ATF | partial | Maximum age line (37 or 40). Fitness test: done (page, 1 Oct 2026) |
+| A3 | ATF | partial | Maximum age: the owner states 40 (no document; unverified). Fitness test: done (page, 1 Oct 2026) |
 | A4 | Army | done | |
 | A5 | Navy | done | |
-| A6 | Marine Corps | partial | The 2026 changes (MARADMIN 613/25 and 066/26, higher total for combat arms) and the waist-to-height rule. Per-event minimums are entered from the order (MCO 6100.13A) and match Military.com, except one value (see the military note) |
-| A7 | Air Force | partial | The pass rules in DAFMAN 36-2905 (composite 75, component minimums) and the waist-to-height rule. The lowest scoring row of each chart (asterisk) is entered as the component minimum; the chart legend is missing, so this is an assumption |
+| A6 | Marine Corps | done | Entered: PFT minimums with the combat arms option (MCO 6100.13A, MARADMIN 613/25) and the waist-to-height rule (MARADMIN 066/26). Open, not blocking: body fat limits (MCO 6110.3A) and the Combat Fitness Test |
+| A7 | Air Force | done | Entered: component minimums, walk and waist-to-height rule (AFMAN 36-2905, 24 Mar 2026, with the scoring charts). The full point tables are not calculated |
 | A8 | Space Force | partial | The main assessment: its scoring charts are in the myFitness calculator, not in the manual. Entered from the manual: the waist-to-height rule and the 2-kilometer walk standard |
 | A9 | Coast Guard | missing | Everything |
 | B1 | US Marshals | done | |
@@ -78,6 +78,9 @@ Folder: `New folder (3)` on the owner's desktop. SHA-256 prefixes identify the e
 | The Diplomatic Security Service Physical Readiness Test Guide - Careers.pdf | 86a06c2ee51d1e6a | State Dept. DSS |
 | handbookHSI_22-05_07.19.2022.pdf | c2c02018620c7160 | ICE HSI |
 | spfman36-2905.pdf (Space Force manual, 26 Sep 2025, Change 3 of 24 Apr 2026) | 30684b0bc81be159 | Space Force |
+| ADVANCE NOTIFICATION OF CHANGES TO THE MARINE CORPS PHYSICAL FITNESS TEST AND BODY COMPOSITION EVALUATION PROCESS (MARADMIN 613/25).pdf | 85ce4c99dbeb071a | Marine Corps |
+| CHANGE 1 TO THE ADVANCE NOTIFICATION ... (MARADMIN 066/26).pdf | ab5b1d8511f51929 | Marine Corps |
+| dafman36-2905.pdf (AFMAN 36-2905, 24 Mar 2026) | 49efde8361e922cf | Air Force |
 
 Web pages the owner pointed to on 2026-11-26 (secondary sources, never the only source of a number): Military.com "Marine Corps Physical Fitness Test" and "Marine Corps Body Composition Program" (both updated 2026-09-23), and Forever Wingman "Air Force BMT PT Test" (a veteran's blog dated 2026-08-01).
 

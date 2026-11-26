@@ -93,9 +93,9 @@ Access date for every URL below: 2026-11-24. Method caveat: most agency career s
 - Financial/career advice liability around pay and retirement (LEO 20-year coverage depends on position classification).
 
 ## Contradictions
-- FBI age: current guide 23 to before 36; one FBI-hosted copy lists a 38th-birthday cutoff (excerpt). Third-party sites quote 37. Not resolved.
+- FBI age: current guide 23 to before 36; one FBI-hosted copy lists a 38th-birthday cutoff (excerpt). Third-party sites quote 37. Not resolved. (owner states 2026-11-26: 37; no document supplied, unverified)
 - FBI PFT: (superseded 2026-11-24, see fitness-standards-federal.md Contradictions).
-- ATF age: 21-40 (current packet, join page, 2026 announcement) vs 37 (older packet and another USAJOBS posting).
+- ATF age: 21-40 (current packet, join page, 2026 announcement) vs 37 (older packet and another USAJOBS posting). (owner states 2026-11-26: 40; no document supplied, unverified)
 - USSS age: 40 at referral (current qualifications page) vs 37 at conditional offer (2022 brochure); veterans extension to 40 in brochure vs "vets must meet same limits" on current page.
 - DEA training length: 16 wk (public notice, read) vs 16-20 wk vs 14 wk (older FAQ). DEA PTA: (superseded 2026-11-24, see fitness-standards-federal.md).
 - HSISAT length: 13 wk (HSI Academy page) vs 15 wk (ICE FAQ) vs 71-72 days (older docs).

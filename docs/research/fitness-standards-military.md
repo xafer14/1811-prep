@@ -17,7 +17,7 @@ All URLs accessed 2026-11-24. Marker key: (excerpt) = official .mil page returne
 - DoD-wide policy (Hegseth memos, Sept-Dec 2025; DoDI 1308.03 reissue reported 2026-08-31 (secondary)) drove: two fitness tests per year (active), sex-neutral male-based scoring with 70% average for ~80+ combat-arms jobs, and waist-to-height ratio (WHtR) < 0.55 as the common body-composition screen. Source: https://www.militarytimes.com/news/your-military/2026/09/09/pentagon-codifies-fitness-standards-across-branches/ (secondary). I could not fetch the new DoDI itself (403).
 - Army: the Army Fitness Test (AFT, 5 events) replaced the ACFT as test of record on 2025-06-01; combat-MOS sex-neutral standard (350 total, 60 per event) in force 2026-01-01 active / 2026-06-01 Guard and Reserve (https://www.army.mil/aft/). A separate pass/fail Combat Field Test starts diagnostic 2026-04 (https://www.army.mil/article/291880).
 - Army body composition: Army Directive 2026-13 makes WHtR < 0.55 the ONLY standard and discontinues height/weight tables and the tape test (https://home.army.mil/carson/8117/8345/8209/ARMY_DIR_2026-13_ABCP.pdf, read in full). No AFT score exempts; AD 2025-17 (465-point exemption) is rescinded.
-- Marine Corps: WHtR <= 0.52 screen (all sexes) from 2026-01-01, then body-fat evaluation for those over; sex-neutral PFT minimum 210 points for combat-arms MOSs (https://www.marines.mil/News/Press-Releases/Press-Release-Display/Article/4363803/marine-corps-announces-updated-physical-fitness-standards/ (excerpt)).
+- (confirmed 2026-11-26 from MARADMIN 613/25 and 066/26, see the section "Marine Corps and Air Force orders") Marine Corps: WHtR <= 0.52 screen (all sexes) from 2026-01-01, then body-fat evaluation for those over; sex-neutral PFT minimum 210 points for combat-arms MOSs (https://www.marines.mil/News/Press-Releases/Press-Release-Display/Article/4363803/marine-corps-announces-updated-physical-fitness-standards/ (excerpt)).
 - Navy: PRT unchanged (push-ups, plank, 1.5-mile run) but now twice a year in 2026; BCA now uses sex-neutral WHtR step with 0.55 cutoff (NAVADMIN 264/25 (excerpt); OPNAVINST 6110.1L).
 - Air Force/Space Force: new 100-point fitness assessment, composite >= 75 plus component minimums, WHtR = 20 points with no minimum; official scoring resumed 2026-07-01 per af.mil pages (conflicting 2026-09-01 elsewhere). 2026 scoring charts could not be located.
 - Coast Guard: no new test found; COMDTINST 1020.8I body-composition screening (waist-circumference based) still in force, WHtR change "under review" as of ALCOAST 079/26 and 272/26 (excerpt).
@@ -88,14 +88,36 @@ Numbers entered in `src/content/` on 2026-11-26 are owned by the data files; thi
 ### Marine Corps (MCO 6100.13A with Changes 4 and 5; official, read)
 - Minimum rows of Tables 2-2, 2-4 and 2-5 are entered: pull-ups (female minimum worth 60 points, male worth 40), push-ups (worth 40 points, maximum 70), plank (1:10, the same for everyone and every age) and the 3-mile run, by age group and sex. A Marine also needs at least 150 points in total.
 - Cross-check: the owner pointed to two Military.com articles (updated 2026-09-23). Its pull-up, push-up and 3-mile run minimums equal the order, except one value: male pull-ups, age 46-50, order 4, Military.com 5. The order is used.
-- Military.com's body composition article still describes the older height and weight chart; the earlier excerpt-level note says the Marine Corps moved to a waist-to-height screen of 0.52 on 2026-01-01. This conflict is unresolved, so no Marine body composition rule is entered and the 2026 changes (for example 210 points in total for combat arms) are listed as pending.
+- (superseded 2026-11-26, resolved by MARADMIN 066/26, see the next section) Military.com's body composition article still describes the older height and weight chart; the earlier excerpt-level note says the Marine Corps moved to a waist-to-height screen of 0.52 on 2026-01-01. This conflict was unresolved, so no Marine body composition rule was entered and the 2026 changes were listed as pending.
 
 ### Air Force (Tab 2 scoring charts, effective 1 Mar 2026; official, read)
-- The lowest scoring row of each component carries an asterisk (push-ups 1 minute, hand-release push-ups 2 minutes, sit-ups, cross-leg reverse crunch, plank, 2-mile run, 20-meter HAMR). The chart text has no legend. The asterisk rows fit the known minimums (push-ups 30 and 15 for people under 25; run 35 of 60 points) so they are entered as the component minimums, with a caveat in the tool. This stays an assumption until DAFMAN 36-2905 is seen.
+- The lowest scoring row of each component carries an asterisk (push-ups 1 minute, hand-release push-ups 2 minutes, sit-ups, cross-leg reverse crunch, plank, 2-mile run, 20-meter HAMR). The chart text has no legend. The asterisk rows fit the known minimums (push-ups 30 and 15 for people under 25; run 35 of 60 points) so they are entered as the component minimums, with a caveat in the tool. This was an assumption until AFMAN 36-2905 was seen (superseded 2026-11-26: AFMAN 36-2905 para 3.7.4 confirms that results below the minimum repetitions or time score zero).
 - Forever Wingman (a veteran's blog dated 2026-08-01) describes the basic training test (1.5-mile run, 1-minute push-ups and sit-ups; 60, 20 and 20 points; composite of 75 and a minimum in each component) and says basic training did not adopt the new 2026 test. It gives no minimum numbers, so nothing was entered from it. Its structure matches the Space Force manual.
 
 ### Still open
-Air Force pass rules and waist-to-height rule (DAFMAN 36-2905); Marine Corps 2026 orders; Space Force scoring charts (myFitness); Coast Guard.
+(superseded 2026-11-26, see the next section) Air Force pass rules and waist-to-height rule (DAFMAN 36-2905); Marine Corps 2026 orders; Space Force scoring charts (myFitness); Coast Guard.
+
+## Verification update 2026-11-26, later: Marine Corps and Air Force orders
+
+Numbers entered in `src/content/` are owned by the data files; this section is the evidence record. The owner supplied MARADMIN 613/25, MARADMIN 066/26 and AFMAN 36-2905 (file hashes in [live-page-checklist](../verification/live-page-checklist.md)).
+
+### Marine Corps (MARADMIN 613/25 of 18 Dec 2025 and 066/26 of 26 Feb 2026; official, read)
+- PFT: from 1 January 2026, Marines in a combat arms PMOS (list in the message) are scored with the male, age-normed table and need at least 210 points in total (70% of 300). Other Marines keep the sex- and age-normed standards of MCO 6100.13A (at least 150 points). Entered as the combat arms option of the Marine PFT data.
+- Body composition (066/26, effective 1 Jan 2026): the height and weight requirement is replaced by a waist-to-height ratio standard of below 0.52 for every sex. Waist (measured at the navel, twice, lower value) and height are rounded down to 1/2 inch. Exceeding the standard leads to a body fat evaluation (tape test or BIA; the body fat limits are in MCO 6110.3A, which we do not have). Marines scoring 285 or more on the PFT and CFT are allowed 26% (men) and 36% (women); 250 or more adds 1 percentage point. Weight is still recorded in 2026 but is not used.
+- The order's own maximum-waist table (heights 53 to 84 inches) allows a ratio of exactly 0.52 at some heights (for example 32.5 in at 62.5 in), although the text says "below 0.52". The tool follows the table; all 61 rows read from the PDF match the model.
+- MARADMIN 613/25 (earlier in December) said the waist-to-height change was still pending; 066/26 made it effective 1 January. Military.com's body composition article (updated 2026-09-23) still describes the old height and weight chart, so it is out of date on this point. The earlier excerpt-level "0.52" is now confirmed.
+
+### Air Force (AFMAN 36-2905, 24 March 2026; official, read)
+- The assessment needs a composite score of at least 75 of 100 and a minimum in each physical component (body composition has no minimum). Maximum points: 50 cardiorespiratory, 20 body composition (waist-to-height), 15 muscular strength, 15 core endurance. Repetitions or times below the required minimum score zero, and meeting only the minimums does not reach 75 (para 3.7.4). This confirms the asterisk rows of the scoring chart as the component minimums.
+- Components: strength (1-minute push-ups or 2-minute hand-release push-ups), core endurance (1-minute sit-ups, 2-minute cross-leg reverse crunch or plank), cardiorespiratory (2.0-mile run, 20-meter HAMR, or the 2-kilometer walk for members medically cleared not to run; walk times in Table 3.1 equal the Space Force Table 3.1).
+- Body composition: waist divided by height, cut off (not rounded) after two decimals; the waist is measured three times, the three closest values averaged and rounded down to 1/2 inch. A ratio above 0.55 is high risk; with an unsatisfactory assessment it leads to a body fat assessment (BIA scale or 2-3 site tape): below 26% (men) and below 36% (women). The standard is the same for every age and sex.
+- The Space Force manual gives 60 points for cardiorespiratory (Air Force: 50), so the two services do not share the same scoring charts; the Space Force charts stay pending.
+
+### Owner statement on entry ages (no document)
+On 2026-11-26 the owner wrote "fbi 37 atf 40" for the maximum entry ages. No document was supplied; it is recorded as unverified in [domain-1811-hiring](domain-1811-hiring.md).
+
+### Still open
+Marine Corps body fat limits (MCO 6110.3A) and the Combat Fitness Test; Space Force scoring charts (myFitness); Coast Guard.
 
 ## Per-branch findings
 

@@ -30,13 +30,23 @@ test.describe('compare page', () => {
   test('groups military branches and federal agencies side by side', async ({ page }) => {
     const headers = table(page).getByRole('columnheader');
     await expect(headers.filter({ hasText: 'Military branches' })).toHaveAttribute('colspan', '2');
-    await expect(headers.filter({ hasText: 'Federal agencies' })).toHaveAttribute('colspan', '3');
-    for (const name of ['Army', 'Navy', 'ATF', 'HSI', 'US Marshals']) {
+    await expect(headers.filter({ hasText: 'Federal agencies' })).toHaveAttribute('colspan', '6');
+    for (const name of [
+      'Army',
+      'Navy',
+      'ATF',
+      'DEA',
+      'FBI',
+      'HSI',
+      'US Marshals',
+      'Secret Service',
+    ]) {
       await expect(headers.filter({ hasText: name }).first()).toBeVisible();
     }
     await expect(page.getByText('Not shown yet, because the official numbers')).toBeVisible();
     await expect(page.getByText('Air Force, Coast Guard, Marine Corps, Space Force')).toBeVisible();
-    await expect(page.getByText('DEA, FBI, Secret Service')).toBeVisible();
+    // Every federal agency now has verified numbers, so no federal list is shown.
+    await expect(page.getByText('Federal agencies:')).toHaveCount(0);
   });
 
   test('shows the minimums for age 25 and male minimums by default', async ({ page }) => {
@@ -49,6 +59,16 @@ test.describe('compare page', () => {
     await expect(row(page, 'Two-mile run')).toContainText('19:45 or faster');
     await expect(row(page, 'Body composition')).toContainText('Waist-to-height ratio below 0.55');
     await expect(row(page, 'Also applies')).toContainText('total score');
+    // Tests scored in points show the level worth one point and the total rule.
+    await expect(row(page, 'Pull-ups')).toContainText('at least 2 reps'); // FBI, men
+    await expect(row(page, 'Pull-ups')).toContainText('Worth 1 point');
+    await expect(row(page, 'Sit-ups')).toContainText('at least 38 reps'); // DEA
+    await expect(row(page, 'Agility run')).toContainText('0:23.88 or faster'); // Secret Service
+    await expect(row(page, 'Also applies')).toContainText('Needs 10 points in total');
+    await expect(row(page, 'Also applies')).toContainText(
+      'Needs 12 points in total (1.5-mile run points count twice)',
+    );
+    await expect(row(page, 'Also applies')).toContainText('Needs 20 points in total');
   });
 
   test('updates when the age, the minimums or the Army combat option change', async ({ page }) => {

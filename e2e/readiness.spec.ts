@@ -36,11 +36,16 @@ test.describe('readiness tool', () => {
     await expect(federal.getByRole('radio', { name: /Bureau of Alcohol/ })).toBeVisible();
     await expect(federal.getByRole('radio', { name: /U\.S\. Marshals/ })).toBeVisible();
     await expect(federal.getByRole('radio', { name: /Homeland Security/ })).toBeVisible();
+    await expect(
+      federal.getByRole('radio', { name: /Federal Bureau of Investigation/ }),
+    ).toBeVisible();
+    await expect(federal.getByRole('radio', { name: /Drug Enforcement/ })).toBeVisible();
+    await expect(federal.getByRole('radio', { name: /Secret Service/ })).toBeVisible();
     // Choosing from either group still selects exactly one organization.
     await federal.getByRole('radio', { name: /U\.S\. Marshals/ }).check();
     await expect(military.getByRole('radio', { name: /U\.S\. Army/ })).not.toBeChecked();
     await expect(page.getByText('Military branches:')).toBeVisible();
-    await expect(page.getByText('Federal agencies:')).toBeVisible();
+    await expect(page.getByText('Federal agencies:')).toHaveCount(0);
   });
 
   test('compares ATF results event by event with a plain count', async ({ page }) => {
@@ -107,6 +112,62 @@ test.describe('readiness tool', () => {
     await expect(
       page.locator('.results').getByText('Your result: 12 reps. Minimum: 14 reps.'),
     ).toBeVisible();
+  });
+
+  test('scores the FBI test in points and compares the total with the requirement', async ({
+    page,
+  }) => {
+    await choose(page, /Federal Bureau of Investigation/);
+    await fillAbout(page, '30', 'Male');
+    await page.getByLabel(/^Pull-ups or chin-ups/).fill('8');
+    await page.getByLabel('300-meter sprint').fill('47.9');
+    await page.getByLabel('Push-ups (untimed)').fill('40');
+    await page.getByLabel('1.5-mile run').fill('12:24');
+    await compare(page);
+
+    const results = page.locator('.results');
+    await expect(results.getByText('4 of 4 events scored.')).toBeVisible();
+    await expect(results.getByText('Points counted so far: 12.')).toBeVisible();
+    await expect(results.getByText(/It earns 4 points/).first()).toBeVisible();
+    await expect(results.getByText(/It earns 1 point\./)).toBeVisible();
+    await expect(results.getByText('Meets the total required: 12 of 10 points')).toBeVisible();
+    await expect(results.getByText(/pass(ed)?|ready/i)).toHaveCount(0);
+  });
+
+  test('counts the DEA run points twice and says when the total is short', async ({ page }) => {
+    await choose(page, /Drug Enforcement Administration/);
+    await fillAbout(page, '30', 'Male');
+    await page.getByLabel('Sit-ups (1 min)').fill('38');
+    await page.getByLabel('Push-ups', { exact: true }).fill('33');
+    await page.getByLabel(/^1\.5-mile run/).fill('12:14');
+    await compare(page);
+
+    const results = page.locator('.results');
+    await expect(results.getByText(/counted twice in the total: 4/)).toBeVisible();
+    await expect(results.getByText('Below the total required: 7 of 12 points')).toBeVisible();
+    await expect(
+      results.getByText(/Applicants under announcements before July 2026/),
+    ).toBeVisible();
+  });
+
+  test('flags a zero in the Secret Service test and waits for every event before the total', async ({
+    page,
+  }) => {
+    await choose(page, /Secret Service/);
+    await fillAbout(page, '28', 'Female');
+    await page.getByLabel('Push-ups', { exact: true }).fill('44');
+    await compare(page);
+    const results = page.locator('.results');
+    await expect(results.getByText(/Enter a result for every event/)).toBeVisible();
+
+    await page.getByLabel('Sit-ups', { exact: true }).fill('50');
+    await page.getByLabel('Illinois agility run').fill('19.43');
+    await page.getByLabel('1.5-mile run').fill('23:00');
+    await compare(page);
+    await expect(
+      results.locator('.status').filter({ hasText: 'Below the per-event minimum' }),
+    ).toBeVisible();
+    await expect(results.getByText('Meets the total required: 23 of 20 points')).toBeVisible();
   });
 
   test('checks the Navy waist-to-height ratio and explains what happens next', async ({ page }) => {

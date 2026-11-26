@@ -31,6 +31,12 @@ export default defineConfig(
     },
   },
   {
+    files: ['src/**/*.{svelte,ts,astro}', 'e2e/**/*.ts'],
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
+  {
     files: ['scripts/**/*.mjs', '*.config.{js,mjs,ts}'],
     languageOptions: {
       globals: globals.node,

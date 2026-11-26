@@ -2,5 +2,6 @@
   "id": "air-force",
   "name": "U.S. Air Force",
   "shortName": "Air Force",
-  "kind": "military"
+  "kind": "military",
+  "pending": ["The composite score rule and the waist-to-height rule (waiting for DAFMAN 36-2905)"]
 }

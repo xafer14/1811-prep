@@ -20,6 +20,8 @@ export const organizationSchema = z.object({
   name: z.string().min(1),
   shortName: z.string().min(1),
   kind: z.enum(['military', 'federal', 'state']),
+  /** Topics not shown yet for this organization, in plain words (shown to users). */
+  pending: z.array(z.string().min(1)).default([]),
 });
 
 /** A minimum can be a number or a time string such as "12:18" (stored as seconds). */

@@ -1,0 +1,345 @@
+{
+  "id": "marine-pft",
+  "organization": "marine-corps",
+  "name": "Marine Corps Physical Fitness Test (PFT)",
+  "source": {
+    "document": "MCO 6100.13A (Marine Corps Physical Fitness and Combat Fitness Tests) with Changes 4 and 5, Tables 2-2, 2-4 and 2-5 (minimum rows)",
+    "documentDate": "Order dated 17 Jan 2018; Change 4 of 23 Mar 2022; administrative Change 5 of 2025. The same minimums appear in a Military.com table updated 2026-09-23",
+    "verifiedAt": "2026-11-26",
+    "evidence": "read"
+  },
+  "completeness": "minimums-only",
+  "caveat": "These are the minimum for each event (worth 40 points; the female pull-up minimum is worth 60). A Marine does pull-ups or push-ups, and also needs at least 150 points in total on the PFT. The Marine Corps changed some standards on 2026-01-01 (for example a higher minimum total for combat arms); those changes were not in the order we have, so check the current Marine Corps orders.",
+  "events": [
+    {
+      "id": "pull-ups",
+      "name": "Pull-ups",
+      "family": "pull-ups",
+      "unit": "reps",
+      "better": "higher",
+      "minimums": [
+        {
+          "sex": "male",
+          "ageMin": 17,
+          "ageMax": 20,
+          "value": 4
+        },
+        {
+          "sex": "female",
+          "ageMin": 17,
+          "ageMax": 20,
+          "value": 1
+        },
+        {
+          "sex": "male",
+          "ageMin": 21,
+          "ageMax": 25,
+          "value": 5
+        },
+        {
+          "sex": "female",
+          "ageMin": 21,
+          "ageMax": 25,
+          "value": 3
+        },
+        {
+          "sex": "male",
+          "ageMin": 26,
+          "ageMax": 30,
+          "value": 5
+        },
+        {
+          "sex": "female",
+          "ageMin": 26,
+          "ageMax": 30,
+          "value": 4
+        },
+        {
+          "sex": "male",
+          "ageMin": 31,
+          "ageMax": 35,
+          "value": 5
+        },
+        {
+          "sex": "female",
+          "ageMin": 31,
+          "ageMax": 35,
+          "value": 3
+        },
+        {
+          "sex": "male",
+          "ageMin": 36,
+          "ageMax": 40,
+          "value": 5
+        },
+        {
+          "sex": "female",
+          "ageMin": 36,
+          "ageMax": 40,
+          "value": 3
+        },
+        {
+          "sex": "male",
+          "ageMin": 41,
+          "ageMax": 45,
+          "value": 5
+        },
+        {
+          "sex": "female",
+          "ageMin": 41,
+          "ageMax": 45,
+          "value": 2
+        },
+        {
+          "sex": "male",
+          "ageMin": 46,
+          "ageMax": 50,
+          "value": 4
+        },
+        {
+          "sex": "female",
+          "ageMin": 46,
+          "ageMax": 50,
+          "value": 2
+        },
+        {
+          "sex": "male",
+          "ageMin": 51,
+          "ageMax": null,
+          "value": 3
+        },
+        {
+          "sex": "female",
+          "ageMin": 51,
+          "ageMax": null,
+          "value": 2
+        }
+      ]
+    },
+    {
+      "id": "push-ups",
+      "name": "Push-ups (alternative to pull-ups, 2 min)",
+      "family": "push-ups",
+      "unit": "reps",
+      "better": "higher",
+      "minimums": [
+        {
+          "sex": "male",
+          "ageMin": 17,
+          "ageMax": 20,
+          "value": 42
+        },
+        {
+          "sex": "female",
+          "ageMin": 17,
+          "ageMax": 20,
+          "value": 19
+        },
+        {
+          "sex": "male",
+          "ageMin": 21,
+          "ageMax": 25,
+          "value": 40
+        },
+        {
+          "sex": "female",
+          "ageMin": 21,
+          "ageMax": 25,
+          "value": 18
+        },
+        {
+          "sex": "male",
+          "ageMin": 26,
+          "ageMax": 30,
+          "value": 39
+        },
+        {
+          "sex": "female",
+          "ageMin": 26,
+          "ageMax": 30,
+          "value": 18
+        },
+        {
+          "sex": "male",
+          "ageMin": 31,
+          "ageMax": 35,
+          "value": 36
+        },
+        {
+          "sex": "female",
+          "ageMin": 31,
+          "ageMax": 35,
+          "value": 16
+        },
+        {
+          "sex": "male",
+          "ageMin": 36,
+          "ageMax": 40,
+          "value": 34
+        },
+        {
+          "sex": "female",
+          "ageMin": 36,
+          "ageMax": 40,
+          "value": 14
+        },
+        {
+          "sex": "male",
+          "ageMin": 41,
+          "ageMax": 45,
+          "value": 30
+        },
+        {
+          "sex": "female",
+          "ageMin": 41,
+          "ageMax": 45,
+          "value": 12
+        },
+        {
+          "sex": "male",
+          "ageMin": 46,
+          "ageMax": 50,
+          "value": 25
+        },
+        {
+          "sex": "female",
+          "ageMin": 46,
+          "ageMax": 50,
+          "value": 11
+        },
+        {
+          "sex": "male",
+          "ageMin": 51,
+          "ageMax": null,
+          "value": 20
+        },
+        {
+          "sex": "female",
+          "ageMin": 51,
+          "ageMax": null,
+          "value": 10
+        }
+      ]
+    },
+    {
+      "id": "plank",
+      "name": "Plank",
+      "family": "plank",
+      "unit": "seconds",
+      "better": "higher",
+      "minimums": [
+        {
+          "sex": "any",
+          "ageMin": 17,
+          "ageMax": null,
+          "value": "1:10"
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "name": "3-mile run",
+      "family": "run-3-mile",
+      "unit": "seconds",
+      "better": "lower",
+      "minimums": [
+        {
+          "sex": "male",
+          "ageMin": 17,
+          "ageMax": 20,
+          "value": "27:40"
+        },
+        {
+          "sex": "female",
+          "ageMin": 17,
+          "ageMax": 20,
+          "value": "30:50"
+        },
+        {
+          "sex": "male",
+          "ageMin": 21,
+          "ageMax": 25,
+          "value": "27:40"
+        },
+        {
+          "sex": "female",
+          "ageMin": 21,
+          "ageMax": 25,
+          "value": "30:50"
+        },
+        {
+          "sex": "male",
+          "ageMin": 26,
+          "ageMax": 30,
+          "value": "28:00"
+        },
+        {
+          "sex": "female",
+          "ageMin": 26,
+          "ageMax": 30,
+          "value": "31:10"
+        },
+        {
+          "sex": "male",
+          "ageMin": 31,
+          "ageMax": 35,
+          "value": "28:20"
+        },
+        {
+          "sex": "female",
+          "ageMin": 31,
+          "ageMax": 35,
+          "value": "31:30"
+        },
+        {
+          "sex": "male",
+          "ageMin": 36,
+          "ageMax": 40,
+          "value": "28:40"
+        },
+        {
+          "sex": "female",
+          "ageMin": 36,
+          "ageMax": 40,
+          "value": "31:50"
+        },
+        {
+          "sex": "male",
+          "ageMin": 41,
+          "ageMax": 45,
+          "value": "29:20"
+        },
+        {
+          "sex": "female",
+          "ageMin": 41,
+          "ageMax": 45,
+          "value": "32:30"
+        },
+        {
+          "sex": "male",
+          "ageMin": 46,
+          "ageMax": 50,
+          "value": "30:00"
+        },
+        {
+          "sex": "female",
+          "ageMin": 46,
+          "ageMax": 50,
+          "value": "33:30"
+        },
+        {
+          "sex": "male",
+          "ageMin": 51,
+          "ageMax": null,
+          "value": "33:00"
+        },
+        {
+          "sex": "female",
+          "ageMin": 51,
+          "ageMax": null,
+          "value": "36:00"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "space-force-whtr",
+  "organization": "space-force",
+  "name": "Space Force waist-to-height ratio",
+  "source": {
+    "document": "SPFMAN 36-2905, Human Performance and Readiness, chapter 9 (Body Composition Assessment)",
+    "documentDate": "26 Sep 2025, incorporating Change 3 of 24 Apr 2026",
+    "verifiedAt": "2026-11-26",
+    "evidence": "read"
+  },
+  "method": "whtr",
+  "limit": 0.55,
+  "roundDownDecimals": 2,
+  "ifOver": "A body fat measurement follows (a lab assessment, or a 2-3 site tape measurement if none is available). The maximum is 26% for men and 36% for women; over that, the member does not meet the standard.",
+  "notes": [
+    "The ratio is cut off (not rounded) after two decimals, so 0.5486 counts as 0.54. A ratio of 0.55 or more exceeds the standard.",
+    "The Space Force body composition standard is the same for every age and sex."
+  ]
+}

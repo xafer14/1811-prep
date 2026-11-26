@@ -2,5 +2,8 @@
   "id": "space-force",
   "name": "U.S. Space Force",
   "shortName": "Space Force",
-  "kind": "military"
+  "kind": "military",
+  "pending": [
+    "The main fitness assessment: its scoring charts are in the myFitness calculator, not in the manual"
+  ]
 }

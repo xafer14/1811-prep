@@ -2,5 +2,8 @@
   "id": "marine-corps",
   "name": "U.S. Marine Corps",
   "shortName": "Marine Corps",
-  "kind": "military"
+  "kind": "military",
+  "pending": [
+    "The 2026 changes, such as the higher minimum total for combat arms and the waist-to-height rule (waiting for the current Marine Corps orders)"
+  ]
 }

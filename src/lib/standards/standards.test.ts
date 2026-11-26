@@ -80,10 +80,10 @@ describe('content files', () => {
     }
   });
 
-  it('gives every event a family, at most once per standard except where noted', () => {
+  it('gives every event a unique id (alternatives may share a family)', () => {
     for (const item of standards.values()) {
-      const families = item.events.map((event) => event.family);
-      expect(new Set(families).size, `${item.id} repeats a family`).toBe(families.length);
+      const ids = item.events.map((event) => event.id);
+      expect(new Set(ids).size, `${item.id} repeats an event id`).toBe(ids.length);
     }
   });
 
@@ -114,6 +114,19 @@ describe('transcribed values', () => {
     ['usms-peb', 'sit-and-reach', 'male', 35, 16.5],
     ['hsi-pftp', 'sprint', 'female', 30, 47.73],
     ['hsi-pftp', 'run', 'male', 45, 14 * 60 + 25],
+    // Marine Corps order (the official minimum rows), Air Force chart, Space Force manual.
+    ['marine-pft', 'pull-ups', 'male', 48, 4],
+    ['marine-pft', 'pull-ups', 'female', 18, 1],
+    ['marine-pft', 'push-ups', 'male', 19, 42],
+    ['marine-pft', 'plank', 'female', 40, 70],
+    ['marine-pft', 'run', 'male', 55, 33 * 60],
+    ['af-pfra', 'push-ups', 'male', 20, 30],
+    ['af-pfra', 'push-ups', 'female', 20, 15],
+    ['af-pfra', 'run', 'male', 20, 19 * 60 + 45],
+    ['af-pfra', 'run', 'female', 62, 29 * 60 + 40],
+    ['af-pfra', 'hamr', 'male', 20, 42],
+    ['space-force-walk', 'walk', 'male', 25, 16 * 60 + 16],
+    ['space-force-walk', 'walk', 'female', 65, 18 * 60 + 53],
   ] as const)('%s %s %s age %s -> %s', (id, eventId, sex, age, expected) => {
     expect(minimumOf(id, eventId, sex, age)).toBe(expected);
   });

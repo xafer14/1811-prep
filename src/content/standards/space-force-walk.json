@@ -1,0 +1,84 @@
+{
+  "id": "space-force-walk",
+  "organization": "space-force",
+  "name": "Space Force 2-kilometer walk (members medically cleared not to run)",
+  "source": {
+    "document": "SPFMAN 36-2905, Human Performance and Readiness, Table 3.1 (Walk Standards)",
+    "documentDate": "26 Sep 2025, incorporating Change 3 of 24 Apr 2026",
+    "verifiedAt": "2026-11-26",
+    "evidence": "read"
+  },
+  "completeness": "minimums-only",
+  "caveat": "The walk is a pass or fail assessment only for members who are medically prohibited from running the 2-mile run or the 20-meter HAMR; it earns no points. The main assessment (push-ups, sit-ups or plank, and the 2-mile run or HAMR; composite score of at least 75 out of 100 with a minimum in each component) is not included yet because its scoring charts are in the myFitness calculator, not in the manual.",
+  "events": [
+    {
+      "id": "walk",
+      "name": "2-kilometer walk (maximum time)",
+      "family": "walk-2km",
+      "unit": "seconds",
+      "better": "lower",
+      "minimums": [
+        {
+          "sex": "male",
+          "ageMin": 17,
+          "ageMax": 29,
+          "value": "16:16"
+        },
+        {
+          "sex": "female",
+          "ageMin": 17,
+          "ageMax": 29,
+          "value": "17:22"
+        },
+        {
+          "sex": "male",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": "16:18"
+        },
+        {
+          "sex": "female",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": "17:28"
+        },
+        {
+          "sex": "male",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": "16:23"
+        },
+        {
+          "sex": "female",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": "17:49"
+        },
+        {
+          "sex": "male",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": "16:40"
+        },
+        {
+          "sex": "female",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": "18:11"
+        },
+        {
+          "sex": "male",
+          "ageMin": 60,
+          "ageMax": null,
+          "value": "16:58"
+        },
+        {
+          "sex": "female",
+          "ageMin": 60,
+          "ageMax": null,
+          "value": "18:53"
+        }
+      ]
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import Base from '../layouts/Base.astro';
 
 const organizations = (await getCollection('organizations')).map((entry) => entry.data);
 const standards = (await getCollection('standards')).map((entry) => entry.data);
+const pointStandards = (await getCollection('pointStandards')).map((entry) => entry.data);
 const bodyRules = (await getCollection('bodyComposition')).map((entry) => entry.data);
 ---
 
@@ -23,7 +24,7 @@ const bodyRules = (await getCollection('bodyComposition')).map((entry) => entry.
     <strong>Your privacy:</strong> the age you choose only selects a column of the official tables.
     It stays in this page and is not sent anywhere or saved.
   </p>
-  <Compare client:load {organizations} {standards} {bodyRules} />
+  <Compare client:load {organizations} {standards} {pointStandards} {bodyRules} />
   <p>
     Want to check your own results?
     <a href="/readiness/">Use the readiness tool</a>.

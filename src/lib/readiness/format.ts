@@ -26,7 +26,7 @@ export function formatValue(
 ): string {
   switch (unit) {
     case 'reps':
-      return `${trimDecimals(value, 0)} reps`;
+      return `${trimDecimals(value, 0)} ${value === 1 ? 'rep' : 'reps'}`;
     case 'seconds':
       return formatClock(value);
     case 'pounds':

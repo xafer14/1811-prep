@@ -4,9 +4,11 @@ import { describeMinimum } from './readiness/format';
 import {
   bodyCompositionSchema,
   organizationSchema,
+  pointsStandardSchema,
   standardSchema,
   type BodyCompositionStandard,
   type Organization,
+  type PointsStandard,
   type Standard,
 } from './standards/schema';
 
@@ -23,13 +25,17 @@ const standards = load(
   import.meta.glob('/src/content/standards/*.json', { eager: true, import: 'default' }),
   (data) => standardSchema.parse(data),
 ) as Standard[];
+const pointStandards = load(
+  import.meta.glob('/src/content/point-standards/*.json', { eager: true, import: 'default' }),
+  (data) => pointsStandardSchema.parse(data),
+) as PointsStandard[];
 const bodyRules = load(
   import.meta.glob('/src/content/body-composition/*.json', { eager: true, import: 'default' }),
   (data) => bodyCompositionSchema.parse(data),
 ) as BodyCompositionStandard[];
 
 const compare = (age: number, sex: 'male' | 'female', variant?: string) =>
-  buildComparison(organizations, standards, bodyRules, { age, sex, variant });
+  buildComparison({ organizations, standards, pointStandards, bodyRules }, { age, sex, variant });
 
 function cell(comparison: ReturnType<typeof compare>, familyId: string, orgId: string) {
   const row = comparison.rows.find((r) => r.familyId === familyId);
@@ -41,6 +47,7 @@ function cell(comparison: ReturnType<typeof compare>, familyId: string, orgId: s
 describe('describeMinimum', () => {
   it('words minimums by direction and unit', () => {
     expect(describeMinimum('reps', 'higher', 33, 'us')).toBe('at least 33 reps');
+    expect(describeMinimum('reps', 'higher', 1, 'us')).toBe('at least 1 rep');
     expect(describeMinimum('seconds', 'lower', 738, 'us')).toBe('12:18 or faster');
     expect(describeMinimum('seconds', 'higher', 90, 'us')).toBe('at least 1:30');
     expect(describeMinimum('inches', 'higher', 17.5, 'us')).toBe('at least 17.5 in');
@@ -51,25 +58,30 @@ describe('describeMinimum', () => {
 describe('buildComparison', () => {
   it('groups columns into military branches, then federal agencies', () => {
     const comparison = compare(25, 'male');
-    expect(comparison.columns.map((c) => c.id)).toEqual(['army', 'navy', 'atf', 'ice-hsi', 'usms']);
+    expect(comparison.columns.map((c) => c.id)).toEqual([
+      'army',
+      'navy',
+      'atf',
+      'dea',
+      'fbi',
+      'ice-hsi',
+      'usms',
+      'usss',
+    ]);
     expect(comparison.groups).toEqual([
       { kind: 'military', label: 'Military branches', span: 2 },
-      { kind: 'federal', label: 'Federal agencies', span: 3 },
+      { kind: 'federal', label: 'Federal agencies', span: 6 },
     ]);
   });
 
   it('lists organizations without verified numbers, by group', () => {
     const { missing } = compare(25, 'male');
-    expect(missing.find((m) => m.kind === 'military')?.names).toEqual([
-      'Air Force',
-      'Coast Guard',
-      'Marine Corps',
-      'Space Force',
-    ]);
-    expect(missing.find((m) => m.kind === 'federal')?.names).toEqual([
-      'DEA',
-      'FBI',
-      'Secret Service',
+    expect(missing).toEqual([
+      {
+        kind: 'military',
+        label: 'Military branches',
+        names: ['Air Force', 'Coast Guard', 'Marine Corps', 'Space Force'],
+      },
     ]);
   });
 
@@ -85,10 +97,37 @@ describe('buildComparison', () => {
     expect(cell(comparison, 'push-ups', 'usms')[0]?.minimum).toBe('at least 33 reps');
   });
 
+  it('shows the one-point level for tests scored in points', () => {
+    const comparison = compare(25, 'male');
+    expect(cell(comparison, 'push-ups', 'fbi')[0]).toEqual({
+      name: 'Push-ups (untimed)',
+      minimum: 'at least 30 reps',
+      note: 'Worth 1 point; the total also counts',
+    });
+    expect(cell(comparison, 'push-ups', 'dea')[0]?.minimum).toBe('at least 30 reps');
+    expect(cell(comparison, 'push-ups', 'usss')[0]?.minimum).toBe('at least 15 reps');
+    expect(cell(comparison, 'pull-ups', 'fbi')[0]?.minimum).toBe('at least 2 reps');
+    expect(cell(comparison, 'sit-ups', 'dea')[0]?.minimum).toBe('at least 38 reps');
+    expect(cell(comparison, 'run-1-5-mile', 'fbi')[0]?.minimum).toBe('12:24 or faster');
+    expect(cell(comparison, 'run-1-5-mile', 'usss')[0]?.minimum).toBe('19:40 or faster');
+    expect(cell(comparison, 'sprint', 'fbi')[0]?.minimum).toBe('0:52.40 or faster');
+    expect(cell(comparison, 'agility-run', 'usss')[0]?.minimum).toBe('0:23.88 or faster');
+  });
+
+  it('uses the female scale for points tests when asked', () => {
+    const comparison = compare(25, 'female');
+    expect(cell(comparison, 'pull-ups', 'fbi')[0]?.minimum).toBe('at least 1 rep');
+    expect(cell(comparison, 'push-ups', 'fbi')[0]?.minimum).toBe('at least 14 reps');
+    expect(cell(comparison, 'run-1-5-mile', 'dea')[0]?.minimum).toBe('13:59 or faster');
+    // The Secret Service uses one scale for everyone.
+    expect(cell(comparison, 'push-ups', 'usss')[0]?.minimum).toBe('at least 15 reps');
+  });
+
   it('leaves a cell empty where a test has no event of that kind', () => {
     const comparison = compare(25, 'male');
     expect(cell(comparison, 'run-1-5-mile', 'army')).toEqual([]);
     expect(cell(comparison, 'deadlift', 'navy')).toEqual([]);
+    expect(cell(comparison, 'pull-ups', 'dea')).toEqual([]);
   });
 
   it('uses the female column and the combat variant when asked', () => {
@@ -107,6 +146,8 @@ describe('buildComparison', () => {
     expect(cell(comparison, 'run-1-5-mile', 'atf')[0]?.minimum).toBeUndefined();
     expect(cell(comparison, 'run-1-5-mile', 'usms')[0]?.minimum).toBeUndefined();
     expect(cell(comparison, 'run-1-5-mile', 'navy')[0]?.minimum).toBe('12:45 or faster');
+    // Points tests have no age bands, so they still show a value.
+    expect(cell(comparison, 'run-1-5-mile', 'fbi')[0]?.minimum).toBe('12:24 or faster');
   });
 
   it('shows the waist-to-height rule and other rules per organization', () => {
@@ -119,13 +160,24 @@ describe('buildComparison', () => {
     expect(comparison.bodyRule[at('atf')]).toBeUndefined();
     expect(comparison.otherRule[at('army')]).toMatch(/total score/);
     expect(comparison.otherRule[at('atf')]).toBeUndefined();
+    expect(comparison.otherRule[at('fbi')]).toBe(
+      'Needs 10 points in total, and at least 1 point in each event.',
+    );
+    expect(comparison.otherRule[at('dea')]).toBe(
+      'Needs 12 points in total (1.5-mile run points count twice), and at least 1 point in each event.',
+    );
+    expect(comparison.otherRule[at('usss')]).toBe(
+      'Needs 20 points in total, and at least 1 point in each event.',
+    );
   });
 
   it('lists the source of every column', () => {
     const comparison = compare(25, 'male');
     expect(comparison.sources.map((s) => s.org.id)).toEqual(comparison.columns.map((c) => c.id));
-    expect(comparison.sources.every((s) => s.standards.length > 0 || s.bodyRules.length > 0)).toBe(
-      true,
-    );
+    expect(
+      comparison.sources.every(
+        (s) => s.standards.length + s.pointStandards.length + s.bodyRules.length > 0,
+      ),
+    ).toBe(true);
   });
 });

@@ -1,13 +1,21 @@
 import { describeMinimum } from './readiness/format';
 import { findMinimum, scoringSex, type Profile } from './standards/evaluate';
 import { EVENT_FAMILIES } from './standards/families';
-import type { BodyCompositionStandard, Organization, Standard } from './standards/schema';
+import { hasScale, minimumValueForPoints } from './standards/points';
+import type {
+  BodyCompositionStandard,
+  Organization,
+  PointsStandard,
+  Standard,
+} from './standards/schema';
 
 export interface CellEvent {
   /** Event name with its details, for example "Push-ups (1 min)". */
   name: string;
   /** The minimum in words, or undefined when none is published for this age. */
   minimum: string | undefined;
+  /** Extra context, for example that the number is the level worth one point. */
+  note?: string | undefined;
 }
 
 export interface ComparisonRow {
@@ -26,6 +34,7 @@ export interface ComparisonGroup {
 export interface ComparisonSource {
   org: Organization;
   standards: Standard[];
+  pointStandards: PointsStandard[];
   bodyRules: BodyCompositionStandard[];
 }
 
@@ -42,11 +51,21 @@ export interface Comparison {
   missing: { kind: Organization['kind']; label: string; names: string[] }[];
 }
 
+export interface ComparisonData {
+  organizations: readonly Organization[];
+  standards: readonly Standard[];
+  pointStandards: readonly PointsStandard[];
+  bodyRules: readonly BodyCompositionStandard[];
+}
+
 const GROUPS: { kind: Organization['kind']; label: string }[] = [
   { kind: 'military', label: 'Military branches' },
   { kind: 'federal', label: 'Federal agencies' },
   { kind: 'state', label: 'State agencies' },
 ];
+
+const familyLabel = (id: string): string =>
+  EVENT_FAMILIES.find((family) => family.id === id)?.label ?? id;
 
 function bodyRuleText(rules: BodyCompositionStandard[]): string | undefined {
   if (rules.length === 0) return undefined;
@@ -61,15 +80,24 @@ function bodyRuleText(rules: BodyCompositionStandard[]): string | undefined {
     .join('; ');
 }
 
+function pointsRuleText(standard: PointsStandard): string {
+  const doubled = standard.events
+    .filter((event) => event.multiplier !== 1)
+    .map(
+      (event) =>
+        `${familyLabel(event.family).toLowerCase()} points count ${event.multiplier === 2 ? 'twice' : `${event.multiplier} times`}`,
+    );
+  const counted = doubled.length > 0 ? ` (${doubled.join(', ')})` : '';
+  const each = standard.rule.minPerEvent;
+  return `Needs ${standard.rule.minTotal} points in total${counted}, and at least ${each} ${each === 1 ? 'point' : 'points'} in each event.`;
+}
+
 /** Minimums of every organization with verified data, for one age and sex. */
-export function buildComparison(
-  organizations: readonly Organization[],
-  standards: readonly Standard[],
-  bodyRules: readonly BodyCompositionStandard[],
-  profile: Profile,
-): Comparison {
+export function buildComparison(data: ComparisonData, profile: Profile): Comparison {
+  const { organizations, standards, pointStandards, bodyRules } = data;
   const hasData = (org: Organization): boolean =>
     standards.some((s) => s.organization === org.id) ||
+    pointStandards.some((s) => s.organization === org.id) ||
     bodyRules.some((b) => b.organization === org.id);
 
   const columns: Organization[] = [];
@@ -94,10 +122,12 @@ export function buildComparison(
 
   const standardsOf = (org: Organization): Standard[] =>
     standards.filter((s) => s.organization === org.id);
+  const pointsOf = (org: Organization): PointsStandard[] =>
+    pointStandards.filter((s) => s.organization === org.id);
   const bodyOf = (org: Organization): BodyCompositionStandard[] =>
     bodyRules.filter((b) => b.organization === org.id);
 
-  const cellFor = (org: Organization, familyId: string): CellEvent[] =>
+  const minimumCells = (org: Organization, familyId: string): CellEvent[] =>
     standardsOf(org).flatMap((standard) => {
       const sex = scoringSex(standard, {
         ...profile,
@@ -119,10 +149,29 @@ export function buildComparison(
         });
     });
 
+  const pointCells = (org: Organization, familyId: string): CellEvent[] =>
+    pointsOf(org).flatMap((standard) =>
+      standard.events
+        .filter((event) => event.family === familyId)
+        .map((event) => {
+          const each = standard.rule.minPerEvent;
+          const value = minimumValueForPoints(event, profile.sex, profile.age, each);
+          const covered = hasScale(event, profile.sex, profile.age);
+          return {
+            name: event.name,
+            minimum:
+              value === undefined || !covered
+                ? undefined
+                : describeMinimum(event.unit, event.better, value, 'us'),
+            note: `Worth ${each} ${each === 1 ? 'point' : 'points'}; the total also counts`,
+          };
+        }),
+    );
+
   const rows = EVENT_FAMILIES.map((family) => ({
     familyId: family.id,
     label: family.label,
-    cells: columns.map((org) => cellFor(org, family.id)),
+    cells: columns.map((org) => [...minimumCells(org, family.id), ...pointCells(org, family.id)]),
   })).filter((row) => row.cells.some((cell) => cell.length > 0));
 
   return {
@@ -131,14 +180,18 @@ export function buildComparison(
     rows,
     bodyRule: columns.map((org) => bodyRuleText(bodyOf(org))),
     otherRule: columns.map((org) => {
-      const caveats = standardsOf(org)
-        .filter((s) => s.completeness === 'minimums-only' && s.caveat)
-        .map((s) => s.caveat);
-      return caveats.length > 0 ? caveats.join(' ') : undefined;
+      const rules = [
+        ...standardsOf(org)
+          .filter((s) => s.completeness === 'minimums-only' && s.caveat)
+          .map((s) => s.caveat as string),
+        ...pointsOf(org).map(pointsRuleText),
+      ];
+      return rules.length > 0 ? rules.join(' ') : undefined;
     }),
     sources: columns.map((org) => ({
       org,
       standards: standardsOf(org),
+      pointStandards: pointsOf(org),
       bodyRules: bodyOf(org),
     })),
     missing,

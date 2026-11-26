@@ -2,15 +2,21 @@
   import { buildComparison } from '../lib/compare';
   import { parseAge } from '../lib/readiness/inputs';
   import type { Sex } from '../lib/standards/evaluate';
-  import type { BodyCompositionStandard, Organization, Standard } from '../lib/standards/schema';
+  import type {
+    BodyCompositionStandard,
+    Organization,
+    PointsStandard,
+    Standard,
+  } from '../lib/standards/schema';
 
   interface Props {
     organizations: Organization[];
     standards: Standard[];
+    pointStandards: PointsStandard[];
     bodyRules: BodyCompositionStandard[];
   }
 
-  let { organizations, standards, bodyRules }: Props = $props();
+  let { organizations, standards, pointStandards, bodyRules }: Props = $props();
 
   // The age and sex only choose which column of each official table is shown.
   // They stay in memory in this component: no storage, no URL, no network.
@@ -24,11 +30,10 @@
   const ageError = $derived(touched && !parsed.ok ? parsed.message : '');
   const hasCombat = $derived(standards.some((s) => s.variants.some((v) => v.id === 'combat')));
   const comparison = $derived(
-    buildComparison(organizations, standards, bodyRules, {
-      age: validAge,
-      sex,
-      variant: combat ? 'combat' : undefined,
-    }),
+    buildComparison(
+      { organizations, standards, pointStandards, bodyRules },
+      { age: validAge, sex, variant: combat ? 'combat' : undefined },
+    ),
   );
   const hasOtherRules = $derived(comparison.otherRule.some((rule) => rule !== undefined));
   const hasBodyRules = $derived(comparison.bodyRule.some((rule) => rule !== undefined));
@@ -93,7 +98,9 @@
   <table>
     <caption id="table-title">
       Official minimums side by side. Read the small text under each number: the same kind of event
-      can have a different time limit or technique.
+      can have a different time limit or technique. For tests scored in points (DEA, FBI, Secret
+      Service) the number shown is the level worth one point; the total those tests also require is
+      in the last row.
     </caption>
     <thead>
       <tr>
@@ -126,6 +133,9 @@
                       <span class="minimum muted">No published minimum for this age</span>
                     {/if}
                     <span class="event-name">{event.name}</span>
+                    {#if event.note}
+                      <span class="event-name">{event.note}</span>
+                    {/if}
                   </span>
                 {/each}
               {/if}
@@ -183,7 +193,7 @@
       <li>
         <strong>{source.org.name}</strong>
         <ul>
-          {#each [...source.standards, ...source.bodyRules] as item (item.id)}
+          {#each [...source.standards, ...source.pointStandards, ...source.bodyRules] as item (item.id)}
             <li>
               {item.source.document}{item.source.documentDate
                 ? ` (${item.source.documentDate})`

@@ -49,6 +49,8 @@ export interface Comparison {
   sources: ComparisonSource[];
   /** Organizations without verified numbers yet, grouped by kind. */
   missing: { kind: Organization['kind']; label: string; names: string[] }[];
+  /** Organizations shown only in part, with what is still missing. */
+  partial: { name: string; items: string[] }[];
 }
 
 export interface ComparisonData {
@@ -195,5 +197,8 @@ export function buildComparison(data: ComparisonData, profile: Profile): Compari
       bodyRules: bodyOf(org),
     })),
     missing,
+    partial: columns
+      .filter((org) => org.pending.length > 0)
+      .map((org) => ({ name: org.shortName, items: org.pending })),
   };
 }

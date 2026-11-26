@@ -59,8 +59,11 @@ describe('buildComparison', () => {
   it('groups columns into military branches, then federal agencies', () => {
     const comparison = compare(25, 'male');
     expect(comparison.columns.map((c) => c.id)).toEqual([
+      'air-force',
       'army',
+      'marine-corps',
       'navy',
+      'space-force',
       'atf',
       'dea',
       'fbi',
@@ -69,7 +72,7 @@ describe('buildComparison', () => {
       'usss',
     ]);
     expect(comparison.groups).toEqual([
-      { kind: 'military', label: 'Military branches', span: 2 },
+      { kind: 'military', label: 'Military branches', span: 5 },
       { kind: 'federal', label: 'Federal agencies', span: 6 },
     ]);
   });
@@ -77,12 +80,65 @@ describe('buildComparison', () => {
   it('lists organizations without verified numbers, by group', () => {
     const { missing } = compare(25, 'male');
     expect(missing).toEqual([
-      {
-        kind: 'military',
-        label: 'Military branches',
-        names: ['Air Force', 'Coast Guard', 'Marine Corps', 'Space Force'],
-      },
+      { kind: 'military', label: 'Military branches', names: ['Coast Guard'] },
     ]);
+  });
+
+  it('lists organizations that are shown only in part, with what is missing', () => {
+    const { partial } = compare(25, 'male');
+    expect(partial.map((p) => p.name)).toEqual(['Air Force', 'Marine Corps', 'Space Force']);
+    expect(partial.find((p) => p.name === 'Space Force')?.items[0]).toMatch(/myFitness/);
+    expect(partial.find((p) => p.name === 'Air Force')?.items[0]).toMatch(/DAFMAN 36-2905/);
+  });
+
+  it('shows the Marine Corps minimums from the order, by age and sex', () => {
+    const male = compare(25, 'male');
+    expect(cell(male, 'pull-ups', 'marine-corps')[0]?.minimum).toBe('at least 5 reps');
+    expect(cell(male, 'push-ups', 'marine-corps')[0]?.minimum).toBe('at least 40 reps');
+    expect(cell(male, 'plank', 'marine-corps')[0]?.minimum).toBe('at least 1:10');
+    expect(cell(male, 'run-3-mile', 'marine-corps')[0]?.minimum).toBe('27:40 or faster');
+    const female = compare(25, 'female');
+    expect(cell(female, 'pull-ups', 'marine-corps')[0]?.minimum).toBe('at least 3 reps');
+    expect(cell(female, 'run-3-mile', 'marine-corps')[0]?.minimum).toBe('30:50 or faster');
+    // The official order lists 4 pull-ups for men 46-50 (Military.com says 5).
+    expect(cell(compare(48, 'male'), 'pull-ups', 'marine-corps')[0]?.minimum).toBe(
+      'at least 4 reps',
+    );
+  });
+
+  it('lists every Air Force alternative with its component minimum', () => {
+    const male = compare(25, 'male');
+    const pushUps = cell(male, 'push-ups', 'air-force');
+    expect(pushUps.map((e) => e.minimum)).toEqual(['at least 28 reps', 'at least 25 reps']);
+    expect(cell(male, 'sit-ups', 'air-force')[0]?.minimum).toBe('at least 31 reps');
+    expect(cell(male, 'reverse-crunch', 'air-force')[0]?.minimum).toBe('at least 33 reps');
+    expect(cell(male, 'plank', 'air-force')[0]?.minimum).toBe('at least 1:30');
+    expect(cell(male, 'run-2-mile', 'air-force')[0]?.minimum).toBe('19:55 or faster');
+    expect(cell(male, 'hamr', 'air-force')[0]?.minimum).toBe('at least 42 reps');
+    expect(cell(compare(25, 'female'), 'run-2-mile', 'air-force')[0]?.minimum).toBe(
+      '25:40 or faster',
+    );
+    // The same chart row for members under 25.
+    expect(cell(compare(20, 'male'), 'push-ups', 'air-force')[0]?.minimum).toBe('at least 30 reps');
+    expect(
+      compare(25, 'male').otherRule[
+        compare(25, 'male').columns.findIndex((c) => c.id === 'air-force')
+      ],
+    ).toMatch(/composite score of at least 75/);
+  });
+
+  it('shows the Space Force walk standard and body composition rule', () => {
+    const comparison = compare(25, 'male');
+    const at = (id: string) => comparison.columns.findIndex((c) => c.id === id);
+    expect(cell(comparison, 'walk-2km', 'space-force')[0]?.minimum).toBe('16:16 or faster');
+    expect(cell(compare(65, 'female'), 'walk-2km', 'space-force')[0]?.minimum).toBe(
+      '18:53 or faster',
+    );
+    expect(comparison.bodyRule[at('space-force')]).toBe(
+      'Waist-to-height ratio below 0.55 (rounded down to 2 decimals)',
+    );
+    // The Space Force has no fitness-test rows beyond the walk until its charts are available.
+    expect(cell(comparison, 'run-2-mile', 'space-force')).toEqual([]);
   });
 
   it('puts the same kind of effort on one row with each minimum in words', () => {

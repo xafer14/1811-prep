@@ -177,6 +177,15 @@
   </table>
 </div>
 
+{#if comparison.partial.length > 0}
+  <p class="hint">Shown only in part, because some official numbers are still being checked:</p>
+  <ul class="hint hint-list">
+    {#each comparison.partial as entry (entry.name)}
+      <li><strong>{entry.name}:</strong> {entry.items.join('; ')}</li>
+    {/each}
+  </ul>
+{/if}
+
 {#if comparison.missing.length > 0}
   <p class="hint">Not shown yet, because the official numbers are still being checked:</p>
   <ul class="hint hint-list">

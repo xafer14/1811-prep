@@ -701,6 +701,13 @@
       </p>
     {/if}
 
+    {#if results.org.pending.length > 0}
+      <p class="caveat">
+        <strong>Not included yet for {results.org.shortName}:</strong>
+        {results.org.pending.join('; ')}.
+      </p>
+    {/if}
+
     <p class="disclaimer">
       This is a comparison of numbers you typed with published minimums. It is not medical advice
       and does not predict whether you will be selected. If you feel pain, dizziness or chest

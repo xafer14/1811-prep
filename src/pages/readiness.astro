@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Readiness from '../components/Readiness.svelte';
+import Base from '../layouts/Base.astro';
+
+const organizations = (await getCollection('organizations')).map((entry) => entry.data);
+const standards = (await getCollection('standards')).map((entry) => entry.data);
+const bodyRules = (await getCollection('bodyComposition')).map((entry) => entry.data);
+---
+
+<Base
+  title="Readiness tool | 1811 Prep"
+  description="Compare your fitness test results and waist-to-height ratio with the official minimums."
+>
+  <h1>Readiness tool</h1>
+  <p>
+    Enter your results from a practice test and see how each one compares with the official minimum
+    for the organization you choose. The tool shows each event on its own; it does not predict
+    whether you will pass or be selected.
+  </p>
+  <p>
+    <strong>Your privacy:</strong> everything you type stays in this page. It is not sent anywhere,
+    not saved, and not put in the web address.
+  </p>
+  <noscript>
+    <p>This tool needs JavaScript. Nothing you type is sent anywhere.</p>
+  </noscript>
+  <Readiness client:only="svelte" {organizations} {standards} {bodyRules} />
+</Base>

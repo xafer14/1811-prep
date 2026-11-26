@@ -1,0 +1,133 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --fg: #1a1d21;
+  --muted: #4b5563;
+  --border: #c5cad3;
+  --surface: #f4f6f8;
+  --accent: #0b4fb3;
+  --accent-fg: #ffffff;
+  --good: #14532d;
+  --good-bg: #e3f5e8;
+  --warn: #7a1f12;
+  --warn-bg: #fdeae6;
+  --neutral-bg: #eceff3;
+  --focus: #0b57d0;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  line-height: 1.55;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #101317;
+    --fg: #e8eaed;
+    --muted: #aab1bb;
+    --border: #3a414b;
+    --surface: #1a1f26;
+    --accent: #7db0ff;
+    --accent-fg: #0a1a33;
+    --good: #9be3b0;
+    --good-bg: #12301d;
+    --warn: #ffb4a6;
+    --warn-bg: #3a1813;
+    --neutral-bg: #232a33;
+    --focus: #8ab4ff;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+a {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: 0.5rem;
+  inset-block-start: -4rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--accent);
+  color: var(--accent-fg);
+  z-index: 10;
+}
+
+.skip-link:focus {
+  inset-block-start: 0.5rem;
+}
+
+.site-header,
+.site-footer,
+main {
+  width: min(100% - 2rem, 46rem);
+  margin-inline: auto;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: baseline;
+  padding-block: 1rem;
+  border-block-end: 1px solid var(--border);
+}
+
+.site-header .brand {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+main {
+  padding-block: 1.5rem 3rem;
+}
+
+h1 {
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin-block: 2rem 0.5rem;
+}
+
+.site-footer {
+  padding-block: 1.5rem 2.5rem;
+  border-block-start: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

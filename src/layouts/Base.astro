@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <header class="site-header">
+      <a class="brand" href="/">
+        1811 Prep
+      </a>
+      <nav aria-label="Main">
+        <a href="/readiness/">Readiness tool</a>
+      </nav>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>
+        Not affiliated with, endorsed by, or sponsored by any government agency or military service.
+      </p>
+      <p>
+        Educational information only, not medical, legal or financial advice. Standards change;
+        always check the official source linked next to each number.
+      </p>
+    </footer>
+  </body>
+</html>

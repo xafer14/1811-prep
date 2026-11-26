@@ -224,7 +224,7 @@
       height !== undefined && waist !== undefined
         ? orgBody.map((rule) => ({
             rule,
-            result: evaluateBodyComposition(rule, waist, height),
+            result: evaluateBodyComposition(rule, waist, height, system === 'us' ? 'in' : 'cm'),
             waist,
             height,
           }))
@@ -667,7 +667,14 @@
       </p>
       <p class="detail">
         Your waist-to-height ratio is {entry.result.ratio.toFixed(4)} (waist divided by height). The limit
-        is below {entry.result.limit}.
+        is {entry.result.atLimit === 'within'
+          ? `${entry.result.limit} or less`
+          : `below ${entry.result.limit}`}.
+        {#if entry.result.usedWaistInches !== undefined && entry.result.usedHeightInches !== undefined}
+          The standard rounds measurements down, so it uses a height of {entry.result
+            .usedHeightInches}
+          in and a waist of {entry.result.usedWaistInches} in.
+        {/if}
         {#if entry.result.comparedRatio !== entry.result.ratio}
           It is rounded down to {entry.result.comparedRatio} for the comparison.
         {/if}

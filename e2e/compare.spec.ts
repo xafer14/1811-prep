@@ -65,7 +65,9 @@ test.describe('compare page', () => {
     await expect(row(page, 'Push-ups')).toContainText('at least 33 reps'); // ATF, USMS
     await expect(row(page, 'Two-mile run')).toContainText('19:45 or faster');
     await expect(row(page, 'Body composition')).toContainText('Waist-to-height ratio below 0.55');
-    await expect(row(page, 'Also applies')).toContainText('total score');
+    await expect(row(page, 'Also applies')).toContainText(
+      '300 points in total (350 for Combat MOS)',
+    );
     // Marine Corps (order), Air Force (chart) and Space Force (manual).
     await expect(row(page, 'Three-mile run')).toContainText('27:40 or faster');
     await expect(row(page, 'Two-mile run')).toContainText('19:55 or faster'); // Air Force, 25-29

@@ -28,7 +28,9 @@
 
   const parsed = $derived(parseAge(ageText));
   const ageError = $derived(touched && !parsed.ok ? parsed.message : '');
-  const hasCombat = $derived(standards.some((s) => s.variants.some((v) => v.id === 'combat')));
+  const hasCombat = $derived(
+    [...standards, ...pointStandards].some((s) => s.variants.some((v) => v.id === 'combat')),
+  );
   const comparison = $derived(
     buildComparison(
       { organizations, standards, pointStandards, bodyRules },
@@ -221,47 +223,47 @@
 </section>
 
 <style>
-  .controls {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .controls h2 {
-    margin-block: 0;
-  }
-
   fieldset {
     border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    padding: 0.5rem 1rem 0.75rem;
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    padding: 0.9rem 1.1rem 1.1rem;
     margin: 0;
     display: grid;
-    gap: 0.25rem;
+    gap: 0.6rem;
   }
 
   legend {
-    font-weight: 600;
-    padding-inline: 0.25rem;
+    font-weight: 700;
+    padding-inline: 0.4rem;
+    font-size: 1.02rem;
   }
 
   .field {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.3rem;
   }
 
   .field label {
     font-weight: 600;
   }
 
-  input[type='text'] {
+  input[type='text'],
+  select {
     font: inherit;
-    padding: 0.55rem 0.7rem;
+    padding: 0.65rem 0.8rem;
     border: 1px solid var(--border);
-    border-radius: 0.4rem;
+    border-radius: var(--radius-sm);
     background: var(--bg);
     color: var(--fg);
-    max-width: 8rem;
+    min-block-size: 2.75rem;
+  }
+
+  input[type='text']:hover,
+  select:hover {
+    border-color: var(--accent);
   }
 
   input[aria-invalid='true'] {
@@ -272,31 +274,30 @@
   .choice {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    min-block-size: 2.25rem;
+    gap: 0.65rem;
+    min-block-size: 2.75rem;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    cursor: pointer;
+  }
+
+  .choice:hover {
+    border-color: var(--accent);
+  }
+
+  .choice:has(input:checked) {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    font-weight: 600;
   }
 
   .choice input {
     inline-size: 1.15rem;
     block-size: 1.15rem;
     flex-shrink: 0;
-  }
-
-  .hint {
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin: 0;
-  }
-
-  .hint-list {
-    margin: 0 0 1rem;
-    padding-inline-start: 1.25rem;
-  }
-
-  .error {
-    color: var(--warn);
-    font-weight: 600;
-    font-size: 0.95rem;
+    accent-color: var(--accent);
   }
 
   .sym {
@@ -307,6 +308,36 @@
     margin-inline-start: 0.25em;
   }
 
+  .hint {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  .hint-list {
+    margin: 0;
+    padding-inline-start: 1.25rem;
+  }
+
+  .error {
+    color: var(--warn);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .controls {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .controls h2 {
+    margin-block: 0;
+  }
+
+  input[type='text'] {
+    max-inline-size: 8rem;
+  }
+
   .status {
     margin-block: 1rem 0.5rem;
     font-weight: 600;
@@ -315,7 +346,9 @@
   .table-wrap {
     overflow-x: auto;
     border: 1px solid var(--border);
-    border-radius: 0.5rem;
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
   }
 
   table {
@@ -331,14 +364,14 @@
 
   caption {
     text-align: start;
-    padding: 0.6rem 0.8rem;
+    padding: 0.75rem 1rem;
     color: var(--muted);
     font-size: 0.9rem;
   }
 
   th,
   td {
-    padding: 0.55rem 0.7rem;
+    padding: 0.65rem 0.8rem;
     border-block-start: 1px solid var(--border);
     border-inline-start: 1px solid var(--border);
     text-align: start;
@@ -351,17 +384,23 @@
   }
 
   thead th {
-    background: var(--surface);
+    background: var(--surface-2);
   }
 
   th.group {
     text-align: center;
     color: var(--muted);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  tbody tr:nth-child(even) td {
+    background: color-mix(in srgb, var(--surface-2) 45%, transparent);
   }
 
   tbody th[scope='row'] {
-    background: var(--surface);
+    background: var(--surface-2);
     white-space: nowrap;
     position: sticky;
     inset-inline-start: 0;

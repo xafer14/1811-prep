@@ -33,9 +33,151 @@ function event(id: string, eventId: string): PointsEvent {
 
 const t = (m: number, s: number) => m * 60 + s;
 
+// Spot checks against the Army Fitness Test Score Tables (approved 15 May 2025).
+describe('Air Force PFRA scoring', () => {
+  const af = () => standard('af-pfra');
+  const ok = { 'push-ups': 30, 'sit-ups': 33, run: t(19, 45) };
+
+  it('scores rows of the Under 25 male column, in half points', () => {
+    const pushUps = event('af-pfra', 'push-ups');
+    expect(pointsFor(pushUps, 'male', 20, 67)).toBe(15);
+    expect(pointsFor(pushUps, 'male', 20, 66)).toBe(14.5);
+    expect(pointsFor(pushUps, 'male', 20, 30)).toBe(2.5); // the asterisk row: the minimum
+    expect(pointsFor(pushUps, 'male', 20, 29)).toBe(0); // below the minimum scores zero
+    expect(pointsFor(pushUps, 'female', 20, 50)).toBe(15);
+    const run = event('af-pfra', 'run');
+    expect(pointsFor(run, 'male', 20, t(13, 25))).toBe(50);
+    expect(pointsFor(run, 'male', 20, t(19, 45))).toBe(35);
+    expect(pointsFor(run, 'male', 20, t(19, 46))).toBe(0);
+    expect(pointsFor(event('af-pfra', 'hamr'), 'male', 20, 87)).toBe(50);
+  });
+
+  it('reads times written without minutes as 0:ss', () => {
+    const plank = event('af-pfra', 'plank');
+    expect(pointsFor(plank, 'female', 62, 50)).toBe(2.5);
+    expect(pointsFor(plank, 'female', 62, 49)).toBe(0);
+  });
+
+  it('adds one counted result per part and the waist-to-height points', () => {
+    const best = evaluatePointsStandard(
+      af(),
+      { age: 20, sex: 'male' },
+      { 'push-ups': 67, 'sit-ups': 58, run: t(13, 25) },
+      20,
+    );
+    expect(best.totalPoints).toBe(100);
+    expect(best.totalStatus).toBe('meets');
+    expect(best.groups.map((g) => g.id)).toEqual(['cardio', 'body', 'strength', 'core']);
+  });
+
+  it('counts only the best event of a part', () => {
+    const result = evaluatePointsStandard(
+      af(),
+      { age: 20, sex: 'male' },
+      { ...ok, 'hand-release-push-ups': 52 },
+      20,
+    );
+    const strength = result.groups.find((g) => g.id === 'strength');
+    expect(strength?.points).toBe(15); // 52 hand-release push-ups beat 30 push-ups
+    expect(strength?.eventName).toMatch(/Hand-release/);
+  });
+
+  it('is below 75 when only the minimums are met, and says what is missing', () => {
+    const minimums = evaluatePointsStandard(af(), { age: 20, sex: 'male' }, ok, 12.5);
+    expect(minimums.totalPoints).toBe(52.5);
+    expect(minimums.totalStatus).toBe('below');
+    expect(minimums.eventsBelowMinimum).toBe(0);
+    const noBody = evaluatePointsStandard(af(), { age: 20, sex: 'male' }, ok);
+    expect(noBody.totalStatus).toBe('incomplete');
+    expect(noBody.groups.find((g) => g.id === 'body')?.status).toBe('not-entered');
+  });
+
+  it('fails a part below its minimum even when the total is high', () => {
+    const result = evaluatePointsStandard(
+      af(),
+      { age: 20, sex: 'male' },
+      { 'push-ups': 29, 'sit-ups': 58, run: t(13, 25) },
+      20,
+    );
+    expect(result.totalPoints).toBe(85);
+    expect(result.eventsBelowMinimum).toBe(1);
+    expect(result.totalStatus).toBe('below');
+  });
+
+  it('has a first step of at least 1 point everywhere, so zero means below the minimum', () => {
+    for (const item of standard('af-pfra').events) {
+      for (const scale of item.scales) {
+        expect(scale.floorPoints).toBe(0);
+        expect(scale.steps[0]?.points ?? 0).toBeGreaterThanOrEqual(1);
+      }
+    }
+  });
+});
+
+describe('Army AFT scoring', () => {
+  const army = () => standard('army-aft');
+  const sixty = { mdl: 150, hrp: 14, sdc: t(2, 31), plk: t(1, 25), '2mr': t(19, 45) };
+
+  it('scores deadlift rows of the 17-21 male column, including skipped point levels', () => {
+    const mdl = event('army-aft', 'mdl');
+    expect(pointsFor(mdl, 'male', 20, 340)).toBe(100);
+    expect(pointsFor(mdl, 'male', 20, 339)).toBe(98); // 99 points has no row in this column
+    expect(pointsFor(mdl, 'male', 20, 150)).toBe(60);
+    expect(pointsFor(mdl, 'male', 20, 149)).toBe(50);
+    expect(pointsFor(mdl, 'male', 20, 89)).toBe(0);
+    expect(pointsFor(mdl, 'female', 20, 220)).toBe(100);
+    expect(pointsFor(mdl, 'female', 20, 120)).toBe(60);
+  });
+
+  it('scores times with a lower-is-better scale', () => {
+    const run = event('army-aft', '2mr');
+    expect(pointsFor(run, 'male', 25, t(19, 45))).toBe(60);
+    expect(pointsFor(run, 'male', 25, t(19, 46))).toBeLessThan(60);
+    expect(pointsFor(run, 'male', 25, t(30, 0))).toBeLessThan(10);
+  });
+
+  it('needs 300 points in total, or 350 under the combat option', () => {
+    const normal = evaluatePointsStandard(army(), { age: 25, sex: 'male' }, sixty);
+    expect(normal.totalPoints).toBe(300);
+    expect(normal.minTotal).toBe(300);
+    expect(normal.totalStatus).toBe('meets');
+    const combat = evaluatePointsStandard(
+      army(),
+      { age: 25, sex: 'male', variant: 'combat' },
+      sixty,
+    );
+    expect(combat.minTotal).toBe(350);
+    expect(combat.totalStatus).toBe('below');
+  });
+
+  it('scores a woman on the male column under the combat option', () => {
+    const hrp = { ...sixty, hrp: 11 }; // 60 points on the female column, below on the male one
+    const normal = evaluatePointsStandard(army(), { age: 25, sex: 'female' }, hrp);
+    expect(normal.events.find((e) => e.eventId === 'hrp')?.points).toBe(60);
+    const combat = evaluatePointsStandard(
+      army(),
+      { age: 25, sex: 'female', variant: 'combat' },
+      hrp,
+    );
+    expect(combat.events.find((e) => e.eventId === 'hrp')?.meetsEventMinimum).toBe(false);
+  });
+
+  it('rejects an unknown variant', () => {
+    expect(() =>
+      evaluatePointsStandard(army(), { age: 25, sex: 'male', variant: 'x' }, {}),
+    ).toThrow(RangeError);
+  });
+});
+
 describe('point standard data', () => {
-  it('loads FBI, DEA and Secret Service with read-level evidence', () => {
-    expect([...standards.keys()].sort()).toEqual(['dea-pta', 'fbi-pft', 'usss-apat']);
+  it('loads Army, FBI, DEA and Secret Service with read-level evidence', () => {
+    expect([...standards.keys()].sort()).toEqual([
+      'af-pfra',
+      'army-aft',
+      'dea-pta',
+      'fbi-pft',
+      'usss-apat',
+    ]);
     for (const item of standards.values()) {
       expect(item.source.evidence).toBe('read');
       expect(item.source.verifiedAt).toMatch(/^\d{4}-\d{2}-\d{2}$/);

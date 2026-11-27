@@ -1,0 +1,85 @@
+{
+  "id": "af-walk",
+  "organization": "air-force",
+  "name": "Air Force 2-kilometer walk (medical alternative)",
+  "effectiveDate": "2026-03-24",
+  "source": {
+    "document": "AFMAN 36-2905, Table 3.1 (2-kilometer walk maximum times) with the USAF PFRA scoring charts",
+    "documentDate": "AFMAN dated 24 Mar 2026; scoring charts effective 1 Mar 2026",
+    "verifiedAt": "2026-11-26",
+    "evidence": "read"
+  },
+  "variants": [],
+  "completeness": "complete",
+  "events": [
+    {
+      "id": "walk",
+      "name": "2-kilometer walk (maximum time, only if medically cleared not to run)",
+      "family": "walk-2km",
+      "unit": "seconds",
+      "better": "lower",
+      "minimums": [
+        {
+          "sex": "male",
+          "ageMin": 17,
+          "ageMax": 29,
+          "value": "16:16"
+        },
+        {
+          "sex": "female",
+          "ageMin": 17,
+          "ageMax": 29,
+          "value": "17:22"
+        },
+        {
+          "sex": "male",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": "16:18"
+        },
+        {
+          "sex": "female",
+          "ageMin": 30,
+          "ageMax": 39,
+          "value": "17:28"
+        },
+        {
+          "sex": "male",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": "16:23"
+        },
+        {
+          "sex": "female",
+          "ageMin": 40,
+          "ageMax": 49,
+          "value": "17:49"
+        },
+        {
+          "sex": "male",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": "16:40"
+        },
+        {
+          "sex": "female",
+          "ageMin": 50,
+          "ageMax": 59,
+          "value": "18:11"
+        },
+        {
+          "sex": "male",
+          "ageMin": 60,
+          "ageMax": null,
+          "value": "16:58"
+        },
+        {
+          "sex": "female",
+          "ageMin": 60,
+          "ageMax": null,
+          "value": "18:53"
+        }
+      ]
+    }
+  ]
+}

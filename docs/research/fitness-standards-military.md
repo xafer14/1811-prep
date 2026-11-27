@@ -116,6 +116,12 @@ Numbers entered in `src/content/` are owned by the data files; this section is t
 ### Owner statement on entry ages (no document)
 On 2026-11-26 the owner wrote "fbi 37 atf 40" for the maximum entry ages. No document was supplied at that time (superseded 2026-11-26: both ages were then verified from official pages, see [domain-1811-hiring](domain-1811-hiring.md)).
 
+### Point scales entered 2026-11-26 (Army and Air Force)
+The owner supplied the Army Fitness Test Score Tables (approved 15 May 2025, effective 1 June 2025) and the USAF scoring charts (Tab 2, effective 1 Mar 2026). Both were converted with `pdftotext -raw` and entered as point scales in `src/content/point-standards/` (the data files own the numbers).
+- Army: 0 to 100 points for five events by ten age bands and two columns (male and combat, female); a point level that is skipped in a column has no row, so the next lower result earns the lower level. All 100 sixty-point rows equal the minimums read earlier. The total needs 300 points (350 for a combat MOS), 60 in each event. The alternate aerobic events are pass or fail and are not entered.
+- Air Force: half-point rows; each component's lowest row (marked with an asterisk) is its minimum and anything below scores zero (AFMAN 36-2905, 3.7.4). All 126 asterisk rows (7 events by 9 age bands and two sexes) equal the minimums read earlier. The waist-to-height ratio earns 20 to 0 points (0.49 or less to 0.60) and is the same for every age and sex. One event per part counts; the tool takes the best result entered for each part. Composite of at least 75 needed.
+- Some Air Force plank times in the chart are written without minutes (":55"); the data stores them as 0:55.
+
 ### Still open
 Marine Corps body fat limits (MCO 6110.3A) and the Combat Fitness Test; Space Force scoring charts (myFitness); Coast Guard.
 

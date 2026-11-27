@@ -125,7 +125,7 @@ export const standardSchema = z
  * for a `lower` event (a time) it must be at most `value`.
  */
 const stepSchema = z.object({
-  points: z.number().int(),
+  points: z.number(),
   value: valueSchema,
 });
 
@@ -136,7 +136,7 @@ const scaleSchema = z
     /** null = no upper limit */
     ageMax: z.number().int().nullable(),
     /** Points earned when not even the first step is reached. */
-    floorPoints: z.number().int(),
+    floorPoints: z.number(),
     /** Steps in ascending order of points. */
     steps: z.array(stepSchema).min(1),
   })
@@ -153,6 +153,8 @@ const pointsEventSchema = z
     better: z.enum(['higher', 'lower']),
     /** How many times the event's points count in the total (DEA 1.5-mile run: 2). */
     multiplier: z.number().positive().default(1),
+    /** Group of alternative events: only the best result of the group counts (Air Force). */
+    group: slug.optional(),
     scales: z.array(scaleSchema).min(1),
   })
   .superRefine((event, ctx) => {
@@ -195,7 +197,24 @@ const pointsEventSchema = z
     });
   });
 
-/** A test scored in points (FBI, DEA, Secret Service): a total plus a minimum in each event. */
+/** A sex-neutral way of scoring a points test (the Army combat standard). */
+const pointsVariantSchema = variantSchema.extend({
+  /** Points needed in total under this variant, when it differs from the normal total. */
+  minTotal: z.number().positive().optional(),
+});
+
+/**
+ * A part of the total score. Events with the same `group` are alternatives and the best one
+ * counts. A group with `fromBodyComposition` is filled from the waist-to-height ratio instead.
+ */
+const pointsGroupSchema = z.object({
+  id: slug,
+  label: z.string().min(1),
+  maxPoints: z.number().positive(),
+  fromBodyComposition: z.boolean().default(false),
+});
+
+/** A test scored in points (Army, Air Force, FBI, DEA, Secret Service): a total plus minimums. */
 export const pointsStandardSchema = z
   .object({
     id: slug,
@@ -204,17 +223,23 @@ export const pointsStandardSchema = z
     effectiveDate: isoDate.optional(),
     source: sourceSchema,
     scoring: z.literal('points'),
+    variants: z.array(pointsVariantSchema).default([]),
+    /** Parts of the total. Empty = every event counts (Army, FBI, DEA, Secret Service). */
+    groups: z.array(pointsGroupSchema).default([]),
     rule: z.object({
       /** Points needed in total (after multipliers). */
       minTotal: z.number().positive(),
       /** Points needed in each event (before multipliers). */
       minPerEvent: z.number(),
+      /** The requirement in words, when the standard wording is not enough (shown to users). */
+      summary: z.string().min(1).optional(),
     }),
     caveat: z.string().optional(),
     events: z.array(pointsEventSchema).min(1),
   })
   .superRefine((standard, ctx) => {
     const ids = new Set<string>();
+    const groupIds = new Set(standard.groups.map((group) => group.id));
     standard.events.forEach((event, index) => {
       if (ids.has(event.id)) {
         ctx.addIssue({
@@ -224,7 +249,17 @@ export const pointsStandardSchema = z
         });
       }
       ids.add(event.id);
+      if (standard.groups.length > 0 && (!event.group || !groupIds.has(event.group))) {
+        ctx.addIssue({
+          code: 'custom',
+          message: 'every event needs a known group when the standard has groups',
+          path: ['events', index, 'group'],
+        });
+      }
     });
+    if (groupIds.size !== standard.groups.length) {
+      ctx.addIssue({ code: 'custom', message: 'duplicate group id', path: ['groups'] });
+    }
   });
 
 /** Waist-to-height ratio rule of one organization. */
@@ -250,6 +285,13 @@ export const bodyCompositionSchema = z.object({
       waistInches: z.number().positive().optional(),
       heightInches: z.number().positive().optional(),
     })
+    .optional(),
+  /**
+   * Points earned for the ratio (Air Force): the first row whose `ratio` is at least the
+   * compared ratio gives the points; a higher ratio earns none.
+   */
+  pointScale: z
+    .array(z.object({ ratio: z.number().positive(), points: z.number().nonnegative() }))
     .optional(),
   /** What happens when the ratio is over the limit. */
   ifOver: z.string().min(1),

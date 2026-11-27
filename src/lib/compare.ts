@@ -1,7 +1,7 @@
 import { describeMinimum } from './readiness/format';
 import { findMinimum, scoringSex, type Profile } from './standards/evaluate';
 import { EVENT_FAMILIES } from './standards/families';
-import { hasScale, minimumValueForPoints } from './standards/points';
+import { hasScale, minimumValueForPoints, pointsScoringSex } from './standards/points';
 import type {
   BodyCompositionStandard,
   Organization,
@@ -95,6 +95,7 @@ function bodyRuleText(rules: BodyCompositionStandard[]): string | undefined {
 }
 
 function pointsRuleText(standard: PointsStandard): string {
+  if (standard.rule.summary) return standard.rule.summary;
   const doubled = standard.events
     .filter((event) => event.multiplier !== 1)
     .map(
@@ -103,7 +104,11 @@ function pointsRuleText(standard: PointsStandard): string {
     );
   const counted = doubled.length > 0 ? ` (${doubled.join(', ')})` : '';
   const each = standard.rule.minPerEvent;
-  return `Needs ${standard.rule.minTotal} points in total${counted}, and at least ${each} ${each === 1 ? 'point' : 'points'} in each event.`;
+  const other = standard.variants
+    .filter((variant) => variant.minTotal !== undefined)
+    .map((variant) => `${variant.minTotal} for ${variant.label.split(' (')[0]}`);
+  const total = other.length > 0 ? ` (${other.join(', ')})` : '';
+  return `Needs ${standard.rule.minTotal} points in total${total}${counted}, and at least ${each} ${each === 1 ? 'point' : 'points'} in each event.`;
 }
 
 /** Minimums of every organization with verified data, for one age and sex. */
@@ -164,23 +169,32 @@ export function buildComparison(data: ComparisonData, profile: Profile): Compari
     });
 
   const pointCells = (org: Organization, familyId: string): CellEvent[] =>
-    pointsOf(org).flatMap((standard) =>
-      standard.events
+    pointsOf(org).flatMap((standard) => {
+      const sex = pointsScoringSex(standard, {
+        ...profile,
+        variant: standard.variants.some((v) => v.id === profile.variant)
+          ? profile.variant
+          : undefined,
+      });
+      return standard.events
         .filter((event) => event.family === familyId)
         .map((event) => {
           const each = standard.rule.minPerEvent;
-          const value = minimumValueForPoints(event, profile.sex, profile.age, each);
-          const covered = hasScale(event, profile.sex, profile.age);
+          const value = minimumValueForPoints(event, sex, profile.age, each);
+          const covered = hasScale(event, sex, profile.age);
           return {
             name: event.name,
             minimum:
               value === undefined || !covered
                 ? undefined
                 : describeMinimum(event.unit, event.better, value, 'us'),
-            note: `Worth ${each} ${each === 1 ? 'point' : 'points'}; the total also counts`,
+            note:
+              standard.groups.length > 0
+                ? 'Component minimum (scores zero below it); the total also counts'
+                : `Worth ${each} ${each === 1 ? 'point' : 'points'}; the total also counts`,
           };
-        }),
-    );
+        });
+    });
 
   const rows = EVENT_FAMILIES.map((family) => ({
     familyId: family.id,

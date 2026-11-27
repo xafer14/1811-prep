@@ -158,7 +158,7 @@ describe('buildComparison', () => {
     expect(cell(comparison, 'run-1-5-mile', 'atf')[0]?.minimum).toBe('12:18 or faster');
     expect(cell(comparison, 'run-1-5-mile', 'navy')[0]?.minimum).toBe('14:00 or faster');
     expect(cell(comparison, 'run-1-5-mile', 'ice-hsi')[0]?.minimum).toBe('14:25 or faster');
-    expect(cell(comparison, 'push-ups', 'army')[0]).toEqual({
+    expect(cell(comparison, 'push-ups', 'army')[0]).toMatchObject({
       name: 'Hand-release push-ups (2 min)',
       minimum: 'at least 14 reps',
     });
@@ -232,7 +232,7 @@ describe('buildComparison', () => {
       'Waist-to-height ratio 0.55 or less (ratio rounded down to 2 decimals; waist rounded down to 1/2 inch)',
     );
     expect(comparison.bodyRule[at('atf')]).toBeUndefined();
-    expect(comparison.otherRule[at('army')]).toMatch(/total score/);
+    expect(comparison.otherRule[at('army')]).toContain('300 points in total (350 for Combat MOS)');
     expect(comparison.otherRule[at('atf')]).toBeUndefined();
     expect(comparison.otherRule[at('fbi')]).toBe(
       'Needs 10 points in total, and at least 1 point in each event.',

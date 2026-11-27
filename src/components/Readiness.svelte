@@ -21,6 +21,7 @@
   import {
     evaluatePointsStandard,
     type PointsEventResult,
+    type PointsGroupResult,
     type PointsStandardResult,
   } from '../lib/standards/points';
   import type {
@@ -90,7 +91,7 @@
   const orgStandards = $derived(standards.filter((s) => s.organization === orgId));
   const orgPoints = $derived(pointStandards.filter((s) => s.organization === orgId));
   const orgBody = $derived(bodyRules.filter((b) => b.organization === orgId));
-  const variant = $derived(orgStandards.flatMap((s) => s.variants)[0]);
+  const variant = $derived([...orgStandards, ...orgPoints].flatMap((s) => s.variants)[0]);
 
   const eventKey = (standardId: string, eventId: string): string => `${standardId}__${eventId}`;
 
@@ -207,16 +208,6 @@
       };
     });
 
-    const points = orgPoints.map((standard) => {
-      const entries: Record<string, number | undefined> = {};
-      for (const event of standard.events) {
-        entries[event.id] = numberOf(
-          parseEventValue(event.unit, texts[eventKey(standard.id, event.id)] ?? '', system),
-        );
-      }
-      return { standard, result: evaluatePointsStandard(standard, { age, sex }, entries) };
-    });
-
     const height = numberOf(parseLength(texts.height ?? '', system, 'height'));
     const waist = numberOf(parseLength(texts.waist ?? '', system, 'waist'));
     const weight = numberOf(parseWeight(texts.weight ?? '', system));
@@ -229,6 +220,28 @@
             height,
           }))
         : [];
+    const points = orgPoints.map((standard) => {
+      const entries: Record<string, number | undefined> = {};
+      for (const event of standard.events) {
+        entries[event.id] = numberOf(
+          parseEventValue(event.unit, texts[eventKey(standard.id, event.id)] ?? '', system),
+        );
+      }
+      const variantId =
+        useVariant && variant && standard.variants.some((v) => v.id === variant.id)
+          ? variant.id
+          : undefined;
+      return {
+        standard,
+        result: evaluatePointsStandard(
+          standard,
+          { age, sex, variant: variantId },
+          entries,
+          body[0]?.result.points,
+        ),
+      };
+    });
+
     let bmi: number | undefined;
     if (height !== undefined && weight !== undefined) {
       bmi = bodyMassIndex(
@@ -286,6 +299,18 @@
         : 'Below the per-event minimum';
     }
     return event.status === 'not-entered' ? 'No result entered' : 'No published scale for you';
+  }
+
+  function partClass(part: PointsGroupResult): string {
+    if (part.status !== 'scored') return 'not-entered';
+    return part.meetsMinimum === false ? 'below' : 'meets';
+  }
+
+  function partStatus(part: PointsGroupResult): string {
+    if (part.status !== 'scored') {
+      return part.fromBodyComposition ? 'Needs your height and waist' : 'No result entered';
+    }
+    return part.meetsMinimum === false ? 'Below the minimum (scores zero)' : 'Counted';
   }
 
   function pointsClass(event: PointsEventResult): string {
@@ -513,7 +538,13 @@
     <fieldset>
       <legend>{standard.name}</legend>
       <p class="hint">
-        This test is scored in points. Fill in the events you have tested; leave the others empty.
+        {#if standard.groups.length > 0}
+          This test is scored in points. Fill in the events you have tested, one for each part; if
+          you fill in more than one for a part, the best one counts. The waist-to-height ratio below
+          adds its own points.
+        {:else}
+          This test is scored in points. Fill in the events you have tested; leave the others empty.
+        {/if}
       </p>
       {#each standard.events as event (event.id)}
         {@render field(
@@ -597,13 +628,42 @@
       <h3>{item.standard.name}</h3>
       {#if item.result.scoredCount > 0}
         <p class="count">
-          {item.result.scoredCount} of {item.result.totalCount} events scored. Points counted so far:
-          {item.result.totalPoints}.
-          {#if item.result.eventsBelowMinimum > 0}
-            {plural(item.result.eventsBelowMinimum, 'event')} below the per-event minimum of
-            {plural(item.result.minPerEvent, 'point')}.
+          {#if item.result.groups.length > 0}
+            {item.result.scoredCount} of {item.result.totalCount} parts scored. Points counted so far:
+            {item.result.totalPoints} of {item.result.groups.reduce((s, g) => s + g.maxPoints, 0)}.
+            {#if item.result.eventsBelowMinimum > 0}
+              {plural(item.result.eventsBelowMinimum, 'part')} below the minimum, which scores zero.
+            {/if}
+          {:else}
+            {item.result.scoredCount} of {item.result.totalCount} events scored. Points counted so far:
+            {item.result.totalPoints}.
+            {#if item.result.eventsBelowMinimum > 0}
+              {plural(item.result.eventsBelowMinimum, 'event')} below the per-event minimum of
+              {plural(item.result.minPerEvent, 'point')}.
+            {/if}
           {/if}
         </p>
+      {/if}
+      {#if item.result.groups.length > 0}
+        <ul class="event-list">
+          {#each item.result.groups as part (part.id)}
+            <li class={`event ${partClass(part)}`}>
+              <span class="event-name">{part.label}</span>
+              <span class="status">
+                <span class="sym" aria-hidden="true">
+                  {part.status !== 'scored' ? '–' : part.meetsMinimum === false ? '✗' : '✓'}
+                </span>{partStatus(part)}
+              </span>
+              {#if part.status === 'scored'}
+                <span class="detail">
+                  {part.points} of {part.maxPoints} points{part.eventName
+                    ? ' from ' + part.eventName
+                    : ''}.
+                </span>
+              {/if}
+            </li>
+          {/each}
+        </ul>
       {/if}
       <ul class="event-list">
         {#each item.result.events as ev (ev.eventId)}
@@ -621,7 +681,10 @@
                   'point',
                 )}{ev.multiplier !== 1
                   ? ` (counted ${ev.multiplier === 2 ? 'twice' : ev.multiplier + ' times'} in the total: ${ev.countedPoints})`
-                  : ''}. At least {plural(ev.minPoints, 'point')} needed in this event.
+                  : ''}. {#if item.result.groups.length === 0}At least {plural(
+                    ev.minPoints,
+                    'point',
+                  )} needed in this event.{/if}
               </span>
             {/if}
           </li>
@@ -629,8 +692,13 @@
       </ul>
       {#if item.result.totalStatus === 'incomplete'}
         <p class="notice">
-          Enter a result for every event to compare your total with the {item.result.minTotal} points
-          required.
+          {#if item.result.groups.length > 0}
+            Enter a result for every part to compare your total with the {item.result.minTotal} points
+            required.
+          {:else}
+            Enter a result for every event to compare your total with the {item.result.minTotal} points
+            required.
+          {/if}
         </p>
       {:else}
         <p class="status-line">
@@ -641,6 +709,9 @@
               .result.totalPoints} of {item.result.minTotal} points
           </span>
         </p>
+      {/if}
+      {#if item.standard.rule.summary}
+        <p class="caveat">{item.standard.rule.summary}</p>
       {/if}
       {#if item.result.caveat}
         <p class="caveat">{item.result.caveat}</p>
@@ -725,50 +796,27 @@
 {/if}
 
 <style>
-  .tool,
-  .results {
-    display: grid;
-    gap: 1rem;
-  }
-
   fieldset {
     border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    padding: 0.75rem 1rem 1rem;
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    padding: 0.9rem 1.1rem 1.1rem;
     margin: 0;
     display: grid;
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
 
   legend {
-    font-weight: 600;
-    padding-inline: 0.25rem;
-  }
-
-  .subgroup {
-    border: 0;
-    border-inline-start: 3px solid var(--border);
-    border-radius: 0;
-    padding: 0 0 0 0.75rem;
-    gap: 0.25rem;
-  }
-
-  .subgroup legend {
-    font-size: 0.95rem;
-    color: var(--muted);
-    padding-inline: 0;
-    margin-block-end: 0.25rem;
-  }
-
-  .hint-list {
-    margin: 0;
-    padding-inline-start: 1.25rem;
+    font-weight: 700;
+    padding-inline: 0.4rem;
+    font-size: 1.02rem;
   }
 
   .field {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.3rem;
   }
 
   .field label {
@@ -778,12 +826,17 @@
   input[type='text'],
   select {
     font: inherit;
-    padding: 0.55rem 0.7rem;
+    padding: 0.65rem 0.8rem;
     border: 1px solid var(--border);
-    border-radius: 0.4rem;
+    border-radius: var(--radius-sm);
     background: var(--bg);
     color: var(--fg);
-    max-width: 22rem;
+    min-block-size: 2.75rem;
+  }
+
+  input[type='text']:hover,
+  select:hover {
+    border-color: var(--accent);
   }
 
   input[aria-invalid='true'] {
@@ -794,14 +847,30 @@
   .choice {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    min-block-size: 2.25rem;
+    gap: 0.65rem;
+    min-block-size: 2.75rem;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    cursor: pointer;
+  }
+
+  .choice:hover {
+    border-color: var(--accent);
+  }
+
+  .choice:has(input:checked) {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    font-weight: 600;
   }
 
   .choice input {
     inline-size: 1.15rem;
     block-size: 1.15rem;
     flex-shrink: 0;
+    accent-color: var(--accent);
   }
 
   .sym {
@@ -814,8 +883,13 @@
 
   .hint {
     color: var(--muted);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     margin: 0;
+  }
+
+  .hint-list {
+    margin: 0;
+    padding-inline-start: 1.25rem;
   }
 
   .error {
@@ -824,11 +898,37 @@
     font-size: 0.95rem;
   }
 
+  .tool,
+  .results {
+    display: grid;
+    gap: 1.1rem;
+  }
+
+  .subgroup {
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+    gap: 0.4rem;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  }
+
+  .subgroup legend {
+    grid-column: 1 / -1;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-inline: 0;
+    margin-block-end: 0.15rem;
+  }
+
   .error-summary {
     border: 2px solid var(--warn);
     background: var(--warn-bg);
-    border-radius: 0.5rem;
-    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    padding: 0.85rem 1.1rem;
   }
 
   .error-summary p,
@@ -847,23 +947,37 @@
   button[type='submit'] {
     font: inherit;
     font-weight: 700;
-    padding: 0.75rem 1.25rem;
+    font-size: 1.05rem;
+    padding: 0.85rem 1.6rem;
     border: 0;
-    border-radius: 0.5rem;
+    border-radius: var(--radius-sm);
     background: var(--accent);
     color: var(--accent-fg);
     cursor: pointer;
     justify-self: start;
+    box-shadow: var(--shadow);
+  }
+
+  button[type='submit']:hover {
+    background: var(--accent-strong);
+    color: var(--bg);
   }
 
   .results {
-    margin-block-start: 2rem;
-    padding-block-start: 1rem;
-    border-block-start: 2px solid var(--border);
+    margin-block-start: 2.25rem;
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) * 1.25);
+    box-shadow: var(--shadow);
+  }
+
+  .results h2 {
+    margin-block: 0;
   }
 
   .results h3 {
-    margin-block: 1rem 0;
+    margin-block: 0.75rem 0;
     font-size: 1.1rem;
   }
 
@@ -873,14 +987,14 @@
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 0.5rem;
+    gap: 0.55rem;
   }
 
   .event {
     display: grid;
     gap: 0.15rem;
-    padding: 0.6rem 0.8rem;
-    border-radius: 0.4rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: var(--radius-sm);
     border-inline-start: 6px solid var(--border);
     background: var(--neutral-bg);
   }
@@ -930,9 +1044,9 @@
   .caveat,
   .notice {
     border: 1px solid var(--border);
-    background: var(--surface);
-    padding: 0.6rem 0.8rem;
-    border-radius: 0.4rem;
+    background: var(--surface-2);
+    padding: 0.65rem 0.9rem;
+    border-radius: var(--radius-sm);
   }
 
   .notes {

@@ -121,6 +121,8 @@ export interface BodyCompositionResult {
   /** How a ratio exactly at the limit counts. */
   atLimit: 'within' | 'over';
   status: 'within' | 'over';
+  /** Points the ratio earns, for standards that score it (Air Force). */
+  points?: number | undefined;
   ifOver: string;
   /** Measurements as used after rounding, in inches (only when the standard rounds them). */
   usedWaistInches?: number | undefined;
@@ -173,10 +175,13 @@ export function evaluateBodyComposition(
     standard.atLimit === 'within'
       ? comparedRatio <= standard.limit + 1e-9
       : comparedRatio < standard.limit;
+  const row = standard.pointScale?.find((item) => comparedRatio <= item.ratio + 1e-9);
+  const points = standard.pointScale === undefined ? undefined : (row?.points ?? 0);
   return {
     standardId: standard.id,
     ratio,
     comparedRatio,
+    points,
     limit: standard.limit,
     atLimit: standard.atLimit,
     status: within ? 'within' : 'over',

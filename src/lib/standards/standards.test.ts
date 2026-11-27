@@ -98,12 +98,6 @@ describe('content files', () => {
 // Spot checks against the official documents (docs/verification/live-page-checklist.md).
 describe('transcribed values', () => {
   it.each([
-    ['army-aft', '2mr', 'male', 20, 19 * 60 + 57],
-    ['army-aft', '2mr', 'female', 70, 25 * 60],
-    ['army-aft', 'hrp', 'female', 62, 10],
-    ['army-aft', 'mdl', 'male', 31, 150],
-    ['army-aft', 'mdl', 'male', 32, 140],
-    ['army-aft', 'plk', 'female', 40, 70],
     ['navy-prt', 'push-ups', 'male', 32, 31],
     ['navy-prt', 'plank', 'male', 32, 67],
     ['navy-prt', 'run', 'male', 32, 870],
@@ -120,11 +114,6 @@ describe('transcribed values', () => {
     ['marine-pft', 'push-ups', 'male', 19, 42],
     ['marine-pft', 'plank', 'female', 40, 70],
     ['marine-pft', 'run', 'male', 55, 33 * 60],
-    ['af-pfra', 'push-ups', 'male', 20, 30],
-    ['af-pfra', 'push-ups', 'female', 20, 15],
-    ['af-pfra', 'run', 'male', 20, 19 * 60 + 45],
-    ['af-pfra', 'run', 'female', 62, 29 * 60 + 40],
-    ['af-pfra', 'hamr', 'male', 20, 42],
     ['space-force-walk', 'walk', 'male', 25, 16 * 60 + 16],
     ['space-force-walk', 'walk', 'female', 65, 18 * 60 + 53],
   ] as const)('%s %s %s age %s -> %s', (id, eventId, sex, age, expected) => {
@@ -201,29 +190,27 @@ describe('evaluateStandard', () => {
   });
 
   it('carries the caveat for minimums-only standards', () => {
-    const result = evaluateStandard(standard('army-aft'), { age: 25, sex: 'female' }, {});
+    const result = evaluateStandard(standard('marine-pft'), { age: 25, sex: 'female' }, {});
     expect(result.completeness).toBe('minimums-only');
-    expect(result.caveat).toMatch(/total score/);
+    expect(result.caveat).toMatch(/total/);
   });
 
   it('applies the sex-neutral combat variant (male column for everyone)', () => {
-    const army = standard('army-aft');
-    expect(scoringSex(army, { age: 25, sex: 'female', variant: 'combat' })).toBe('male');
-    const standardResult = evaluateStandard(army, { age: 25, sex: 'female' }, { hrp: 12 });
+    const marine = standard('marine-pft');
+    expect(scoringSex(marine, { age: 25, sex: 'female', variant: 'combat' })).toBe('male');
+    const standardResult = evaluateStandard(marine, { age: 25, sex: 'female' }, { 'pull-ups': 4 });
     const combatResult = evaluateStandard(
-      army,
+      marine,
       { age: 25, sex: 'female', variant: 'combat' },
-      {
-        hrp: 12,
-      },
+      { 'pull-ups': 4 },
     );
-    expect(standardResult.events.find((e) => e.eventId === 'hrp')?.minimum).toBe(11);
-    expect(combatResult.events.find((e) => e.eventId === 'hrp')?.minimum).toBe(14);
+    expect(standardResult.events.find((e) => e.eventId === 'pull-ups')?.minimum).toBe(3);
+    expect(combatResult.events.find((e) => e.eventId === 'pull-ups')?.minimum).toBe(5);
   });
 
   it('rejects an unknown variant and an invalid age', () => {
     expect(() =>
-      evaluateStandard(standard('army-aft'), { age: 25, sex: 'male', variant: 'x' }, {}),
+      evaluateStandard(standard('marine-pft'), { age: 25, sex: 'male', variant: 'x' }, {}),
     ).toThrow(RangeError);
     expect(() => evaluateStandard(standard('atf-ptt'), { age: -1, sex: 'male' }, {})).toThrow(
       RangeError,
@@ -305,6 +292,14 @@ describe('Marine Corps and Air Force waist-to-height rules', () => {
     expect(evaluateBodyComposition(airForce, 40, 72).status).toBe('within');
     // 40.5 / 72 = 0.5625 is cut off to 0.56, which is above 0.55 (high risk).
     expect(evaluateBodyComposition(airForce, 40.5, 72).status).toBe('over');
+  });
+
+  it('scores the Air Force ratio with the chart points', () => {
+    expect(evaluateBodyComposition(airForce, 35, 72).points).toBe(20); // 0.4861, at most 0.49
+    expect(evaluateBodyComposition(airForce, 40, 72).points).toBe(12.5); // cut off to 0.55
+    expect(evaluateBodyComposition(airForce, 43, 72).points).toBe(2.5); // 0.5972 -> 0.59
+    expect(evaluateBodyComposition(airForce, 50, 72).points).toBe(0);
+    expect(evaluateBodyComposition(marine, 36, 70).points).toBeUndefined();
   });
 
   it('rounds only the Air Force waist down, not the height', () => {

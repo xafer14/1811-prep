@@ -104,14 +104,20 @@ test.describe('readiness tool', () => {
     await fillAbout(page, '25', 'Female');
     await page.getByLabel('Hand-release push-ups (2 min)').fill('12');
     await compare(page);
-    await expect(page.locator('.results').getByText('Minimum: 11 reps.')).toBeVisible();
-    await expect(page.locator('.results').getByText('Not the whole requirement.')).toBeVisible();
+    const results = page.locator('.results');
+    await expect(
+      results.locator('.status', { hasText: 'Meets the per-event minimum' }),
+    ).toBeVisible();
+    await expect(results.getByText(/Enter a result for every event/)).toBeVisible();
+    await expect(results.getByText(/the total required/)).toHaveCount(0);
 
     await page.getByRole('checkbox', { name: /Combat MOS/ }).check();
     await compare(page);
+    // The male column needs 14 reps for 60 points, so 12 reps is below the event minimum.
     await expect(
-      page.locator('.results').getByText('Your result: 12 reps. Minimum: 14 reps.'),
+      results.locator('.status', { hasText: 'Below the per-event minimum' }),
     ).toBeVisible();
+    await expect(results.getByText(/the 350 points/)).toBeVisible();
   });
 
   test('scores the FBI test in points and compares the total with the requirement', async ({
@@ -189,21 +195,36 @@ test.describe('readiness tool', () => {
     await expect(results.getByText(/MCO 6110.3A/)).toBeVisible();
   });
 
-  test('compares Air Force results with the chart minimums and warns about the asterisk', async ({
-    page,
-  }) => {
+  test('scores the Air Force assessment by part and says what is missing', async ({ page }) => {
     await choose(page, /U\.S\. Air Force/);
     await fillAbout(page, '25', 'Male');
     await page.getByLabel('Push-ups (1 min)').fill('30');
-    await page.getByLabel('2-mile run').fill('20:30');
+    await page.getByLabel('2-mile run').fill('20:30'); // slower than the 19:55 minimum
     await compare(page);
 
     const results = page.locator('.results');
-    await expect(results.getByText('1 of 2 entered events meet the minimum.')).toBeVisible();
-    await expect(results.getByText(/does not reach the 75 points needed/)).toBeVisible();
+    await expect(results.getByText('2 of 4 parts scored.')).toBeVisible();
+    await expect(results.getByText('Below the minimum (scores zero)')).toBeVisible();
+    await expect(results.getByText('Needs your height and waist')).toBeVisible();
+    await expect(results.getByText(/Enter a result for every part/)).toBeVisible();
     await expect(results.getByText(/composite score of at least 75/)).toBeVisible();
-    // The Air Force manual is now complete for this tool, so nothing is listed as missing.
     await expect(results.getByText('Not included yet for Air Force:')).toHaveCount(0);
+  });
+
+  test('adds up the Air Force parts and the waist-to-height points', async ({ page }) => {
+    await choose(page, /U\.S\. Air Force/);
+    await fillAbout(page, '20', 'Male');
+    await page.getByLabel('Push-ups (1 min)').fill('67');
+    await page.getByLabel('Sit-ups (1 min)').fill('58');
+    await page.getByLabel('2-mile run').fill('13:25');
+    await page.getByLabel(/^Height \(inches\)/).fill('72');
+    await page.getByLabel(/^Waist \(inches\)/).fill('35');
+    await compare(page);
+
+    const results = page.locator('.results');
+    await expect(results.getByText('4 of 4 parts scored.')).toBeVisible();
+    await expect(results.getByText('Points counted so far: 100 of 100.')).toBeVisible();
+    await expect(results.getByText(/Meets the total required: 100 of 75 points/)).toBeVisible();
   });
 
   test('applies the Marine Corps combat arms option and rounds measurements down', async ({

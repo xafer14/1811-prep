@@ -199,27 +199,34 @@
 
 <section aria-labelledby="sources-title">
   <h2 id="sources-title">Sources</h2>
-  <ul class="sources">
-    {#each comparison.sources as source (source.org.id)}
-      <li>
-        <strong>{source.org.name}</strong>
-        <ul>
-          {#each [...source.standards, ...source.pointStandards, ...source.bodyRules] as item (item.id)}
-            <li>
-              {item.source.document}{item.source.documentDate
-                ? ` (${item.source.documentDate})`
-                : ''}. Checked against the official document on {item.source.verifiedAt}.
-              {#if item.source.url}
-                <a href={item.source.url} target="_blank" rel="noopener noreferrer">
-                  Official source (opens in a new tab)
-                </a>
-              {/if}
-            </li>
-          {/each}
-        </ul>
-      </li>
-    {/each}
-  </ul>
+  <p class="hint">
+    Every number comes from an official document. Each document is listed with the date we checked
+    it.
+  </p>
+  <details class="sources-box">
+    <summary>Show the {comparison.sources.length} organizations and their documents</summary>
+    <ul class="sources">
+      {#each comparison.sources as source (source.org.id)}
+        <li>
+          <strong>{source.org.name}</strong>
+          <ul>
+            {#each [...source.standards, ...source.pointStandards, ...source.bodyRules] as item (item.id)}
+              <li>
+                {item.source.document}{item.source.documentDate
+                  ? ` (${item.source.documentDate})`
+                  : ''}. Checked against the official document on {item.source.verifiedAt}.
+                {#if item.source.url}
+                  <a href={item.source.url} target="_blank" rel="noopener noreferrer">
+                    Official source (opens in a new tab)
+                  </a>
+                {/if}
+              </li>
+            {/each}
+          </ul>
+        </li>
+      {/each}
+    </ul>
+  </details>
 </section>
 
 <style>
@@ -427,6 +434,19 @@
   .event-name {
     color: var(--muted);
     font-size: 0.85rem;
+  }
+
+  .sources-box {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    padding: 0.25rem 1rem;
+  }
+
+  .sources-box summary {
+    cursor: pointer;
+    font-weight: 600;
+    padding-block: 0.6rem;
   }
 
   .sources {

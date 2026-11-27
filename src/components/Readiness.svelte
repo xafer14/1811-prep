@@ -518,22 +518,6 @@
     </fieldset>
   {/if}
 
-  {#each orgStandards as standard (standard.id)}
-    <fieldset>
-      <legend>{standard.name}</legend>
-      <p class="hint">Fill in the events you have tested. Leave the others empty.</p>
-      {#each standard.events as event (event.id)}
-        {@render field(
-          eventKey(standard.id, event.id),
-          event.name,
-          `Enter ${unitHint(event.unit, system)}.`,
-          false,
-          event.unit === 'seconds' ? 'text' : 'decimal',
-        )}
-      {/each}
-    </fieldset>
-  {/each}
-
   {#each orgPoints as standard (standard.id)}
     <fieldset>
       <legend>{standard.name}</legend>
@@ -546,6 +530,22 @@
           This test is scored in points. Fill in the events you have tested; leave the others empty.
         {/if}
       </p>
+      {#each standard.events as event (event.id)}
+        {@render field(
+          eventKey(standard.id, event.id),
+          event.name,
+          `Enter ${unitHint(event.unit, system)}.`,
+          false,
+          event.unit === 'seconds' ? 'text' : 'decimal',
+        )}
+      {/each}
+    </fieldset>
+  {/each}
+
+  {#each orgStandards as standard (standard.id)}
+    <fieldset>
+      <legend>{standard.name}</legend>
+      <p class="hint">Fill in the events you have tested. Leave the others empty.</p>
       {#each standard.events as event (event.id)}
         {@render field(
           eventKey(standard.id, event.id),
@@ -571,58 +571,6 @@
         You changed something after this comparison. Press the button again to update it.
       </p>
     {/if}
-
-    {#each results.items as item (item.standard.id)}
-      <h3>{item.standard.name}</h3>
-      {#if item.result.enteredCount > 0}
-        <p class="count">
-          {item.result.metCount} of {item.result.enteredCount} entered
-          {item.result.enteredCount === 1 ? 'event meets' : 'events meet'} the minimum.
-          {#if item.result.enteredCount < item.result.totalCount}
-            {item.result.totalCount - item.result.enteredCount} not entered.
-          {/if}
-        </p>
-      {/if}
-      <ul class="event-list">
-        {#each item.result.events as ev (ev.eventId)}
-          <li class={`event ${ev.status}`}>
-            <span class="event-name">{ev.eventName}</span>
-            <span class="status">
-              <span class="sym" aria-hidden="true">{symbol(ev.status)}</span>{statusLabel(
-                ev.status,
-              )}
-            </span>
-            {#if ev.value !== undefined && ev.minimum !== undefined}
-              <span class="detail">
-                Your result: {formatValue(ev.unit, ev.value, results.system)}. Minimum: {formatValue(
-                  ev.unit,
-                  ev.minimum,
-                  results.system,
-                )}.
-                {describeMargin(ev, results.system)}
-              </span>
-            {:else if ev.minimum !== undefined}
-              <span class="detail">
-                Minimum: {formatValue(ev.unit, ev.minimum, results.system)}.
-              </span>
-            {/if}
-          </li>
-        {/each}
-      </ul>
-      {#if item.result.completeness === 'minimums-only' && item.result.caveat}
-        <p class="caveat"><strong>Not the whole requirement.</strong> {item.result.caveat}</p>
-      {/if}
-      <p class="source">
-        Source: {item.standard.source.document}{item.standard.source.documentDate
-          ? ` (${item.standard.source.documentDate})`
-          : ''}. Checked against the official document on {item.standard.source.verifiedAt}.
-        {#if item.standard.source.url}
-          <a href={item.standard.source.url} target="_blank" rel="noopener noreferrer">
-            Official source (opens in a new tab)
-          </a>
-        {/if}
-      </p>
-    {/each}
 
     {#each results.points as item (item.standard.id)}
       <h3>{item.standard.name}</h3>
@@ -715,6 +663,58 @@
       {/if}
       {#if item.result.caveat}
         <p class="caveat">{item.result.caveat}</p>
+      {/if}
+      <p class="source">
+        Source: {item.standard.source.document}{item.standard.source.documentDate
+          ? ` (${item.standard.source.documentDate})`
+          : ''}. Checked against the official document on {item.standard.source.verifiedAt}.
+        {#if item.standard.source.url}
+          <a href={item.standard.source.url} target="_blank" rel="noopener noreferrer">
+            Official source (opens in a new tab)
+          </a>
+        {/if}
+      </p>
+    {/each}
+
+    {#each results.items as item (item.standard.id)}
+      <h3>{item.standard.name}</h3>
+      {#if item.result.enteredCount > 0}
+        <p class="count">
+          {item.result.metCount} of {item.result.enteredCount} entered
+          {item.result.enteredCount === 1 ? 'event meets' : 'events meet'} the minimum.
+          {#if item.result.enteredCount < item.result.totalCount}
+            {item.result.totalCount - item.result.enteredCount} not entered.
+          {/if}
+        </p>
+      {/if}
+      <ul class="event-list">
+        {#each item.result.events as ev (ev.eventId)}
+          <li class={`event ${ev.status}`}>
+            <span class="event-name">{ev.eventName}</span>
+            <span class="status">
+              <span class="sym" aria-hidden="true">{symbol(ev.status)}</span>{statusLabel(
+                ev.status,
+              )}
+            </span>
+            {#if ev.value !== undefined && ev.minimum !== undefined}
+              <span class="detail">
+                Your result: {formatValue(ev.unit, ev.value, results.system)}. Minimum: {formatValue(
+                  ev.unit,
+                  ev.minimum,
+                  results.system,
+                )}.
+                {describeMargin(ev, results.system)}
+              </span>
+            {:else if ev.minimum !== undefined}
+              <span class="detail">
+                Minimum: {formatValue(ev.unit, ev.minimum, results.system)}.
+              </span>
+            {/if}
+          </li>
+        {/each}
+      </ul>
+      {#if item.result.completeness === 'minimums-only' && item.result.caveat}
+        <p class="caveat"><strong>Not the whole requirement.</strong> {item.result.caveat}</p>
       {/if}
       <p class="source">
         Source: {item.standard.source.document}{item.standard.source.documentDate

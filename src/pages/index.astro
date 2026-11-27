@@ -1,45 +1,77 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import { buildComparison } from '../lib/compare';
+
+const organizations = (await getCollection('organizations')).map((entry) => entry.data);
+const standards = (await getCollection('standards')).map((entry) => entry.data);
+const pointStandards = (await getCollection('pointStandards')).map((entry) => entry.data);
+const bodyRules = (await getCollection('bodyComposition')).map((entry) => entry.data);
+
+// A real example from the data: the run minimum for a 25-year-old man.
+const comparison = buildComparison(
+  { organizations, standards, pointStandards, bodyRules },
+  { age: 25, sex: 'male' },
+);
+const runRows = comparison.rows.filter((row) => row.familyId.startsWith('run-'));
+const runs = comparison.columns.flatMap((org, index) => {
+  const cell = runRows.flatMap((row) => row.cells[index] ?? []).find((item) => item.minimum);
+  return cell ? [{ org, cell }] : [];
+});
 ---
 
 <Base
   title="1811 Prep"
   description="Fitness and body-composition standards for US military and federal law enforcement candidates."
 >
-  <section class="hero">
-    <p class="eyebrow">Free, for US candidates</p>
-    <h1>1811 Prep</h1>
-    <p class="lead">
-      Fitness and body-composition standards for US military and federal law enforcement candidates,
-      side by side, each with its official source.
-    </p>
-  </section>
+  <h1>What the official fitness tests require</h1>
+  <p class="lead">
+    Minimums and point scales for the US military branches and the federal agencies that hire
+    criminal investigators (GS-1811), copied from the official documents, with the date each one was
+    checked.
+  </p>
+  <p class="actions">
+    <a class="button" href="/readiness/">
+      Check your results
+    </a>
+    <a class="button secondary" href="/compare/">
+      Compare organizations
+    </a>
+  </p>
 
-  <div class="card-row">
-    <a class="card" href="/compare/">
-      <h2>Compare organizations</h2>
-      <p>
-        See the minimum for each kind of effort across the military branches and federal agencies,
-        for your age and sex.
-      </p>
-      <span class="go">Open the comparison →</span>
-    </a>
-    <a class="card" href="/readiness/">
-      <h2>Readiness tool</h2>
-      <p>
-        Enter results from a practice test and see how each one compares with the official minimum
-        or point scale.
-      </p>
-      <span class="go">Open the tool →</span>
-    </a>
+  <h2>Example: the run, for a 25-year-old man</h2>
+  <div class="table-wrap">
+    <table class="plain">
+      <caption class="sr-only">Run minimum for a 25-year-old man, by organization</caption>
+      <thead>
+        <tr>
+          <th scope="col">Organization</th>
+          <th scope="col">Event</th>
+          <th scope="col">Minimum</th>
+        </tr>
+      </thead>
+      <tbody>
+        {runs.map(({ org, cell }) => (
+          <tr>
+            <th scope="row">{org.shortName}</th>
+            <td>{cell.name}</td>
+            <td>
+              {cell.minimum}
+              {cell.note && <span class="note">{cell.note}</span>}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   </div>
+  <p class="hint">
+    Other events, ages and women’s minimums are on the <a href="/compare/">comparison page</a>.
+  </p>
 
-  <h2>What you can rely on</h2>
-  <ul class="facts">
-    <li>Every number links to the official document and shows the date we checked it.</li>
-    <li>Everything you type stays on your device: nothing is sent, saved or put in the address.</li>
-    <li>
-      Results are shown event by event. The tool never says that you will pass or be selected.
-    </li>
-  </ul>
+  <h2>How it works</h2>
+  <p>
+    Each number links to its official document. The readiness tool compares what you type with those
+    numbers one event at a time; it never says that you will pass or be selected. What you type
+    stays on your device: it is not sent, saved or put in the address.
+  </p>
 </Base>

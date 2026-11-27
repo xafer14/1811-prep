@@ -16,8 +16,8 @@ export const EVENT_FAMILIES = [
   { id: 'run-2-mile', label: 'Two-mile run' },
   { id: 'run-3-mile', label: 'Three-mile run' },
   { id: 'hamr', label: '20-meter HAMR (shuttle run)' },
-  { id: 'walk-2km', label: '2-kilometer walk (medical alternative)' },
   { id: 'sit-and-reach', label: 'Sit and reach' },
+  { id: 'walk-2km', label: '2-kilometer walk (medical alternative)' },
 ] as const;
 
 export type EventFamilyId = (typeof EVENT_FAMILIES)[number]['id'];

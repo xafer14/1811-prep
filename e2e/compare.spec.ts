@@ -137,6 +137,8 @@ test.describe('compare page', () => {
       .getByRole('region', { name: 'Sources' })
       .or(page.locator('#sources-title'));
     await expect(sources.first()).toBeVisible();
+    // The list is collapsed until the reader opens it.
+    await page.getByText(/Show the \d+ organizations and their documents/).click();
     await expect(page.getByRole('link', { name: /Official source/ }).first()).toHaveAttribute(
       'href',
       /^https:\/\//,

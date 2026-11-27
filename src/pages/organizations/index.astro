@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { buildOrganizationPage } from '../../lib/organization';
+
+const organizations = (await getCollection('organizations')).map((entry) => entry.data);
+const standards = (await getCollection('standards')).map((entry) => entry.data);
+const pointStandards = (await getCollection('pointStandards')).map((entry) => entry.data);
+const bodyRules = (await getCollection('bodyComposition')).map((entry) => entry.data);
+
+const groups = [
+  { kind: 'military', label: 'Military branches' },
+  { kind: 'federal', label: 'Federal agencies' },
+  { kind: 'state', label: 'State agencies' },
+].map((group) => ({
+  ...group,
+  items: organizations
+    .filter((org) => org.kind === group.kind)
+    .map((org) => ({
+      org,
+      hasData: buildOrganizationPage(org, { standards, pointStandards, bodyRules }).hasData,
+    })),
+}));
+---
+
+<Base
+  title="Organizations | 1811 Prep"
+  description="The organizations whose fitness standards are covered, and what is verified for each."
+>
+  <h1>Organizations</h1>
+  <p class="lead">
+    Pick an organization to see its fitness test, its body-composition rule and the official
+    documents behind each number.
+  </p>
+
+  {groups
+    .filter((group) => group.items.length > 0)
+    .map((group) => (
+      <section aria-labelledby={`g-${group.kind}`}>
+        <h2 id={`g-${group.kind}`}>{group.label}</h2>
+        <ul class="org-list">
+          {group.items.map(({ org, hasData }) => (
+            <li>
+              <a href={`/organizations/${org.id}/`}>{org.name}</a>
+              <span class="hint">{hasData ? 'Numbers verified' : 'Not available yet'}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+</Base>

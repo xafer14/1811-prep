@@ -1,0 +1,145 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { buildOrganizationPage } from '../../lib/organization';
+
+export async function getStaticPaths() {
+  const organizations = (await getCollection('organizations')).map((entry) => entry.data);
+  const standards = (await getCollection('standards')).map((entry) => entry.data);
+  const pointStandards = (await getCollection('pointStandards')).map((entry) => entry.data);
+  const bodyRules = (await getCollection('bodyComposition')).map((entry) => entry.data);
+  return organizations.map((org) => ({
+    params: { id: org.id },
+    props: { page: buildOrganizationPage(org, { standards, pointStandards, bodyRules }) },
+  }));
+}
+
+const { page } = Astro.props;
+const { org } = page;
+const kindLabel = { military: 'Military branch', federal: 'Federal agency', state: 'State agency' }[
+  org.kind
+];
+const sources = [...page.tests.map((test) => test.source), ...page.body.map((rule) => rule.source)];
+---
+
+<Base
+  wide
+  title={`${org.name} fitness standards | 1811 Prep`}
+  description={`The official fitness and body-composition standards of ${org.name}, with their sources.`}
+>
+  <p class="eyebrow-plain">
+    <a href="/organizations/">Organizations</a> / {kindLabel}
+  </p>
+  <h1>{org.name}</h1>
+
+  {page.hasData ? (
+    <p class="lead">
+      The fitness test and body-composition rule below are copied from the official documents linked
+      under Sources.
+    </p>
+  ) : (
+    <p class="lead">
+      We do not have verified numbers for this organization yet, so none are shown. We only show a
+      number once we have checked it against the official document.
+    </p>
+  )}
+
+  <p class="actions">
+    <a class="button" href="/readiness/">
+      Check your results
+    </a>
+    <a class="button secondary" href="/compare/">
+      Compare with others
+    </a>
+  </p>
+
+  {page.tests.map((test) => (
+    <section aria-labelledby={`t-${test.id}`}>
+      <h2 id={`t-${test.id}`}>{test.name}</h2>
+      {test.summary && <p>{test.summary}</p>}
+      {test.caveat && <p class="hint">{test.caveat}</p>}
+      <p class="hint">{test.tableNote}</p>
+      <div class="event-grid">
+        {test.events.map((event) => (
+          <div class="table-wrap">
+            <table class="plain">
+              <caption>{event.name}</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Age</th>
+                  <th scope="col">Men</th>
+                  <th scope="col">Women</th>
+                </tr>
+              </thead>
+              <tbody>
+                {event.rows.map((row) => (
+                  <tr>
+                    <th scope="row">{row.band.label}</th>
+                    <td>{row.men ?? 'none published'}</td>
+                    <td>{row.women ?? 'none published'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  {page.body.length > 0 && (
+    <section aria-labelledby="body-title">
+      <h2 id="body-title">Body composition</h2>
+      {page.body.map((rule) => (
+        <div class="rule-box">
+          <h3>{rule.name}</h3>
+          <p>
+            <strong>{rule.rule}</strong>
+          </p>
+          <p>{rule.ifOver}</p>
+          {rule.notes.length > 0 && (
+            <ul class="hint">
+              {rule.notes.map((note) => (
+                <li>{note}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </section>
+  )}
+
+  {page.pending.length > 0 && (
+    <section aria-labelledby="pending-title">
+      <h2 id="pending-title">Not included yet</h2>
+      <ul>
+        {page.pending.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {sources.length > 0 && (
+    <section aria-labelledby="sources-title">
+      <h2 id="sources-title">Sources</h2>
+      <ul class="source-list">
+        {sources.map((source) => (
+          <li>
+            {source.document}
+            {source.documentDate ? ` (${source.documentDate})` : ''}. Checked against the official
+            document on {source.verifiedAt}.
+            {source.url && (
+              <>
+                {' '}
+                <a href={source.url} target="_blank" rel="noopener noreferrer">
+                  Official source (opens in a new tab)
+                </a>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</Base>

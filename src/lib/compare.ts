@@ -71,7 +71,7 @@ const familyLabel = (id: string): string =>
 
 const stepText = (step: number): string => (step === 0.5 ? '1/2 inch' : `${step} inch`);
 
-function bodyRuleText(rules: BodyCompositionStandard[]): string | undefined {
+export function bodyRuleText(rules: BodyCompositionStandard[]): string | undefined {
   if (rules.length === 0) return undefined;
   return rules
     .map((rule) => {
@@ -94,7 +94,7 @@ function bodyRuleText(rules: BodyCompositionStandard[]): string | undefined {
     .join('; ');
 }
 
-function pointsRuleText(standard: PointsStandard): string {
+export function pointsRuleText(standard: PointsStandard): string {
   if (standard.rule.summary) return standard.rule.summary;
   const doubled = standard.events
     .filter((event) => event.multiplier !== 1)

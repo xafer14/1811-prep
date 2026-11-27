@@ -34,6 +34,9 @@ const current = (href: string): 'page' | undefined => (path === href ? 'page' : 
           1811 Prep
         </a>
         <nav aria-label="Main">
+          <a href="/organizations/" aria-current={current('/organizations/')}>
+            Organizations
+          </a>
           <a href="/compare/" aria-current={current('/compare/')}>
             Compare
           </a>

@@ -113,7 +113,7 @@
       </tr>
       <tr>
         {#each comparison.columns as org (org.id)}
-          <th scope="col">{org.shortName}</th>
+          <th scope="col"><a href={`/organizations/${org.id}/`}>{org.shortName}</a></th>
         {/each}
       </tr>
     </thead>

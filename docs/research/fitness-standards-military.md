@@ -122,6 +122,8 @@ The owner supplied the Army Fitness Test Score Tables (approved 15 May 2025, eff
 - Air Force: half-point rows; each component's lowest row (marked with an asterisk) is its minimum and anything below scores zero (AFMAN 36-2905, 3.7.4). All 126 asterisk rows (7 events by 9 age bands and two sexes) equal the minimums read earlier. The waist-to-height ratio earns 20 to 0 points (0.49 or less to 0.60) and is the same for every age and sex. One event per part counts; the tool takes the best result entered for each part. Composite of at least 75 needed.
 - Some Air Force plank times in the chart are written without minutes (":55"); the data stores them as 0:55.
 
+- Marine Corps PFT (MCO 6100.13A Tables 2-2, 2-4, 2-5, owner-supplied PDF): pull-ups (up to 100 points), push-ups (up to 70), plank (age and sex neutral, 100 to 40 points) and the 3-mile run, by eight age groups. The tables have blank cells outside each age group's range, so each row's values were assigned to the columns that are active at that repetition count or time (from the Max and Min rows); every column's first row matches its Min row and minimum points (40, or 60 for female pull-ups), and all minimums equal the ones read earlier. Not entered: the 5,000-meter row, altitude tables, the abdominal crunches table (replaced by the plank), the Combat Fitness Test. The test needs 150 points (210 for combat arms) and each event at its minimum.
+
 ### Still open
 Marine Corps body fat limits (MCO 6110.3A) and the Combat Fitness Test; Space Force scoring charts (myFitness); Coast Guard.
 

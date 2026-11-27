@@ -114,6 +114,76 @@ describe('Air Force PFRA scoring', () => {
   });
 });
 
+// Spot checks against MCO 6100.13A Tables 2-2, 2-4 and 2-5.
+describe('Marine Corps PFT scoring', () => {
+  const marine = () => standard('marine-pft');
+  const ok = { 'pull-ups': 4, plank: t(1, 10), run: t(27, 40) };
+
+  it('scores pull-ups, push-ups, plank and run rows of the 17-20 columns', () => {
+    const pullUps = event('marine-pft', 'pull-ups');
+    expect(pointsFor(pullUps, 'male', 18, 20)).toBe(100);
+    expect(pointsFor(pullUps, 'male', 18, 25)).toBe(100); // more than the maximum
+    expect(pointsFor(pullUps, 'male', 18, 4)).toBe(40);
+    expect(pointsFor(pullUps, 'male', 18, 3)).toBe(0); // below the minimum fails
+    expect(pointsFor(pullUps, 'female', 18, 7)).toBe(100);
+    expect(pointsFor(pullUps, 'female', 18, 1)).toBe(60); // the female minimum is worth 60
+    expect(pointsFor(event('marine-pft', 'push-ups'), 'male', 18, 82)).toBe(70);
+    expect(pointsFor(event('marine-pft', 'push-ups'), 'male', 18, 42)).toBe(40);
+    const plank = event('marine-pft', 'plank');
+    expect(pointsFor(plank, 'male', 30, t(3, 45))).toBe(100);
+    expect(pointsFor(plank, 'female', 55, t(1, 10))).toBe(40);
+    expect(pointsFor(plank, 'male', 30, t(1, 9))).toBe(0);
+    const run = event('marine-pft', 'run');
+    expect(pointsFor(run, 'male', 18, t(18, 0))).toBe(100);
+    expect(pointsFor(run, 'male', 18, t(27, 40))).toBe(40);
+    expect(pointsFor(run, 'male', 18, t(27, 41))).toBe(0);
+    expect(pointsFor(run, 'female', 18, t(21, 0))).toBe(100);
+  });
+
+  it('counts the best of pull-ups and push-ups, and needs 150 points (210 combat arms)', () => {
+    const minimums = evaluatePointsStandard(marine(), { age: 18, sex: 'male' }, ok);
+    expect(minimums.totalPoints).toBe(120);
+    expect(minimums.totalStatus).toBe('below');
+    const strong = evaluatePointsStandard(
+      marine(),
+      { age: 18, sex: 'male' },
+      { 'pull-ups': 20, 'push-ups': 82, plank: t(3, 45), run: t(18, 0) },
+    );
+    expect(strong.totalPoints).toBe(300);
+    expect(strong.totalStatus).toBe('meets');
+    const combat = evaluatePointsStandard(
+      marine(),
+      { age: 18, sex: 'male', variant: 'combat' },
+      { 'pull-ups': 12, plank: t(2, 30), run: t(22, 0) },
+    );
+    expect(combat.minTotal).toBe(210);
+  });
+
+  it('fails when one event is below its minimum, whatever the total', () => {
+    const result = evaluatePointsStandard(
+      marine(),
+      { age: 18, sex: 'male' },
+      { 'pull-ups': 20, plank: t(3, 45), run: t(28, 0) },
+    );
+    expect(result.totalPoints).toBe(200);
+    expect(result.eventsBelowMinimum).toBe(1);
+    expect(result.totalStatus).toBe('below');
+  });
+
+  it('scores a woman on the male scale under the combat arms option', () => {
+    const entries = { 'pull-ups': 4, plank: t(1, 10), run: t(30, 50) };
+    const normal = evaluatePointsStandard(marine(), { age: 18, sex: 'female' }, entries);
+    expect(normal.events.find((e) => e.eventId === 'pull-ups')?.points).toBe(80);
+    const combat = evaluatePointsStandard(
+      marine(),
+      { age: 18, sex: 'female', variant: 'combat' },
+      entries,
+    );
+    expect(combat.events.find((e) => e.eventId === 'pull-ups')?.points).toBe(40);
+    expect(combat.events.find((e) => e.eventId === 'run')?.meetsEventMinimum).toBe(false);
+  });
+});
+
 describe('Army AFT scoring', () => {
   const army = () => standard('army-aft');
   const sixty = { mdl: 150, hrp: 14, sdc: t(2, 31), plk: t(1, 25), '2mr': t(19, 45) };
@@ -176,6 +246,7 @@ describe('point standard data', () => {
       'army-aft',
       'dea-pta',
       'fbi-pft',
+      'marine-pft',
       'usss-apat',
     ]);
     for (const item of standards.values()) {

@@ -187,10 +187,12 @@ test.describe('readiness tool', () => {
     await compare(page);
 
     const results = page.locator('.results');
-    await expect(results.getByText('1 of 3 entered events meet the minimum.')).toBeVisible();
-    await expect(results.getByText('Minimum: 5 reps.')).toBeVisible();
-    await expect(results.getByText('Minimum: 27:40.')).toBeVisible();
-    await expect(results.getByText(/at least 150 points in total/)).toBeVisible();
+    // 4 pull-ups is below the 5 needed at 21-25, and 28:00 is slower than 27:40: both score zero.
+    await expect(results.getByText('3 of 3 parts scored.')).toBeVisible();
+    await expect(results.getByText(/2 parts below the minimum/)).toBeVisible();
+    await expect(results.getByText('43 of 100 points from Plank.')).toBeVisible();
+    await expect(results.getByText(/Below the total required: 43 of 150 points/)).toBeVisible();
+    await expect(results.getByText(/Needs at least 150 points in total/)).toBeVisible();
     await expect(results.getByText('Not included yet for Marine Corps:')).toBeVisible();
     await expect(results.getByText(/MCO 6110.3A/)).toBeVisible();
   });
@@ -237,14 +239,17 @@ test.describe('readiness tool', () => {
     await page.getByLabel(/^Waist \(inches\)/).fill('36.6');
     await compare(page);
     const results = page.locator('.results');
-    await expect(results.getByText('Minimum: 3 reps.')).toBeVisible(); // female column
+    await expect(results.getByText('65 of 100 points from Pull-ups.')).toBeVisible(); // female scale
     // Raw ratio 0.5199 is under 0.52, but the rounded 36.5 / 70 = 0.5214 is over.
     await expect(results.getByText('Not within the limit')).toBeVisible();
     await expect(results.getByText('a height of 70 in and a waist of 36.5 in')).toBeVisible();
 
     await page.getByRole('checkbox', { name: /Combat arms PMOS/ }).check();
     await compare(page);
-    await expect(results.getByText('Minimum: 5 reps.')).toBeVisible(); // male column
+    // The male scale needs 5 pull-ups at 21-25, so 4 scores zero.
+    await expect(
+      results.locator('.status', { hasText: 'Below the minimum (scores zero)' }),
+    ).toBeVisible();
   });
 
   test('checks the Air Force waist-to-height ratio (0.55 is still within)', async ({ page }) => {

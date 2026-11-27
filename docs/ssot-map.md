@@ -14,7 +14,7 @@ Precedence when sources disagree: measured result (tests, Lighthouse, running ap
 | Shared agent rules, commands, definition of done, boundaries, persona table | [AGENTS.md](../AGENTS.md) |
 | Claude-only habits | [CLAUDE.md](../CLAUDE.md) |
 | Persona roles and owner rulings | `.claude/agents/<name>.md` |
-| Fitness and body-composition numbers entered as data (Navy PRT, Marine Corps PFT minimums, Air Force and Space Force walk, ATF, US Marshals, HSI; Army AFT, Air Force PFRA, FBI PFT, DEA PTA, Secret Service APAT as point scales; Army, Navy, Marine Corps, Air Force and Space Force waist-to-height) | `src/content/` JSON files, schema in `src/lib/standards/schema.ts` |
+| Fitness and body-composition numbers entered as data (Navy PRT, Air Force and Space Force walk, ATF, US Marshals, HSI; Army AFT, Air Force PFRA, Marine Corps PFT, FBI PFT, DEA PTA, Secret Service APAT as point scales; Army, Navy, Marine Corps, Air Force and Space Force waist-to-height) | `src/content/` JSON files, schema in `src/lib/standards/schema.ts` |
 | Military fitness figures not yet entered as data, and the evidence record for all of them | [docs/research/fitness-standards-military.md](research/fitness-standards-military.md) |
 | Federal 1811 fitness figures not yet entered as data, and the evidence record for all of them | [docs/research/fitness-standards-federal.md](research/fitness-standards-federal.md) |
 | Live-page verification checklist (B-001) | [docs/verification/live-page-checklist.md](verification/live-page-checklist.md) |

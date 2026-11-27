@@ -78,8 +78,8 @@ test.describe('compare page', () => {
     await expect(row(page, 'Body composition')).toContainText('Waist-to-height ratio 0.52 or less'); // Marine Corps
     await expect(row(page, 'Body composition')).toContainText('Waist-to-height ratio 0.55 or less'); // Air Force
     await expect(row(page, 'Also applies')).toContainText('composite score of at least 75');
-    await expect(row(page, 'Also applies')).toContainText('at least 150 points in total');
-    await expect(row(page, 'Also applies')).toContainText('at least 210 points in total'); // combat arms
+    await expect(row(page, 'Also applies')).toContainText('Needs at least 150 points in total');
+    await expect(row(page, 'Also applies')).toContainText('210 for a combat arms PMOS');
     // Tests scored in points show the level worth one point and the total rule.
     await expect(row(page, 'Pull-ups')).toContainText('at least 2 reps'); // FBI, men
     await expect(row(page, 'Pull-ups')).toContainText('Worth 1 point');

@@ -100,7 +100,7 @@ describe('buildComparison', () => {
     const comparison = compare(25, 'male');
     expect(cell(comparison, 'walk-2km', 'air-force')[0]?.minimum).toBe('16:16 or faster');
     const at = (id: string) => comparison.columns.findIndex((c) => c.id === id);
-    expect(comparison.otherRule[at('marine-corps')]).toMatch(/at least 210 points/);
+    expect(comparison.otherRule[at('marine-corps')]).toContain('210 for a combat arms PMOS');
   });
 
   it('shows the Marine Corps minimums from the order, by age and sex', () => {

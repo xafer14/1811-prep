@@ -108,12 +108,7 @@ describe('transcribed values', () => {
     ['usms-peb', 'sit-and-reach', 'male', 35, 16.5],
     ['hsi-pftp', 'sprint', 'female', 30, 47.73],
     ['hsi-pftp', 'run', 'male', 45, 14 * 60 + 25],
-    // Marine Corps order (the official minimum rows), Air Force chart, Space Force manual.
-    ['marine-pft', 'pull-ups', 'male', 48, 4],
-    ['marine-pft', 'pull-ups', 'female', 18, 1],
-    ['marine-pft', 'push-ups', 'male', 19, 42],
-    ['marine-pft', 'plank', 'female', 40, 70],
-    ['marine-pft', 'run', 'male', 55, 33 * 60],
+    // Space Force manual.
     ['space-force-walk', 'walk', 'male', 25, 16 * 60 + 16],
     ['space-force-walk', 'walk', 'female', 65, 18 * 60 + 53],
   ] as const)('%s %s %s age %s -> %s', (id, eventId, sex, age, expected) => {
@@ -190,27 +185,31 @@ describe('evaluateStandard', () => {
   });
 
   it('carries the caveat for minimums-only standards', () => {
-    const result = evaluateStandard(standard('marine-pft'), { age: 25, sex: 'female' }, {});
+    const result = evaluateStandard(standard('space-force-walk'), { age: 25, sex: 'female' }, {});
     expect(result.completeness).toBe('minimums-only');
-    expect(result.caveat).toMatch(/total/);
+    expect(result.caveat).toBeTruthy();
   });
 
   it('applies the sex-neutral combat variant (male column for everyone)', () => {
-    const marine = standard('marine-pft');
-    expect(scoringSex(marine, { age: 25, sex: 'female', variant: 'combat' })).toBe('male');
-    const standardResult = evaluateStandard(marine, { age: 25, sex: 'female' }, { 'pull-ups': 4 });
-    const combatResult = evaluateStandard(
-      marine,
-      { age: 25, sex: 'female', variant: 'combat' },
-      { 'pull-ups': 4 },
+    // No published minimums-only standard has a variant any more, so build one from real data.
+    const withVariant: Standard = {
+      ...standard('atf-ptt'),
+      variants: [{ id: 'neutral', label: 'Male column for everyone', useSex: 'male' }],
+    };
+    expect(scoringSex(withVariant, { age: 25, sex: 'female', variant: 'neutral' })).toBe('male');
+    const normal = evaluateStandard(withVariant, { age: 25, sex: 'female' }, { 'push-ups': 30 });
+    const neutral = evaluateStandard(
+      withVariant,
+      { age: 25, sex: 'female', variant: 'neutral' },
+      { 'push-ups': 30 },
     );
-    expect(standardResult.events.find((e) => e.eventId === 'pull-ups')?.minimum).toBe(3);
-    expect(combatResult.events.find((e) => e.eventId === 'pull-ups')?.minimum).toBe(5);
+    const minimum = (r: typeof normal) => r.events.find((e) => e.eventId === 'push-ups')?.minimum;
+    expect(minimum(neutral)).toBeGreaterThan(minimum(normal) ?? 0);
   });
 
   it('rejects an unknown variant and an invalid age', () => {
     expect(() =>
-      evaluateStandard(standard('marine-pft'), { age: 25, sex: 'male', variant: 'x' }, {}),
+      evaluateStandard(standard('atf-ptt'), { age: 25, sex: 'male', variant: 'x' }, {}),
     ).toThrow(RangeError);
     expect(() => evaluateStandard(standard('atf-ptt'), { age: -1, sex: 'male' }, {})).toThrow(
       RangeError,

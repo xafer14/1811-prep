@@ -6,13 +6,40 @@ import Base from '../layouts/Base.astro';
   title="1811 Prep"
   description="Fitness and body-composition standards for US military and federal law enforcement candidates."
 >
-  <h1>1811 Prep</h1>
-  <p>
-    Fitness and body-composition standards for US military and federal law enforcement candidates.
-  </p>
-  <p>
-    <a href="/compare/">See each organization side by side</a> or{' '}
-    <a href="/readiness/">compare your results with the official minimums</a>. Everything you type
-    stays on your device.
-  </p>
+  <section class="hero">
+    <p class="eyebrow">Free, for US candidates</p>
+    <h1>1811 Prep</h1>
+    <p class="lead">
+      Fitness and body-composition standards for US military and federal law enforcement candidates,
+      side by side, each with its official source.
+    </p>
+  </section>
+
+  <div class="card-row">
+    <a class="card" href="/compare/">
+      <h2>Compare organizations</h2>
+      <p>
+        See the minimum for each kind of effort across the military branches and federal agencies,
+        for your age and sex.
+      </p>
+      <span class="go">Open the comparison →</span>
+    </a>
+    <a class="card" href="/readiness/">
+      <h2>Readiness tool</h2>
+      <p>
+        Enter results from a practice test and see how each one compares with the official minimum
+        or point scale.
+      </p>
+      <span class="go">Open the tool →</span>
+    </a>
+  </div>
+
+  <h2>What you can rely on</h2>
+  <ul class="facts">
+    <li>Every number links to the official document and shows the date we checked it.</li>
+    <li>Everything you type stays on your device: nothing is sent, saved or put in the address.</li>
+    <li>
+      Results are shown event by event. The tool never says that you will pass or be selected.
+    </li>
+  </ul>
 </Base>

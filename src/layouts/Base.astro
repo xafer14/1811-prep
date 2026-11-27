@@ -9,6 +9,8 @@ interface Props {
 }
 
 const { title, description, wide = false } = Astro.props;
+const path = Astro.url.pathname;
+const current = (href: string): 'page' | undefined => (path === href ? 'page' : undefined);
 ---
 
 <html lang="en">
@@ -24,13 +26,22 @@ const { title, description, wide = false } = Astro.props;
       Skip to content
     </a>
     <header class="site-header">
-      <a class="brand" href="/">
-        1811 Prep
-      </a>
-      <nav aria-label="Main">
-        <a href="/compare/">Compare</a>
-        <a href="/readiness/">Readiness tool</a>
-      </nav>
+      <div class="header-inner">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true">
+            1811
+          </span>
+          1811 Prep
+        </a>
+        <nav aria-label="Main">
+          <a href="/compare/" aria-current={current('/compare/')}>
+            Compare
+          </a>
+          <a href="/readiness/" aria-current={current('/readiness/')}>
+            Readiness tool
+          </a>
+        </nav>
+      </div>
     </header>
     <main id="main">
       <slot />

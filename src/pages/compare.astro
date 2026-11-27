@@ -20,10 +20,12 @@ const bodyRules = (await getCollection('bodyComposition')).map((entry) => entry.
     Choose an age and the set of minimums you want to see. Every number comes from an official
     document, linked at the bottom of the page.
   </p>
-  <p>
-    <strong>Your privacy:</strong> the age you choose only selects a column of the official tables.
-    It stays in this page and is not sent anywhere or saved.
-  </p>
+  <div class="privacy-note">
+    <p>
+      <strong>Your privacy:</strong> the age you choose only selects a column of the official
+      tables. It stays in this page and is not sent anywhere or saved.
+    </p>
+  </div>
   <Compare client:load {organizations} {standards} {pointStandards} {bodyRules} />
   <p>
     Want to check your own results?

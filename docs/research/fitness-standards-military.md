@@ -124,6 +124,8 @@ The owner supplied the Army Fitness Test Score Tables (approved 15 May 2025, eff
 
 - Marine Corps PFT (MCO 6100.13A Tables 2-2, 2-4, 2-5, owner-supplied PDF): pull-ups (up to 100 points), push-ups (up to 70), plank (age and sex neutral, 100 to 40 points) and the 3-mile run, by eight age groups. The tables have blank cells outside each age group's range, so each row's values were assigned to the columns that are active at that repetition count or time (from the Max and Min rows); every column's first row matches its Min row and minimum points (40, or 60 for female pull-ups), and all minimums equal the ones read earlier. Not entered: the 5,000-meter row, altitude tables, the abdominal crunches table (replaced by the plank), the Combat Fitness Test. The test needs 150 points (210 for combat arms) and each event at its minimum.
 
+- Navy PRT (Guide-5A, Dec 2025, Table 4-1, altitude under 5,000 ft; owner-supplied PDF): 12 performance levels per age group and sex (Outstanding High 100 down to Probationary 45, in steps of 5) for push-ups, forearm plank and the 1.5-mile run, 22 age and sex groups from 17-19 to 65+. The PRT is passed with at least Probationary in every event; the overall score is the category of the average points. All 66 Probationary rows equal the minimums read earlier. Not entered: the alternate cardio events (2 km row, swims, bike), Table 4-2 (altitude above 5,000 ft) and the overall-average category.
+
 ### Still open
 Marine Corps body fat limits (MCO 6110.3A) and the Combat Fitness Test; Space Force scoring charts (myFitness); Coast Guard.
 

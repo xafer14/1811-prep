@@ -224,6 +224,8 @@ export const pointsStandardSchema = z
     source: sourceSchema,
     scoring: z.literal('points'),
     variants: z.array(pointsVariantSchema).default([]),
+    /** Named performance levels by points (Navy: Outstanding High ... Probationary). */
+    levels: z.array(z.object({ points: z.number(), label: z.string().min(1) })).default([]),
     /** Parts of the total. Empty = every event counts (Army, FBI, DEA, Secret Service). */
     groups: z.array(pointsGroupSchema).default([]),
     rule: z.object({
@@ -231,6 +233,8 @@ export const pointsStandardSchema = z
       minTotal: z.number().positive(),
       /** Points needed in each event (before multipliers). */
       minPerEvent: z.number(),
+      /** True when falling short in any one event fails the test even if the total is enough. */
+      eachEventRequired: z.boolean().default(false),
       /** The requirement in words, when the standard wording is not enough (shown to users). */
       summary: z.string().min(1).optional(),
     }),

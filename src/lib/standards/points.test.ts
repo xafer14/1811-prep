@@ -114,6 +114,56 @@ describe('Air Force PFRA scoring', () => {
   });
 });
 
+// Spot checks against Guide-5A, Table 4-1 (altitude under 5,000 feet).
+describe('Navy PRT scoring', () => {
+  const navy = () => standard('navy-prt');
+  const probationary = { 'push-ups': 42, plank: t(1, 11), run: t(12, 45) };
+
+  it('scores the 17-19 columns and names the performance level', () => {
+    const pushUps = event('navy-prt', 'push-ups');
+    expect(pointsFor(pushUps, 'male', 18, 92)).toBe(100);
+    expect(pointsFor(pushUps, 'male', 18, 42)).toBe(45);
+    expect(pointsFor(pushUps, 'male', 18, 41)).toBe(0); // below Probationary fails
+    expect(pointsFor(pushUps, 'female', 18, 51)).toBe(100);
+    expect(pointsFor(pushUps, 'female', 18, 19)).toBe(45);
+    const plank = event('navy-prt', 'plank');
+    expect(pointsFor(plank, 'male', 18, t(3, 24))).toBe(100);
+    expect(pointsFor(plank, 'male', 18, t(1, 11))).toBe(45);
+    const run = event('navy-prt', 'run');
+    expect(pointsFor(run, 'male', 18, t(8, 15))).toBe(100);
+    expect(pointsFor(run, 'male', 18, t(12, 45))).toBe(45);
+    expect(pointsFor(run, 'male', 18, t(12, 46))).toBe(0);
+    expect(pointsFor(run, 'female', 18, t(9, 29))).toBe(100);
+    expect(pointsFor(run, 'female', 18, t(15, 0))).toBe(45);
+    const best = evaluatePointsStandard(
+      navy(),
+      { age: 18, sex: 'male' },
+      { 'push-ups': 92, plank: t(3, 24), run: t(8, 15) },
+    );
+    expect(best.events.every((e) => e.level === 'Outstanding High')).toBe(true);
+    const low = evaluatePointsStandard(navy(), { age: 18, sex: 'male' }, probationary);
+    expect(low.events.every((e) => e.level === 'Probationary')).toBe(true);
+  });
+
+  it('passes with Probationary in every event and fails if any event falls below it', () => {
+    const pass = evaluatePointsStandard(navy(), { age: 18, sex: 'male' }, probationary);
+    expect(pass.totalPoints).toBe(135);
+    expect(pass.totalStatus).toBe('meets');
+    const fail = evaluatePointsStandard(
+      navy(),
+      { age: 18, sex: 'male' },
+      { 'push-ups': 92, plank: t(3, 24), run: t(12, 46) },
+    );
+    expect(fail.totalPoints).toBe(200); // above the total, yet one event is below
+    expect(fail.eventsBelowMinimum).toBe(1);
+    expect(fail.totalStatus).toBe('below');
+  });
+
+  it('has a scale for the oldest age group', () => {
+    expect(pointsFor(event('navy-prt', 'push-ups'), 'female', 70, 1)).toBeGreaterThan(0);
+  });
+});
+
 // Spot checks against MCO 6100.13A Tables 2-2, 2-4 and 2-5.
 describe('Marine Corps PFT scoring', () => {
   const marine = () => standard('marine-pft');
@@ -247,6 +297,7 @@ describe('point standard data', () => {
       'dea-pta',
       'fbi-pft',
       'marine-pft',
+      'navy-prt',
       'usss-apat',
     ]);
     for (const item of standards.values()) {
@@ -256,9 +307,9 @@ describe('point standard data', () => {
   });
 
   it('keeps the requirements of each test as published', () => {
-    expect(standard('fbi-pft').rule).toEqual({ minTotal: 10, minPerEvent: 1 });
-    expect(standard('dea-pta').rule).toEqual({ minTotal: 12, minPerEvent: 1 });
-    expect(standard('usss-apat').rule).toEqual({ minTotal: 20, minPerEvent: 1 });
+    expect(standard('fbi-pft').rule).toMatchObject({ minTotal: 10, minPerEvent: 1 });
+    expect(standard('dea-pta').rule).toMatchObject({ minTotal: 12, minPerEvent: 1 });
+    expect(standard('usss-apat').rule).toMatchObject({ minTotal: 20, minPerEvent: 1 });
     expect(event('dea-pta', 'run').multiplier).toBe(2);
     expect(event('dea-pta', 'sit-ups').multiplier).toBe(1);
   });

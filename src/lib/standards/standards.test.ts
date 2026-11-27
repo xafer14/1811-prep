@@ -98,10 +98,6 @@ describe('content files', () => {
 // Spot checks against the official documents (docs/verification/live-page-checklist.md).
 describe('transcribed values', () => {
   it.each([
-    ['navy-prt', 'push-ups', 'male', 32, 31],
-    ['navy-prt', 'plank', 'male', 32, 67],
-    ['navy-prt', 'run', 'male', 32, 870],
-    ['navy-prt', 'push-ups', 'female', 70, 1],
     ['atf-ptt', 'run', 'male', 25, 738],
     ['atf-ptt', 'sit-ups', 'female', 45, 22],
     ['usms-peb', 'push-ups', 'female', 55, 7],

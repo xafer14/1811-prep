@@ -1,0 +1,3797 @@
+{
+  "id": "navy-prt",
+  "organization": "navy",
+  "name": "Navy Physical Readiness Test (PRT), altitude under 5,000 ft",
+  "effectiveDate": "2025-12-01",
+  "source": {
+    "document": "Navy Physical Fitness Assessment Guide-5A, Physical Readiness Test, Table 4-1 (performance categories and points by age group and sex)",
+    "documentDate": "DEC 2025",
+    "verifiedAt": "2026-11-26",
+    "evidence": "read"
+  },
+  "scoring": "points",
+  "variants": [],
+  "groups": [],
+  "levels": [
+    {
+      "points": 45,
+      "label": "Probationary"
+    },
+    {
+      "points": 50,
+      "label": "Satisfactory Medium"
+    },
+    {
+      "points": 55,
+      "label": "Satisfactory High"
+    },
+    {
+      "points": 60,
+      "label": "Good Low"
+    },
+    {
+      "points": 65,
+      "label": "Good Medium"
+    },
+    {
+      "points": 70,
+      "label": "Good High"
+    },
+    {
+      "points": 75,
+      "label": "Excellent Low"
+    },
+    {
+      "points": 80,
+      "label": "Excellent Medium"
+    },
+    {
+      "points": 85,
+      "label": "Excellent High"
+    },
+    {
+      "points": 90,
+      "label": "Outstanding Low"
+    },
+    {
+      "points": 95,
+      "label": "Outstanding Medium"
+    },
+    {
+      "points": 100,
+      "label": "Outstanding High"
+    }
+  ],
+  "rule": {
+    "minTotal": 135,
+    "minPerEvent": 45,
+    "summary": "The PRT is passed with at least a Probationary result (45 points) in every event: push-ups, forearm plank and the 1.5-mile run. The overall PRT score is the category of the average points of the three events. A result below Probationary fails the whole test.",
+    "eachEventRequired": true
+  },
+  "caveat": "The alternate cardio events (2-kilometer row, 500-yard and 450-meter swim, stationary bike) and the standards for altitudes above 5,000 feet are not included.",
+  "events": [
+    {
+      "id": "push-ups",
+      "name": "Push-ups (2 min)",
+      "family": "push-ups",
+      "unit": "reps",
+      "better": "higher",
+      "scales": [
+        {
+          "sex": "male",
+          "ageMin": 17,
+          "ageMax": 19,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 42
+            },
+            {
+              "points": 50,
+              "value": 46
+            },
+            {
+              "points": 55,
+              "value": 49
+            },
+            {
+              "points": 60,
+              "value": 51
+            },
+            {
+              "points": 65,
+              "value": 60
+            },
+            {
+              "points": 70,
+              "value": 68
+            },
+            {
+              "points": 75,
+              "value": 76
+            },
+            {
+              "points": 80,
+              "value": 79
+            },
+            {
+              "points": 85,
+              "value": 82
+            },
+            {
+              "points": 90,
+              "value": 86
+            },
+            {
+              "points": 95,
+              "value": 91
+            },
+            {
+              "points": 100,
+              "value": 92
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 17,
+          "ageMax": 19,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 19
+            },
+            {
+              "points": 50,
+              "value": 20
+            },
+            {
+              "points": 55,
+              "value": 22
+            },
+            {
+              "points": 60,
+              "value": 24
+            },
+            {
+              "points": 65,
+              "value": 30
+            },
+            {
+              "points": 70,
+              "value": 36
+            },
+            {
+              "points": 75,
+              "value": 42
+            },
+            {
+              "points": 80,
+              "value": 43
+            },
+            {
+              "points": 85,
+              "value": 45
+            },
+            {
+              "points": 90,
+              "value": 47
+            },
+            {
+              "points": 95,
+              "value": 50
+            },
+            {
+              "points": 100,
+              "value": 51
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 20,
+          "ageMax": 24,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 37
+            },
+            {
+              "points": 50,
+              "value": 42
+            },
+            {
+              "points": 55,
+              "value": 45
+            },
+            {
+              "points": 60,
+              "value": 47
+            },
+            {
+              "points": 65,
+              "value": 55
+            },
+            {
+              "points": 70,
+              "value": 64
+            },
+            {
+              "points": 75,
+              "value": 71
+            },
+            {
+              "points": 80,
+              "value": 74
+            },
+            {
+              "points": 85,
+              "value": 77
+            },
+            {
+              "points": 90,
+              "value": 81
+            },
+            {
+              "points": 95,
+              "value": 86
+            },
+            {
+              "points": 100,
+              "value": 87
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 20,
+          "ageMax": 24,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 16
+            },
+            {
+              "points": 50,
+              "value": 17
+            },
+            {
+              "points": 55,
+              "value": 20
+            },
+            {
+              "points": 60,
+              "value": 21
+            },
+            {
+              "points": 65,
+              "value": 28
+            },
+            {
+              "points": 70,
+              "value": 33
+            },
+            {
+              "points": 75,
+              "value": 39
+            },
+            {
+              "points": 80,
+              "value": 40
+            },
+            {
+              "points": 85,
+              "value": 43
+            },
+            {
+              "points": 90,
+              "value": 44
+            },
+            {
+              "points": 95,
+              "value": 47
+            },
+            {
+              "points": 100,
+              "value": 48
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 25,
+          "ageMax": 29,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 34
+            },
+            {
+              "points": 50,
+              "value": 38
+            },
+            {
+              "points": 55,
+              "value": 41
+            },
+            {
+              "points": 60,
+              "value": 44
+            },
+            {
+              "points": 65,
+              "value": 51
+            },
+            {
+              "points": 70,
+              "value": 60
+            },
+            {
+              "points": 75,
+              "value": 67
+            },
+            {
+              "points": 80,
+              "value": 69
+            },
+            {
+              "points": 85,
+              "value": 73
+            },
+            {
+              "points": 90,
+              "value": 77
+            },
+            {
+              "points": 95,
+              "value": 82
+            },
+            {
+              "points": 100,
+              "value": 84
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 25,
+          "ageMax": 29,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 13
+            },
+            {
+              "points": 50,
+              "value": 15
+            },
+            {
+              "points": 55,
+              "value": 18
+            },
+            {
+              "points": 60,
+              "value": 19
+            },
+            {
+              "points": 65,
+              "value": 26
+            },
+            {
+              "points": 70,
+              "value": 30
+            },
+            {
+              "points": 75,
+              "value": 37
+            },
+            {
+              "points": 80,
+              "value": 39
+            },
+            {
+              "points": 85,
+              "value": 41
+            },
+            {
+              "points": 90,
+              "value": 43
+            },
+            {
+              "points": 95,
+              "value": 45
+            },
+            {
+              "points": 100,
+              "value": 46
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 30,
+          "ageMax": 34,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 31
+            },
+            {
+              "points": 50,
+              "value": 35
+            },
+            {
+              "points": 55,
+              "value": 38
+            },
+            {
+              "points": 60,
+              "value": 41
+            },
+            {
+              "points": 65,
+              "value": 48
+            },
+            {
+              "points": 70,
+              "value": 57
+            },
+            {
+              "points": 75,
+              "value": 64
+            },
+            {
+              "points": 80,
+              "value": 67
+            },
+            {
+              "points": 85,
+              "value": 69
+            },
+            {
+              "points": 90,
+              "value": 74
+            },
+            {
+              "points": 95,
+              "value": 78
+            },
+            {
+              "points": 100,
+              "value": 80
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 30,
+          "ageMax": 34,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 11
+            },
+            {
+              "points": 50,
+              "value": 13
+            },
+            {
+              "points": 55,
+              "value": 15
+            },
+            {
+              "points": 60,
+              "value": 17
+            },
+            {
+              "points": 65,
+              "value": 24
+            },
+            {
+              "points": 70,
+              "value": 28
+            },
+            {
+              "points": 75,
+              "value": 35
+            },
+            {
+              "points": 80,
+              "value": 37
+            },
+            {
+              "points": 85,
+              "value": 39
+            },
+            {
+              "points": 90,
+              "value": 41
+            },
+            {
+              "points": 95,
+              "value": 43
+            },
+            {
+              "points": 100,
+              "value": 44
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 35,
+          "ageMax": 39,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 27
+            },
+            {
+              "points": 50,
+              "value": 33
+            },
+            {
+              "points": 55,
+              "value": 35
+            },
+            {
+              "points": 60,
+              "value": 37
+            },
+            {
+              "points": 65,
+              "value": 44
+            },
+            {
+              "points": 70,
+              "value": 53
+            },
+            {
+              "points": 75,
+              "value": 60
+            },
+            {
+              "points": 80,
+              "value": 63
+            },
+            {
+              "points": 85,
+              "value": 65
+            },
+            {
+              "points": 90,
+              "value": 70
+            },
+            {
+              "points": 95,
+              "value": 74
+            },
+            {
+              "points": 100,
+              "value": 76
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 35,
+          "ageMax": 39,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 9
+            },
+            {
+              "points": 50,
+              "value": 11
+            },
+            {
+              "points": 55,
+              "value": 13
+            },
+            {
+              "points": 60,
+              "value": 14
+            },
+            {
+              "points": 65,
+              "value": 22
+            },
+            {
+              "points": 70,
+              "value": 26
+            },
+            {
+              "points": 75,
+              "value": 34
+            },
+            {
+              "points": 80,
+              "value": 35
+            },
+            {
+              "points": 85,
+              "value": 37
+            },
+            {
+              "points": 90,
+              "value": 39
+            },
+            {
+              "points": 95,
+              "value": 42
+            },
+            {
+              "points": 100,
+              "value": 43
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 40,
+          "ageMax": 44,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 24
+            },
+            {
+              "points": 50,
+              "value": 29
+            },
+            {
+              "points": 55,
+              "value": 32
+            },
+            {
+              "points": 60,
+              "value": 34
+            },
+            {
+              "points": 65,
+              "value": 41
+            },
+            {
+              "points": 70,
+              "value": 50
+            },
+            {
+              "points": 75,
+              "value": 56
+            },
+            {
+              "points": 80,
+              "value": 59
+            },
+            {
+              "points": 85,
+              "value": 61
+            },
+            {
+              "points": 90,
+              "value": 67
+            },
+            {
+              "points": 95,
+              "value": 70
+            },
+            {
+              "points": 100,
+              "value": 72
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 40,
+          "ageMax": 44,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 7
+            },
+            {
+              "points": 50,
+              "value": 9
+            },
+            {
+              "points": 55,
+              "value": 11
+            },
+            {
+              "points": 60,
+              "value": 12
+            },
+            {
+              "points": 65,
+              "value": 20
+            },
+            {
+              "points": 70,
+              "value": 24
+            },
+            {
+              "points": 75,
+              "value": 32
+            },
+            {
+              "points": 80,
+              "value": 33
+            },
+            {
+              "points": 85,
+              "value": 35
+            },
+            {
+              "points": 90,
+              "value": 37
+            },
+            {
+              "points": 95,
+              "value": 40
+            },
+            {
+              "points": 100,
+              "value": 41
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 45,
+          "ageMax": 49,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 21
+            },
+            {
+              "points": 50,
+              "value": 25
+            },
+            {
+              "points": 55,
+              "value": 28
+            },
+            {
+              "points": 60,
+              "value": 32
+            },
+            {
+              "points": 65,
+              "value": 37
+            },
+            {
+              "points": 70,
+              "value": 46
+            },
+            {
+              "points": 75,
+              "value": 52
+            },
+            {
+              "points": 80,
+              "value": 54
+            },
+            {
+              "points": 85,
+              "value": 57
+            },
+            {
+              "points": 90,
+              "value": 63
+            },
+            {
+              "points": 95,
+              "value": 66
+            },
+            {
+              "points": 100,
+              "value": 68
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 45,
+          "ageMax": 49,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 5
+            },
+            {
+              "points": 50,
+              "value": 7
+            },
+            {
+              "points": 55,
+              "value": 8
+            },
+            {
+              "points": 60,
+              "value": 11
+            },
+            {
+              "points": 65,
+              "value": 18
+            },
+            {
+              "points": 70,
+              "value": 22
+            },
+            {
+              "points": 75,
+              "value": 30
+            },
+            {
+              "points": 80,
+              "value": 32
+            },
+            {
+              "points": 85,
+              "value": 33
+            },
+            {
+              "points": 90,
+              "value": 35
+            },
+            {
+              "points": 95,
+              "value": 39
+            },
+            {
+              "points": 100,
+              "value": 40
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 50,
+          "ageMax": 54,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 19
+            },
+            {
+              "points": 50,
+              "value": 23
+            },
+            {
+              "points": 55,
+              "value": 25
+            },
+            {
+              "points": 60,
+              "value": 30
+            },
+            {
+              "points": 65,
+              "value": 34
+            },
+            {
+              "points": 70,
+              "value": 43
+            },
+            {
+              "points": 75,
+              "value": 49
+            },
+            {
+              "points": 80,
+              "value": 51
+            },
+            {
+              "points": 85,
+              "value": 53
+            },
+            {
+              "points": 90,
+              "value": 59
+            },
+            {
+              "points": 95,
+              "value": 62
+            },
+            {
+              "points": 100,
+              "value": 64
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 50,
+          "ageMax": 54,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 2
+            },
+            {
+              "points": 50,
+              "value": 5
+            },
+            {
+              "points": 55,
+              "value": 6
+            },
+            {
+              "points": 60,
+              "value": 10
+            },
+            {
+              "points": 65,
+              "value": 16
+            },
+            {
+              "points": 70,
+              "value": 20
+            },
+            {
+              "points": 75,
+              "value": 28
+            },
+            {
+              "points": 80,
+              "value": 30
+            },
+            {
+              "points": 85,
+              "value": 31
+            },
+            {
+              "points": 90,
+              "value": 33
+            },
+            {
+              "points": 95,
+              "value": 37
+            },
+            {
+              "points": 100,
+              "value": 38
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 55,
+          "ageMax": 59,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 10
+            },
+            {
+              "points": 50,
+              "value": 12
+            },
+            {
+              "points": 55,
+              "value": 14
+            },
+            {
+              "points": 60,
+              "value": 16
+            },
+            {
+              "points": 65,
+              "value": 32
+            },
+            {
+              "points": 70,
+              "value": 38
+            },
+            {
+              "points": 75,
+              "value": 46
+            },
+            {
+              "points": 80,
+              "value": 48
+            },
+            {
+              "points": 85,
+              "value": 52
+            },
+            {
+              "points": 90,
+              "value": 56
+            },
+            {
+              "points": 95,
+              "value": 59
+            },
+            {
+              "points": 100,
+              "value": 60
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 55,
+          "ageMax": 59,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 2
+            },
+            {
+              "points": 50,
+              "value": 3
+            },
+            {
+              "points": 55,
+              "value": 5
+            },
+            {
+              "points": 60,
+              "value": 6
+            },
+            {
+              "points": 65,
+              "value": 10
+            },
+            {
+              "points": 70,
+              "value": 16
+            },
+            {
+              "points": 75,
+              "value": 20
+            },
+            {
+              "points": 80,
+              "value": 22
+            },
+            {
+              "points": 85,
+              "value": 24
+            },
+            {
+              "points": 90,
+              "value": 26
+            },
+            {
+              "points": 95,
+              "value": 28
+            },
+            {
+              "points": 100,
+              "value": 30
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 60,
+          "ageMax": 64,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 8
+            },
+            {
+              "points": 50,
+              "value": 10
+            },
+            {
+              "points": 55,
+              "value": 12
+            },
+            {
+              "points": 60,
+              "value": 14
+            },
+            {
+              "points": 65,
+              "value": 23
+            },
+            {
+              "points": 70,
+              "value": 32
+            },
+            {
+              "points": 75,
+              "value": 44
+            },
+            {
+              "points": 80,
+              "value": 46
+            },
+            {
+              "points": 85,
+              "value": 48
+            },
+            {
+              "points": 90,
+              "value": 52
+            },
+            {
+              "points": 95,
+              "value": 56
+            },
+            {
+              "points": 100,
+              "value": 57
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 60,
+          "ageMax": 64,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 2
+            },
+            {
+              "points": 50,
+              "value": 3
+            },
+            {
+              "points": 55,
+              "value": 4
+            },
+            {
+              "points": 60,
+              "value": 5
+            },
+            {
+              "points": 65,
+              "value": 8
+            },
+            {
+              "points": 70,
+              "value": 12
+            },
+            {
+              "points": 75,
+              "value": 16
+            },
+            {
+              "points": 80,
+              "value": 18
+            },
+            {
+              "points": 85,
+              "value": 20
+            },
+            {
+              "points": 90,
+              "value": 22
+            },
+            {
+              "points": 95,
+              "value": 24
+            },
+            {
+              "points": 100,
+              "value": 26
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 65,
+          "ageMax": null,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 4
+            },
+            {
+              "points": 50,
+              "value": 6
+            },
+            {
+              "points": 55,
+              "value": 8
+            },
+            {
+              "points": 60,
+              "value": 10
+            },
+            {
+              "points": 65,
+              "value": 18
+            },
+            {
+              "points": 70,
+              "value": 25
+            },
+            {
+              "points": 75,
+              "value": 36
+            },
+            {
+              "points": 80,
+              "value": 39
+            },
+            {
+              "points": 85,
+              "value": 41
+            },
+            {
+              "points": 90,
+              "value": 44
+            },
+            {
+              "points": 95,
+              "value": 46
+            },
+            {
+              "points": 100,
+              "value": 48
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 65,
+          "ageMax": null,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": 1
+            },
+            {
+              "points": 50,
+              "value": 2
+            },
+            {
+              "points": 55,
+              "value": 3
+            },
+            {
+              "points": 60,
+              "value": 4
+            },
+            {
+              "points": 65,
+              "value": 6
+            },
+            {
+              "points": 70,
+              "value": 9
+            },
+            {
+              "points": 75,
+              "value": 12
+            },
+            {
+              "points": 80,
+              "value": 14
+            },
+            {
+              "points": 85,
+              "value": 16
+            },
+            {
+              "points": 90,
+              "value": 18
+            },
+            {
+              "points": 95,
+              "value": 20
+            },
+            {
+              "points": 100,
+              "value": 22
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plank",
+      "name": "Forearm plank",
+      "family": "plank",
+      "unit": "seconds",
+      "better": "higher",
+      "scales": [
+        {
+          "sex": "male",
+          "ageMin": 17,
+          "ageMax": 19,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "1:11"
+            },
+            {
+              "points": 50,
+              "value": "1:22"
+            },
+            {
+              "points": 55,
+              "value": "1:32"
+            },
+            {
+              "points": 60,
+              "value": "1:42"
+            },
+            {
+              "points": 65,
+              "value": "2:02"
+            },
+            {
+              "points": 70,
+              "value": "2:23"
+            },
+            {
+              "points": 75,
+              "value": "2:43"
+            },
+            {
+              "points": 80,
+              "value": "2:53"
+            },
+            {
+              "points": 85,
+              "value": "3:04"
+            },
+            {
+              "points": 90,
+              "value": "3:14"
+            },
+            {
+              "points": 95,
+              "value": "3:19"
+            },
+            {
+              "points": 100,
+              "value": "3:24"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 17,
+          "ageMax": 19,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "1:01"
+            },
+            {
+              "points": 50,
+              "value": "1:11"
+            },
+            {
+              "points": 55,
+              "value": "1:22"
+            },
+            {
+              "points": 60,
+              "value": "1:32"
+            },
+            {
+              "points": 65,
+              "value": "1:52"
+            },
+            {
+              "points": 70,
+              "value": "2:13"
+            },
+            {
+              "points": 75,
+              "value": "2:33"
+            },
+            {
+              "points": 80,
+              "value": "2:43"
+            },
+            {
+              "points": 85,
+              "value": "2:53"
+            },
+            {
+              "points": 90,
+              "value": "3:04"
+            },
+            {
+              "points": 95,
+              "value": "3:09"
+            },
+            {
+              "points": 100,
+              "value": "3:14"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 20,
+          "ageMax": 24,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "1:10"
+            },
+            {
+              "points": 50,
+              "value": "1:20"
+            },
+            {
+              "points": 55,
+              "value": "1:30"
+            },
+            {
+              "points": 60,
+              "value": "1:40"
+            },
+            {
+              "points": 65,
+              "value": "2:00"
+            },
+            {
+              "points": 70,
+              "value": "2:20"
+            },
+            {
+              "points": 75,
+              "value": "2:40"
+            },
+            {
+              "points": 80,
+              "value": "2:50"
+            },
+            {
+              "points": 85,
+              "value": "3:00"
+            },
+            {
+              "points": 90,
+              "value": "3:10"
+            },
+            {
+              "points": 95,
+              "value": "3:15"
+            },
+            {
+              "points": 100,
+              "value": "3:20"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 20,
+          "ageMax": 24,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "1:00"
+            },
+            {
+              "points": 50,
+              "value": "1:10"
+            },
+            {
+              "points": 55,
+              "value": "1:20"
+            },
+            {
+              "points": 60,
+              "value": "1:30"
+            },
+            {
+              "points": 65,
+              "value": "1:50"
+            },
+            {
+              "points": 70,
+              "value": "2:10"
+            },
+            {
+              "points": 75,
+              "value": "2:30"
+            },
+            {
+              "points": 80,
+              "value": "2:40"
+            },
+            {
+              "points": 85,
+              "value": "2:50"
+            },
+            {
+              "points": 90,
+              "value": "3:00"
+            },
+            {
+              "points": 95,
+              "value": "3:05"
+            },
+            {
+              "points": 100,
+              "value": "3:10"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 25,
+          "ageMax": 29,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "1:09"
+            },
+            {
+              "points": 50,
+              "value": "1:18"
+            },
+            {
+              "points": 55,
+              "value": "1:28"
+            },
+            {
+              "points": 60,
+              "value": "1:38"
+            },
+            {
+              "points": 65,
+              "value": "1:58"
+            },
+            {
+              "points": 70,
+              "value": "2:17"
+            },
+            {
+              "points": 75,
+              "value": "2:37"
+            },
+            {
+              "points": 80,
+              "value": "2:47"
+            },
+            {
+              "points": 85,
+              "value": "2:56"
+            },
+            {
+              "points": 90,
+              "value": "3:06"
+            },
+            {
+              "points": 95,
+              "value": "3:11"
+            },
+            {
+              "points": 100,
+              "value": "3:16"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 25,
+          "ageMax": 29,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "0:59"
+            },
+            {
+              "points": 50,
+              "value": "1:09"
+            },
+            {
+              "points": 55,
+              "value": "1:18"
+            },
+            {
+              "points": 60,
+              "value": "1:28"
+            },
+            {
+              "points": 65,
+              "value": "1:48"
+            },
+            {
+              "points": 70,
+              "value": "2:07"
+            },
+            {
+              "points": 75,
+              "value": "2:27"
+            },
+            {
+              "points": 80,
+              "value": "2:37"
+            },
+            {
+              "points": 85,
+              "value": "2:47"
+            },
+            {
+              "points": 90,
+              "value": "2:56"
+            },
+            {
+              "points": 95,
+              "value": "3:01"
+            },
+            {
+              "points": 100,
+              "value": "3:06"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 30,
+          "ageMax": 34,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "1:07"
+            },
+            {
+              "points": 50,
+              "value": "1:17"
+            },
+            {
+              "points": 55,
+              "value": "1:26"
+            },
+            {
+              "points": 60,
+              "value": "1:36"
+            },
+            {
+              "points": 65,
+              "value": "1:55"
+            },
+            {
+              "points": 70,
+              "value": "2:14"
+            },
+            {
+              "points": 75,
+              "value": "2:34"
+            },
+            {
+              "points": 80,
+              "value": "2:43"
+            },
+            {
+              "points": 85,
+              "value": "2:53"
+            },
+            {
+              "points": 90,
+              "value": "3:02"
+            },
+            {
+              "points": 95,
+              "value": "3:07"
+            },
+            {
+              "points": 100,
+              "value": "3:12"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 30,
+          "ageMax": 34,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "0:58"
+            },
+            {
+              "points": 50,
+              "value": "1:07"
+            },
+            {
+              "points": 55,
+              "value": "1:17"
+            },
+            {
+              "points": 60,
+              "value": "1:26"
+            },
+            {
+              "points": 65,
+              "value": "1:46"
+            },
+            {
+              "points": 70,
+              "value": "2:05"
+            },
+            {
+              "points": 75,
+              "value": "2:24"
+            },
+            {
+              "points": 80,
+              "value": "2:34"
+            },
+            {
+              "points": 85,
+              "value": "2:43"
+            },
+            {
+              "points": 90,
+              "value": "2:53"
+            },
+            {
+              "points": 95,
+              "value": "2:58"
+            },
+            {
+              "points": 100,
+              "value": "3:02"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 35,
+          "ageMax": 39,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "1:06"
+            },
+            {
+              "points": 50,
+              "value": "1:15"
+            },
+            {
+              "points": 55,
+              "value": "1:25"
+            },
+            {
+              "points": 60,
+              "value": "1:34"
+            },
+            {
+              "points": 65,
+              "value": "1:53"
+            },
+            {
+              "points": 70,
+              "value": "2:12"
+            },
+            {
+              "points": 75,
+              "value": "2:31"
+            },
+            {
+              "points": 80,
+              "value": "2:40"
+            },
+            {
+              "points": 85,
+              "value": "2:49"
+            },
+            {
+              "points": 90,
+              "value": "2:59"
+            },
+            {
+              "points": 95,
+              "value": "3:04"
+            },
+            {
+              "points": 100,
+              "value": "3:08"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 35,
+          "ageMax": 39,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "0:56"
+            },
+            {
+              "points": 50,
+              "value": "1:06"
+            },
+            {
+              "points": 55,
+              "value": "1:15"
+            },
+            {
+              "points": 60,
+              "value": "1:25"
+            },
+            {
+              "points": 65,
+              "value": "1:44"
+            },
+            {
+              "points": 70,
+              "value": "2:02"
+            },
+            {
+              "points": 75,
+              "value": "2:21"
+            },
+            {
+              "points": 80,
+              "value": "2:31"
+            },
+            {
+              "points": 85,
+              "value": "2:40"
+            },
+            {
+              "points": 90,
+              "value": "2:49"
+            },
+            {
+              "points": 95,
+              "value": "2:54"
+            },
+            {
+              "points": 100,
+              "value": "2:59"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 40,
+          "ageMax": 44,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "1:05"
+            },
+            {
+              "points": 50,
+              "value": "1:14"
+            },
+            {
+              "points": 55,
+              "value": "1:23"
+            },
+            {
+              "points": 60,
+              "value": "1:32"
+            },
+            {
+              "points": 65,
+              "value": "1:51"
+            },
+            {
+              "points": 70,
+              "value": "2:09"
+            },
+            {
+              "points": 75,
+              "value": "2:28"
+            },
+            {
+              "points": 80,
+              "value": "2:37"
+            },
+            {
+              "points": 85,
+              "value": "2:46"
+            },
+            {
+              "points": 90,
+              "value": "2:55"
+            },
+            {
+              "points": 95,
+              "value": "3:00"
+            },
+            {
+              "points": 100,
+              "value": "3:04"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 40,
+          "ageMax": 44,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "0:55"
+            },
+            {
+              "points": 50,
+              "value": "1:05"
+            },
+            {
+              "points": 55,
+              "value": "1:14"
+            },
+            {
+              "points": 60,
+              "value": "1:23"
+            },
+            {
+              "points": 65,
+              "value": "1:41"
+            },
+            {
+              "points": 70,
+              "value": "2:00"
+            },
+            {
+              "points": 75,
+              "value": "2:18"
+            },
+            {
+              "points": 80,
+              "value": "2:28"
+            },
+            {
+              "points": 85,
+              "value": "2:37"
+            },
+            {
+              "points": 90,
+              "value": "2:46"
+            },
+            {
+              "points": 95,
+              "value": "2:51"
+            },
+            {
+              "points": 100,
+              "value": "2:55"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 45,
+          "ageMax": 49,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "1:03"
+            },
+            {
+              "points": 50,
+              "value": "1:12"
+            },
+            {
+              "points": 55,
+              "value": "1:21"
+            },
+            {
+              "points": 60,
+              "value": "1:30"
+            },
+            {
+              "points": 65,
+              "value": "1:48"
+            },
+            {
+              "points": 70,
+              "value": "2:07"
+            },
+            {
+              "points": 75,
+              "value": "2:25"
+            },
+            {
+              "points": 80,
+              "value": "2:34"
+            },
+            {
+              "points": 85,
+              "value": "2:43"
+            },
+            {
+              "points": 90,
+              "value": "2:52"
+            },
+            {
+              "points": 95,
+              "value": "2:56"
+            },
+            {
+              "points": 100,
+              "value": "3:01"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 45,
+          "ageMax": 49,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "0:54"
+            },
+            {
+              "points": 50,
+              "value": "1:03"
+            },
+            {
+              "points": 55,
+              "value": "1:12"
+            },
+            {
+              "points": 60,
+              "value": "1:21"
+            },
+            {
+              "points": 65,
+              "value": "1:39"
+            },
+            {
+              "points": 70,
+              "value": "1:58"
+            },
+            {
+              "points": 75,
+              "value": "2:16"
+            },
+            {
+              "points": 80,
+              "value": "2:25"
+            },
+            {
+              "points": 85,
+              "value": "2:34"
+            },
+            {
+              "points": 90,
+              "value": "2:43"
+            },
+            {
+              "points": 95,
+              "value": "2:47"
+            },
+            {
+              "points": 100,
+              "value": "2:52"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 50,
+          "ageMax": 54,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "1:02"
+            },
+            {
+              "points": 50,
+              "value": "1:11"
+            },
+            {
+              "points": 55,
+              "value": "1:20"
+            },
+            {
+              "points": 60,
+              "value": "1:29"
+            },
+            {
+              "points": 65,
+              "value": "1:46"
+            },
+            {
+              "points": 70,
+              "value": "2:04"
+            },
+            {
+              "points": 75,
+              "value": "2:22"
+            },
+            {
+              "points": 80,
+              "value": "2:31"
+            },
+            {
+              "points": 85,
+              "value": "2:39"
+            },
+            {
+              "points": 90,
+              "value": "2:48"
+            },
+            {
+              "points": 95,
+              "value": "2:53"
+            },
+            {
+              "points": 100,
+              "value": "2:57"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 50,
+          "ageMax": 54,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "0:53"
+            },
+            {
+              "points": 50,
+              "value": "1:02"
+            },
+            {
+              "points": 55,
+              "value": "1:11"
+            },
+            {
+              "points": 60,
+              "value": "1:20"
+            },
+            {
+              "points": 65,
+              "value": "1:37"
+            },
+            {
+              "points": 70,
+              "value": "1:55"
+            },
+            {
+              "points": 75,
+              "value": "2:13"
+            },
+            {
+              "points": 80,
+              "value": "2:22"
+            },
+            {
+              "points": 85,
+              "value": "2:31"
+            },
+            {
+              "points": 90,
+              "value": "2:39"
+            },
+            {
+              "points": 95,
+              "value": "2:44"
+            },
+            {
+              "points": 100,
+              "value": "2:48"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 55,
+          "ageMax": 59,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "1:01"
+            },
+            {
+              "points": 50,
+              "value": "1:09"
+            },
+            {
+              "points": 55,
+              "value": "1:18"
+            },
+            {
+              "points": 60,
+              "value": "1:27"
+            },
+            {
+              "points": 65,
+              "value": "1:44"
+            },
+            {
+              "points": 70,
+              "value": "2:02"
+            },
+            {
+              "points": 75,
+              "value": "2:19"
+            },
+            {
+              "points": 80,
+              "value": "2:28"
+            },
+            {
+              "points": 85,
+              "value": "2:36"
+            },
+            {
+              "points": 90,
+              "value": "2:45"
+            },
+            {
+              "points": 95,
+              "value": "2:49"
+            },
+            {
+              "points": 100,
+              "value": "2:54"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 55,
+          "ageMax": 59,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "0:52"
+            },
+            {
+              "points": 50,
+              "value": "1:01"
+            },
+            {
+              "points": 55,
+              "value": "1:09"
+            },
+            {
+              "points": 60,
+              "value": "1:18"
+            },
+            {
+              "points": 65,
+              "value": "1:35"
+            },
+            {
+              "points": 70,
+              "value": "1:53"
+            },
+            {
+              "points": 75,
+              "value": "2:10"
+            },
+            {
+              "points": 80,
+              "value": "2:19"
+            },
+            {
+              "points": 85,
+              "value": "2:28"
+            },
+            {
+              "points": 90,
+              "value": "2:36"
+            },
+            {
+              "points": 95,
+              "value": "2:41"
+            },
+            {
+              "points": 100,
+              "value": "2:45"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 60,
+          "ageMax": 64,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "1:00"
+            },
+            {
+              "points": 50,
+              "value": "1:08"
+            },
+            {
+              "points": 55,
+              "value": "1:17"
+            },
+            {
+              "points": 60,
+              "value": "1:25"
+            },
+            {
+              "points": 65,
+              "value": "1:42"
+            },
+            {
+              "points": 70,
+              "value": "1:59"
+            },
+            {
+              "points": 75,
+              "value": "2:16"
+            },
+            {
+              "points": 80,
+              "value": "2:25"
+            },
+            {
+              "points": 85,
+              "value": "2:33"
+            },
+            {
+              "points": 90,
+              "value": "2:42"
+            },
+            {
+              "points": 95,
+              "value": "2:46"
+            },
+            {
+              "points": 100,
+              "value": "2:50"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 60,
+          "ageMax": 64,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "0:51"
+            },
+            {
+              "points": 50,
+              "value": "1:00"
+            },
+            {
+              "points": 55,
+              "value": "1:08"
+            },
+            {
+              "points": 60,
+              "value": "1:17"
+            },
+            {
+              "points": 65,
+              "value": "1:34"
+            },
+            {
+              "points": 70,
+              "value": "1:51"
+            },
+            {
+              "points": 75,
+              "value": "2:08"
+            },
+            {
+              "points": 80,
+              "value": "2:16"
+            },
+            {
+              "points": 85,
+              "value": "2:25"
+            },
+            {
+              "points": 90,
+              "value": "2:33"
+            },
+            {
+              "points": 95,
+              "value": "2:37"
+            },
+            {
+              "points": 100,
+              "value": "2:42"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 65,
+          "ageMax": null,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "0:58"
+            },
+            {
+              "points": 50,
+              "value": "1:07"
+            },
+            {
+              "points": 55,
+              "value": "1:15"
+            },
+            {
+              "points": 60,
+              "value": "1:23"
+            },
+            {
+              "points": 65,
+              "value": "1:40"
+            },
+            {
+              "points": 70,
+              "value": "1:57"
+            },
+            {
+              "points": 75,
+              "value": "2:13"
+            },
+            {
+              "points": 80,
+              "value": "2:22"
+            },
+            {
+              "points": 85,
+              "value": "2:30"
+            },
+            {
+              "points": 90,
+              "value": "2:38"
+            },
+            {
+              "points": 95,
+              "value": "2:43"
+            },
+            {
+              "points": 100,
+              "value": "2:47"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 65,
+          "ageMax": null,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "0:50"
+            },
+            {
+              "points": 50,
+              "value": "0:58"
+            },
+            {
+              "points": 55,
+              "value": "1:07"
+            },
+            {
+              "points": 60,
+              "value": "1:15"
+            },
+            {
+              "points": 65,
+              "value": "1:32"
+            },
+            {
+              "points": 70,
+              "value": "1:48"
+            },
+            {
+              "points": 75,
+              "value": "2:05"
+            },
+            {
+              "points": 80,
+              "value": "2:13"
+            },
+            {
+              "points": 85,
+              "value": "2:22"
+            },
+            {
+              "points": 90,
+              "value": "2:30"
+            },
+            {
+              "points": 95,
+              "value": "2:34"
+            },
+            {
+              "points": 100,
+              "value": "2:38"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "name": "1.5-mile run",
+      "family": "run-1-5-mile",
+      "unit": "seconds",
+      "better": "lower",
+      "scales": [
+        {
+          "sex": "male",
+          "ageMin": 17,
+          "ageMax": 19,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "12:45"
+            },
+            {
+              "points": 50,
+              "value": "12:15"
+            },
+            {
+              "points": 55,
+              "value": "12:00"
+            },
+            {
+              "points": 60,
+              "value": "11:00"
+            },
+            {
+              "points": 65,
+              "value": "10:30"
+            },
+            {
+              "points": 70,
+              "value": "10:00"
+            },
+            {
+              "points": 75,
+              "value": "9:45"
+            },
+            {
+              "points": 80,
+              "value": "9:30"
+            },
+            {
+              "points": 85,
+              "value": "9:15"
+            },
+            {
+              "points": 90,
+              "value": "9:00"
+            },
+            {
+              "points": 95,
+              "value": "8:45"
+            },
+            {
+              "points": 100,
+              "value": "8:15"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 17,
+          "ageMax": 19,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "15:00"
+            },
+            {
+              "points": 50,
+              "value": "14:45"
+            },
+            {
+              "points": 55,
+              "value": "14:15"
+            },
+            {
+              "points": 60,
+              "value": "13:30"
+            },
+            {
+              "points": 65,
+              "value": "13:00"
+            },
+            {
+              "points": 70,
+              "value": "12:45"
+            },
+            {
+              "points": 75,
+              "value": "12:30"
+            },
+            {
+              "points": 80,
+              "value": "12:00"
+            },
+            {
+              "points": 85,
+              "value": "11:45"
+            },
+            {
+              "points": 90,
+              "value": "11:30"
+            },
+            {
+              "points": 95,
+              "value": "11:15"
+            },
+            {
+              "points": 100,
+              "value": "9:29"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 20,
+          "ageMax": 24,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "13:30"
+            },
+            {
+              "points": 50,
+              "value": "13:15"
+            },
+            {
+              "points": 55,
+              "value": "12:45"
+            },
+            {
+              "points": 60,
+              "value": "12:00"
+            },
+            {
+              "points": 65,
+              "value": "11:30"
+            },
+            {
+              "points": 70,
+              "value": "10:45"
+            },
+            {
+              "points": 75,
+              "value": "10:30"
+            },
+            {
+              "points": 80,
+              "value": "10:00"
+            },
+            {
+              "points": 85,
+              "value": "9:45"
+            },
+            {
+              "points": 90,
+              "value": "9:15"
+            },
+            {
+              "points": 95,
+              "value": "9:00"
+            },
+            {
+              "points": 100,
+              "value": "8:30"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 20,
+          "ageMax": 24,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "15:30"
+            },
+            {
+              "points": 50,
+              "value": "15:15"
+            },
+            {
+              "points": 55,
+              "value": "15:00"
+            },
+            {
+              "points": 60,
+              "value": "14:15"
+            },
+            {
+              "points": 65,
+              "value": "13:45"
+            },
+            {
+              "points": 70,
+              "value": "13:30"
+            },
+            {
+              "points": 75,
+              "value": "13:15"
+            },
+            {
+              "points": 80,
+              "value": "12:45"
+            },
+            {
+              "points": 85,
+              "value": "12:15"
+            },
+            {
+              "points": 90,
+              "value": "11:30"
+            },
+            {
+              "points": 95,
+              "value": "11:15"
+            },
+            {
+              "points": 100,
+              "value": "9:47"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 25,
+          "ageMax": 29,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "14:00"
+            },
+            {
+              "points": 50,
+              "value": "13:45"
+            },
+            {
+              "points": 55,
+              "value": "13:23"
+            },
+            {
+              "points": 60,
+              "value": "12:53"
+            },
+            {
+              "points": 65,
+              "value": "12:15"
+            },
+            {
+              "points": 70,
+              "value": "11:23"
+            },
+            {
+              "points": 75,
+              "value": "10:52"
+            },
+            {
+              "points": 80,
+              "value": "10:30"
+            },
+            {
+              "points": 85,
+              "value": "10:15"
+            },
+            {
+              "points": 90,
+              "value": "9:38"
+            },
+            {
+              "points": 95,
+              "value": "9:23"
+            },
+            {
+              "points": 100,
+              "value": "8:55"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 25,
+          "ageMax": 29,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "16:08"
+            },
+            {
+              "points": 50,
+              "value": "15:45"
+            },
+            {
+              "points": 55,
+              "value": "15:23"
+            },
+            {
+              "points": 60,
+              "value": "14:53"
+            },
+            {
+              "points": 65,
+              "value": "14:30"
+            },
+            {
+              "points": 70,
+              "value": "14:00"
+            },
+            {
+              "points": 75,
+              "value": "13:23"
+            },
+            {
+              "points": 80,
+              "value": "13:00"
+            },
+            {
+              "points": 85,
+              "value": "12:30"
+            },
+            {
+              "points": 90,
+              "value": "11:45"
+            },
+            {
+              "points": 95,
+              "value": "11:30"
+            },
+            {
+              "points": 100,
+              "value": "10:17"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 30,
+          "ageMax": 34,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "14:30"
+            },
+            {
+              "points": 50,
+              "value": "14:15"
+            },
+            {
+              "points": 55,
+              "value": "14:00"
+            },
+            {
+              "points": 60,
+              "value": "13:45"
+            },
+            {
+              "points": 65,
+              "value": "13:00"
+            },
+            {
+              "points": 70,
+              "value": "12:00"
+            },
+            {
+              "points": 75,
+              "value": "11:15"
+            },
+            {
+              "points": 80,
+              "value": "11:00"
+            },
+            {
+              "points": 85,
+              "value": "10:30"
+            },
+            {
+              "points": 90,
+              "value": "10:00"
+            },
+            {
+              "points": 95,
+              "value": "9:45"
+            },
+            {
+              "points": 100,
+              "value": "9:20"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 30,
+          "ageMax": 34,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "16:45"
+            },
+            {
+              "points": 50,
+              "value": "16:15"
+            },
+            {
+              "points": 55,
+              "value": "15:45"
+            },
+            {
+              "points": 60,
+              "value": "15:30"
+            },
+            {
+              "points": 65,
+              "value": "15:15"
+            },
+            {
+              "points": 70,
+              "value": "14:30"
+            },
+            {
+              "points": 75,
+              "value": "13:30"
+            },
+            {
+              "points": 80,
+              "value": "13:15"
+            },
+            {
+              "points": 85,
+              "value": "12:45"
+            },
+            {
+              "points": 90,
+              "value": "12:00"
+            },
+            {
+              "points": 95,
+              "value": "11:45"
+            },
+            {
+              "points": 100,
+              "value": "10:46"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 35,
+          "ageMax": 39,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "15:00"
+            },
+            {
+              "points": 50,
+              "value": "14:45"
+            },
+            {
+              "points": 55,
+              "value": "14:23"
+            },
+            {
+              "points": 60,
+              "value": "14:08"
+            },
+            {
+              "points": 65,
+              "value": "13:23"
+            },
+            {
+              "points": 70,
+              "value": "12:23"
+            },
+            {
+              "points": 75,
+              "value": "11:23"
+            },
+            {
+              "points": 80,
+              "value": "11:08"
+            },
+            {
+              "points": 85,
+              "value": "10:38"
+            },
+            {
+              "points": 90,
+              "value": "10:08"
+            },
+            {
+              "points": 95,
+              "value": "9:53"
+            },
+            {
+              "points": 100,
+              "value": "9:25"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 35,
+          "ageMax": 39,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "17:00"
+            },
+            {
+              "points": 50,
+              "value": "16:38"
+            },
+            {
+              "points": 55,
+              "value": "16:15"
+            },
+            {
+              "points": 60,
+              "value": "15:53"
+            },
+            {
+              "points": 65,
+              "value": "15:30"
+            },
+            {
+              "points": 70,
+              "value": "14:38"
+            },
+            {
+              "points": 75,
+              "value": "13:45"
+            },
+            {
+              "points": 80,
+              "value": "13:23"
+            },
+            {
+              "points": 85,
+              "value": "12:53"
+            },
+            {
+              "points": 90,
+              "value": "12:08"
+            },
+            {
+              "points": 95,
+              "value": "11:53"
+            },
+            {
+              "points": 100,
+              "value": "10:51"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 40,
+          "ageMax": 44,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "15:30"
+            },
+            {
+              "points": 50,
+              "value": "15:15"
+            },
+            {
+              "points": 55,
+              "value": "14:45"
+            },
+            {
+              "points": 60,
+              "value": "14:30"
+            },
+            {
+              "points": 65,
+              "value": "13:45"
+            },
+            {
+              "points": 70,
+              "value": "12:45"
+            },
+            {
+              "points": 75,
+              "value": "11:45"
+            },
+            {
+              "points": 80,
+              "value": "11:15"
+            },
+            {
+              "points": 85,
+              "value": "10:45"
+            },
+            {
+              "points": 90,
+              "value": "10:15"
+            },
+            {
+              "points": 95,
+              "value": "10:00"
+            },
+            {
+              "points": 100,
+              "value": "9:30"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 40,
+          "ageMax": 44,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "17:15"
+            },
+            {
+              "points": 50,
+              "value": "17:00"
+            },
+            {
+              "points": 55,
+              "value": "16:45"
+            },
+            {
+              "points": 60,
+              "value": "16:15"
+            },
+            {
+              "points": 65,
+              "value": "15:45"
+            },
+            {
+              "points": 70,
+              "value": "14:45"
+            },
+            {
+              "points": 75,
+              "value": "14:00"
+            },
+            {
+              "points": 80,
+              "value": "13:30"
+            },
+            {
+              "points": 85,
+              "value": "13:00"
+            },
+            {
+              "points": 90,
+              "value": "12:15"
+            },
+            {
+              "points": 95,
+              "value": "12:00"
+            },
+            {
+              "points": 100,
+              "value": "10:56"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 45,
+          "ageMax": 49,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "16:08"
+            },
+            {
+              "points": 50,
+              "value": "15:45"
+            },
+            {
+              "points": 55,
+              "value": "15:15"
+            },
+            {
+              "points": 60,
+              "value": "14:53"
+            },
+            {
+              "points": 65,
+              "value": "14:08"
+            },
+            {
+              "points": 70,
+              "value": "13:00"
+            },
+            {
+              "points": 75,
+              "value": "12:08"
+            },
+            {
+              "points": 80,
+              "value": "11:38"
+            },
+            {
+              "points": 85,
+              "value": "11:08"
+            },
+            {
+              "points": 90,
+              "value": "10:30"
+            },
+            {
+              "points": 95,
+              "value": "10:08"
+            },
+            {
+              "points": 100,
+              "value": "9:33"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 45,
+          "ageMax": 49,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "17:23"
+            },
+            {
+              "points": 50,
+              "value": "17:08"
+            },
+            {
+              "points": 55,
+              "value": "16:53"
+            },
+            {
+              "points": 60,
+              "value": "16:30"
+            },
+            {
+              "points": 65,
+              "value": "15:53"
+            },
+            {
+              "points": 70,
+              "value": "15:00"
+            },
+            {
+              "points": 75,
+              "value": "14:08"
+            },
+            {
+              "points": 80,
+              "value": "13:45"
+            },
+            {
+              "points": 85,
+              "value": "13:15"
+            },
+            {
+              "points": 90,
+              "value": "12:30"
+            },
+            {
+              "points": 95,
+              "value": "12:08"
+            },
+            {
+              "points": 100,
+              "value": "10:58"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 50,
+          "ageMax": 54,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "16:45"
+            },
+            {
+              "points": 50,
+              "value": "16:15"
+            },
+            {
+              "points": 55,
+              "value": "15:45"
+            },
+            {
+              "points": 60,
+              "value": "15:15"
+            },
+            {
+              "points": 65,
+              "value": "14:30"
+            },
+            {
+              "points": 70,
+              "value": "13:15"
+            },
+            {
+              "points": 75,
+              "value": "12:30"
+            },
+            {
+              "points": 80,
+              "value": "12:00"
+            },
+            {
+              "points": 85,
+              "value": "11:30"
+            },
+            {
+              "points": 90,
+              "value": "10:45"
+            },
+            {
+              "points": 95,
+              "value": "10:15"
+            },
+            {
+              "points": 100,
+              "value": "9:35"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 50,
+          "ageMax": 54,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "17:30"
+            },
+            {
+              "points": 50,
+              "value": "17:15"
+            },
+            {
+              "points": 55,
+              "value": "17:00"
+            },
+            {
+              "points": 60,
+              "value": "16:45"
+            },
+            {
+              "points": 65,
+              "value": "16:00"
+            },
+            {
+              "points": 70,
+              "value": "15:15"
+            },
+            {
+              "points": 75,
+              "value": "14:15"
+            },
+            {
+              "points": 80,
+              "value": "14:00"
+            },
+            {
+              "points": 85,
+              "value": "13:30"
+            },
+            {
+              "points": 90,
+              "value": "12:45"
+            },
+            {
+              "points": 95,
+              "value": "12:15"
+            },
+            {
+              "points": 100,
+              "value": "11:00"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 55,
+          "ageMax": 59,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "17:09"
+            },
+            {
+              "points": 50,
+              "value": "16:51"
+            },
+            {
+              "points": 55,
+              "value": "16:33"
+            },
+            {
+              "points": 60,
+              "value": "16:15"
+            },
+            {
+              "points": 65,
+              "value": "15:14"
+            },
+            {
+              "points": 70,
+              "value": "14:13"
+            },
+            {
+              "points": 75,
+              "value": "13:12"
+            },
+            {
+              "points": 80,
+              "value": "12:29"
+            },
+            {
+              "points": 85,
+              "value": "11:57"
+            },
+            {
+              "points": 90,
+              "value": "11:25"
+            },
+            {
+              "points": 95,
+              "value": "11:09"
+            },
+            {
+              "points": 100,
+              "value": "10:42"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 55,
+          "ageMax": 59,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "18:34"
+            },
+            {
+              "points": 50,
+              "value": "18:18"
+            },
+            {
+              "points": 55,
+              "value": "18:03"
+            },
+            {
+              "points": 60,
+              "value": "17:48"
+            },
+            {
+              "points": 65,
+              "value": "16:58"
+            },
+            {
+              "points": 70,
+              "value": "16:09"
+            },
+            {
+              "points": 75,
+              "value": "15:20"
+            },
+            {
+              "points": 80,
+              "value": "14:53"
+            },
+            {
+              "points": 85,
+              "value": "14:25"
+            },
+            {
+              "points": 90,
+              "value": "13:57"
+            },
+            {
+              "points": 95,
+              "value": "13:39"
+            },
+            {
+              "points": 100,
+              "value": "12:23"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 60,
+          "ageMax": 64,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "18:52"
+            },
+            {
+              "points": 50,
+              "value": "18:20"
+            },
+            {
+              "points": 55,
+              "value": "17:47"
+            },
+            {
+              "points": 60,
+              "value": "17:14"
+            },
+            {
+              "points": 65,
+              "value": "16:07"
+            },
+            {
+              "points": 70,
+              "value": "15:00"
+            },
+            {
+              "points": 75,
+              "value": "13:53"
+            },
+            {
+              "points": 80,
+              "value": "13:16"
+            },
+            {
+              "points": 85,
+              "value": "12:40"
+            },
+            {
+              "points": 90,
+              "value": "12:04"
+            },
+            {
+              "points": 95,
+              "value": "11:48"
+            },
+            {
+              "points": 100,
+              "value": "11:21"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 60,
+          "ageMax": 64,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "19:43"
+            },
+            {
+              "points": 50,
+              "value": "19:25"
+            },
+            {
+              "points": 55,
+              "value": "19:08"
+            },
+            {
+              "points": 60,
+              "value": "18:51"
+            },
+            {
+              "points": 65,
+              "value": "18:06"
+            },
+            {
+              "points": 70,
+              "value": "17:17"
+            },
+            {
+              "points": 75,
+              "value": "16:25"
+            },
+            {
+              "points": 80,
+              "value": "16:00"
+            },
+            {
+              "points": 85,
+              "value": "15:34"
+            },
+            {
+              "points": 90,
+              "value": "15:08"
+            },
+            {
+              "points": 95,
+              "value": "14:50"
+            },
+            {
+              "points": 100,
+              "value": "13:34"
+            }
+          ]
+        },
+        {
+          "sex": "male",
+          "ageMin": 65,
+          "ageMax": null,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "20:35"
+            },
+            {
+              "points": 50,
+              "value": "19:47"
+            },
+            {
+              "points": 55,
+              "value": "19:00"
+            },
+            {
+              "points": 60,
+              "value": "18:13"
+            },
+            {
+              "points": 65,
+              "value": "17:00"
+            },
+            {
+              "points": 70,
+              "value": "15:47"
+            },
+            {
+              "points": 75,
+              "value": "14:34"
+            },
+            {
+              "points": 80,
+              "value": "13:57"
+            },
+            {
+              "points": 85,
+              "value": "13:20"
+            },
+            {
+              "points": 90,
+              "value": "12:43"
+            },
+            {
+              "points": 95,
+              "value": "12:13"
+            },
+            {
+              "points": 100,
+              "value": "11:41"
+            }
+          ]
+        },
+        {
+          "sex": "female",
+          "ageMin": 65,
+          "ageMax": null,
+          "floorPoints": 0,
+          "steps": [
+            {
+              "points": 45,
+              "value": "20:52"
+            },
+            {
+              "points": 50,
+              "value": "20:31"
+            },
+            {
+              "points": 55,
+              "value": "20:13"
+            },
+            {
+              "points": 60,
+              "value": "19:54"
+            },
+            {
+              "points": 65,
+              "value": "19:06"
+            },
+            {
+              "points": 70,
+              "value": "18:18"
+            },
+            {
+              "points": 75,
+              "value": "17:30"
+            },
+            {
+              "points": 80,
+              "value": "17:07"
+            },
+            {
+              "points": 85,
+              "value": "16:43"
+            },
+            {
+              "points": 90,
+              "value": "16:19"
+            },
+            {
+              "points": 95,
+              "value": "16:01"
+            },
+            {
+              "points": 100,
+              "value": "14:45"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

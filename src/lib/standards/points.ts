@@ -14,6 +14,8 @@ export interface PointsEventResult {
   value?: number | undefined;
   /** Points the result earns on the official scale. */
   points?: number | undefined;
+  /** Named performance level of those points, when the standard has levels. */
+  level?: string | undefined;
   /** How many times the points count in the total. */
   multiplier: number;
   /** Points as counted in the total (points times multiplier). */
@@ -152,11 +154,13 @@ export function evaluatePointsStandard(
     assertValue(event.id, value);
     const points = pointsFor(event, scoringSex, profile.age, value);
     if (points === undefined) return { ...base, status: 'no-standard', value };
+    const level = standard.levels.filter((item) => item.points <= points).at(-1)?.label;
     return {
       ...base,
       status: 'scored',
       value,
       points,
+      level,
       countedPoints: points * event.multiplier,
       meetsEventMinimum: points >= minPerEvent,
     };
@@ -215,10 +219,12 @@ export function evaluatePointsStandard(
       ? groups.filter((g) => g.meetsMinimum === false).length
       : scored.filter((e) => e.meetsEventMinimum === false).length;
   let totalStatus: PointsStandardResult['totalStatus'] = 'incomplete';
-  // With parts (Air Force) every part must also reach its own minimum; elsewhere the total alone
-  // decides and the per-event minimums are reported separately.
-  const partsOk = groups.length === 0 || belowMinimum === 0;
-  if (complete) totalStatus = totalPoints >= minTotal && partsOk ? 'meets' : 'below';
+  // With parts (Air Force, Marine Corps) or when the rule says so (Army, Navy) every event must
+  // also reach its own minimum; elsewhere the total alone decides and the per-event minimums
+  // are reported separately.
+  const mustReachEach = groups.length > 0 || standard.rule.eachEventRequired;
+  const eventsOk = !mustReachEach || belowMinimum === 0;
+  if (complete) totalStatus = totalPoints >= minTotal && eventsOk ? 'meets' : 'below';
 
   return {
     standardId: standard.id,

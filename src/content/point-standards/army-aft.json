@@ -21,7 +21,8 @@
   ],
   "rule": {
     "minTotal": 300,
-    "minPerEvent": 60
+    "minPerEvent": 60,
+    "eachEventRequired": true
   },
   "caveat": "Each event is scored from 0 to 100 points and needs at least 60. The total needs 300 points (350 for a combat MOS). The alternate aerobic events (2.5-mile walk, bike, swim, row) are pass or fail with no points and are not included here.",
   "events": [

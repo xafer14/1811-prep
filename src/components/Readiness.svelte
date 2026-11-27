@@ -627,7 +627,7 @@
                 Your result: {formatValue(ev.unit, ev.value, results.system)}. It earns {plural(
                   ev.points,
                   'point',
-                )}{ev.multiplier !== 1
+                )}{ev.level ? ` (${ev.level})` : ''}{ev.multiplier !== 1
                   ? ` (counted ${ev.multiplier === 2 ? 'twice' : ev.multiplier + ' times'} in the total: ${ev.countedPoints})`
                   : ''}. {#if item.result.groups.length === 0}At least {plural(
                     ev.minPoints,
@@ -657,6 +657,13 @@
               .result.totalPoints} of {item.result.minTotal} points
           </span>
         </p>
+        {#if item.result.totalStatus === 'below' && item.result.totalPoints >= item.result.minTotal}
+          <p class="notice">
+            The total is enough, but {item.result.eventsBelowMinimum === 1
+              ? 'one event is'
+              : `${item.result.eventsBelowMinimum} events are`} below its minimum, which fails the test.
+          </p>
+        {/if}
       {/if}
       {#if item.standard.rule.summary}
         <p class="caveat">{item.standard.rule.summary}</p>

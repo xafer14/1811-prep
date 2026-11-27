@@ -291,6 +291,27 @@ test.describe('readiness tool', () => {
     await expect(page.locator('.results').getByText(/BMI does not measure fitness/)).toBeVisible();
   });
 
+  test('scores the Navy PRT with performance levels and fails below Probationary', async ({
+    page,
+  }) => {
+    await choose(page, /U.S. Navy/);
+    await fillAbout(page, '18', 'Male');
+    await page.getByLabel('Push-ups (2 min)').fill('42');
+    await page.getByLabel('Plank').fill('1:11');
+    await page.getByLabel('1.5-mile run').fill('12:45');
+    await compare(page);
+    const results = page.locator('.results');
+    await expect(results.getByText(/(Probationary)/).first()).toBeVisible();
+    await expect(results.getByText(/Meets the total required: 135 of 135 points/)).toBeVisible();
+
+    await page.getByLabel('1.5-mile run').fill('12:50'); // slower than Probationary
+    await compare(page);
+    await expect(results.getByText(/Below the total required/)).toBeVisible();
+    await expect(
+      results.locator('.status', { hasText: 'Below the per-event minimum' }),
+    ).toBeVisible();
+  });
+
   test('converts typed measurements when the units change', async ({ page }) => {
     await choose(page, /U\.S\. Navy/);
     await page.getByLabel(/^Height \(inches\)/).fill('70');

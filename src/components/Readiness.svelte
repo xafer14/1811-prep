@@ -360,447 +360,468 @@
   </div>
 {/snippet}
 
-<form class="tool" method="post" novalidate aria-labelledby="form-title" onsubmit={onSubmit}>
-  <h2 id="form-title">Your details</h2>
+<div class="layout">
+  <form class="tool" method="post" novalidate aria-labelledby="form-title" onsubmit={onSubmit}>
+    <h2 id="form-title">Your details</h2>
 
-  {#if Object.keys(errors).length > 0 || formError}
-    <div class="summary error-summary" tabindex="-1" bind:this={summaryEl}>
-      <p><strong>Please fix the following:</strong></p>
-      <ul>
-        {#if formError}
-          <li>{formError}</li>
-        {/if}
-        {#each Object.entries(errors) as [name, message] (name)}
-          <li><a href={`#f-${name}`} onclick={(e) => focusField(name, e)}>{message}</a></li>
-        {/each}
-      </ul>
-    </div>
-  {/if}
-
-  <fieldset>
-    <legend>Units</legend>
-    <label class="choice">
-      <input
-        type="radio"
-        name="units"
-        value="us"
-        checked={system === 'us'}
-        onchange={() => changeSystem('us')}
-      />
-      US (inches, pounds)
-    </label>
-    <label class="choice">
-      <input
-        type="radio"
-        name="units"
-        value="metric"
-        checked={system === 'metric'}
-        onchange={() => changeSystem('metric')}
-      />
-      Metric (centimeters, kilograms)
-    </label>
-  </fieldset>
-
-  <fieldset>
-    <legend>Compare with</legend>
-    {#each groups as group (group.kind)}
-      {#if group.available.length > 0}
-        <fieldset class="subgroup">
-          <legend>{group.label}</legend>
-          {#each group.available as option (option.id)}
-            <label class="choice">
-              <input
-                type="radio"
-                name="organization"
-                value={option.id}
-                checked={orgId === option.id}
-                onchange={() => chooseOrg(option.id)}
-              />
-              {option.name}
-            </label>
+    {#if Object.keys(errors).length > 0 || formError}
+      <div class="summary error-summary" tabindex="-1" bind:this={summaryEl}>
+        <p><strong>Please fix the following:</strong></p>
+        <ul>
+          {#if formError}
+            <li>{formError}</li>
+          {/if}
+          {#each Object.entries(errors) as [name, message] (name)}
+            <li><a href={`#f-${name}`} onclick={(e) => focusField(name, e)}>{message}</a></li>
           {/each}
-        </fieldset>
-      {/if}
-    {/each}
-    {#if unavailable.length > 0}
-      <p class="hint">Not available yet, because the official numbers are still being checked:</p>
-      <ul class="hint hint-list">
-        {#each groups as group (group.kind)}
-          {#if group.unavailable.length > 0}
-            <li>
-              <strong>{group.label}:</strong>
-              {group.unavailable.map((o) => o.shortName).join(', ')}
-            </li>
-          {/if}
-        {/each}
-      </ul>
+        </ul>
+      </div>
     {/if}
-  </fieldset>
 
-  <fieldset aria-describedby="sex-hint">
-    <legend>Minimums to compare with <span class="req" aria-hidden="true">*</span></legend>
-    <p class="hint" id="sex-hint">
-      Most official standards list separate minimums for men and women. Choose the set you want to
-      compare with.
-    </p>
-    <label class="choice">
-      <input
-        id="f-sex-male"
-        type="radio"
-        name="sex"
-        value="male"
-        required
-        bind:group={sex}
-        oninput={() => onInput('sex')}
-      />
-      Male minimums
-    </label>
-    <label class="choice">
-      <input
-        type="radio"
-        name="sex"
-        value="female"
-        required
-        bind:group={sex}
-        oninput={() => onInput('sex')}
-      />
-      Female minimums
-    </label>
-    {#if errors.sex}
-      <span class="error" id="f-sex-error">
-        <span class="sym" aria-hidden="true">⚠</span>{errors.sex}
-      </span>
-    {/if}
-  </fieldset>
-
-  {@render field('age', 'Age', 'Whole years, 17 or older.', true, 'numeric')}
-
-  {#if variant}
-    <label class="choice">
-      <input
-        type="checkbox"
-        name="variant"
-        bind:checked={useVariant}
-        oninput={() => (stale = results !== null)}
-      />
-      {variant.label}
-    </label>
-  {/if}
-
-  {#if orgBody.length > 0}
     <fieldset>
-      <legend>Body measurements</legend>
-      <p class="hint">
-        Measure your waist at the navel. The waist-to-height ratio is checked against the rule of
-        the organization you chose.
-      </p>
-      {@render field(
-        'height',
-        `Height (${system === 'us' ? 'inches' : 'centimeters'})`,
-        system === 'us' ? 'For example 70 for 5 ft 10 in.' : 'For example 178.',
-        false,
-        'decimal',
-      )}
-      {@render field(
-        'waist',
-        `Waist (${system === 'us' ? 'inches' : 'centimeters'})`,
-        system === 'us' ? 'For example 33.' : 'For example 84.',
-        false,
-        'decimal',
-      )}
-      {@render field(
-        'weight',
-        `Weight, optional (${system === 'us' ? 'pounds' : 'kilograms'})`,
-        'Only used to show your BMI for information. It is never used to judge your results.',
-        false,
-        'decimal',
-      )}
-    </fieldset>
-  {/if}
-
-  {#each orgPoints as standard (standard.id)}
-    <fieldset>
-      <legend>{standard.name}</legend>
-      <p class="hint">
-        {#if standard.groups.length > 0}
-          This test is scored in points. Fill in the events you have tested, one for each part; if
-          you fill in more than one for a part, the best one counts. The waist-to-height ratio below
-          adds its own points.
-        {:else}
-          This test is scored in points. Fill in the events you have tested; leave the others empty.
+      <legend>Compare with</legend>
+      {#each groups as group (group.kind)}
+        {#if group.available.length > 0}
+          <fieldset class="subgroup">
+            <legend>{group.label}</legend>
+            {#each group.available as option (option.id)}
+              <label class="choice">
+                <input
+                  type="radio"
+                  name="organization"
+                  value={option.id}
+                  checked={orgId === option.id}
+                  onchange={() => chooseOrg(option.id)}
+                />
+                {option.name}
+              </label>
+            {/each}
+          </fieldset>
         {/if}
-      </p>
-      {#each standard.events as event (event.id)}
-        {@render field(
-          eventKey(standard.id, event.id),
-          event.name,
-          `Enter ${unitHint(event.unit, system)}.`,
-          false,
-          event.unit === 'seconds' ? 'text' : 'decimal',
-        )}
       {/each}
-    </fieldset>
-  {/each}
-
-  {#each orgStandards as standard (standard.id)}
-    <fieldset>
-      <legend>{standard.name}</legend>
-      <p class="hint">Fill in the events you have tested. Leave the others empty.</p>
-      {#each standard.events as event (event.id)}
-        {@render field(
-          eventKey(standard.id, event.id),
-          event.name,
-          `Enter ${unitHint(event.unit, system)}.`,
-          false,
-          event.unit === 'seconds' ? 'text' : 'decimal',
-        )}
-      {/each}
-    </fieldset>
-  {/each}
-
-  <button type="submit">Compare with the official minimums</button>
-</form>
-
-{#if results}
-  <section class="results" aria-labelledby="results-title">
-    <h2 id="results-title" tabindex="-1" bind:this={resultsHeading}>
-      Results for {results.org.name}
-    </h2>
-    {#if stale}
-      <p class="notice">
-        You changed something after this comparison. Press the button again to update it.
-      </p>
-    {/if}
-
-    {#each results.points as item (item.standard.id)}
-      <h3>{item.standard.name}</h3>
-      {#if item.result.scoredCount > 0}
-        <p class="count">
-          {#if item.result.groups.length > 0}
-            {item.result.scoredCount} of {item.result.totalCount} parts scored. Points counted so far:
-            {item.result.totalPoints} of {item.result.groups.reduce((s, g) => s + g.maxPoints, 0)}.
-            {#if item.result.eventsBelowMinimum > 0}
-              {plural(item.result.eventsBelowMinimum, 'part')} below the minimum, which scores zero.
+      {#if unavailable.length > 0}
+        <p class="hint">Not available yet, because the official numbers are still being checked:</p>
+        <ul class="hint hint-list">
+          {#each groups as group (group.kind)}
+            {#if group.unavailable.length > 0}
+              <li>
+                <strong>{group.label}:</strong>
+                {group.unavailable.map((o) => o.shortName).join(', ')}
+              </li>
             {/if}
-          {:else}
-            {item.result.scoredCount} of {item.result.totalCount} events scored. Points counted so far:
-            {item.result.totalPoints}.
-            {#if item.result.eventsBelowMinimum > 0}
-              {plural(item.result.eventsBelowMinimum, 'event')} below the per-event minimum of
-              {plural(item.result.minPerEvent, 'point')}.
-            {/if}
-          {/if}
-        </p>
-      {/if}
-      {#if item.result.groups.length > 0}
-        <ul class="event-list">
-          {#each item.result.groups as part (part.id)}
-            <li class={`event ${partClass(part)}`}>
-              <span class="event-name">{part.label}</span>
-              <span class="status">
-                <span class="sym" aria-hidden="true">
-                  {part.status !== 'scored' ? '–' : part.meetsMinimum === false ? '✗' : '✓'}
-                </span>{partStatus(part)}
-              </span>
-              {#if part.status === 'scored'}
-                <span class="detail">
-                  {part.points} of {part.maxPoints} points{part.eventName
-                    ? ' from ' + part.eventName
-                    : ''}.
-                </span>
-              {/if}
-            </li>
           {/each}
         </ul>
       {/if}
-      <ul class="event-list">
-        {#each item.result.events as ev (ev.eventId)}
-          <li class={`event ${pointsClass(ev)}`}>
-            <span class="event-name">{ev.eventName}</span>
-            <span class="status">
-              <span class="sym" aria-hidden="true">
-                {ev.status === 'scored' ? (ev.meetsEventMinimum ? '✓' : '✗') : '–'}
-              </span>{pointsStatus(ev)}
-            </span>
-            {#if ev.status === 'scored' && ev.value !== undefined && ev.points !== undefined}
-              <span class="detail">
-                Your result: {formatValue(ev.unit, ev.value, results.system)}. It earns {plural(
-                  ev.points,
-                  'point',
-                )}{ev.level ? ` (${ev.level})` : ''}{ev.multiplier !== 1
-                  ? ` (counted ${ev.multiplier === 2 ? 'twice' : ev.multiplier + ' times'} in the total: ${ev.countedPoints})`
-                  : ''}. {#if item.result.groups.length === 0}At least {plural(
-                    ev.minPoints,
-                    'point',
-                  )} needed in this event.{/if}
-              </span>
-            {/if}
-          </li>
-        {/each}
-      </ul>
-      {#if item.result.totalStatus === 'incomplete'}
-        <p class="notice">
-          {#if item.result.groups.length > 0}
-            Enter a result for every part to compare your total with the {item.result.minTotal} points
-            required.
+    </fieldset>
+
+    <fieldset class="inline">
+      <legend>Units</legend>
+      <label class="choice">
+        <input
+          type="radio"
+          name="units"
+          value="us"
+          checked={system === 'us'}
+          onchange={() => changeSystem('us')}
+        />
+        US (inches, pounds)
+      </label>
+      <label class="choice">
+        <input
+          type="radio"
+          name="units"
+          value="metric"
+          checked={system === 'metric'}
+          onchange={() => changeSystem('metric')}
+        />
+        Metric (centimeters, kilograms)
+      </label>
+    </fieldset>
+
+    <fieldset class="inline" aria-describedby="sex-hint">
+      <legend>Minimums to compare with <span class="req" aria-hidden="true">*</span></legend>
+      <p class="hint" id="sex-hint">
+        Most official standards list separate minimums for men and women. Choose the set you want to
+        compare with.
+      </p>
+      <label class="choice">
+        <input
+          id="f-sex-male"
+          type="radio"
+          name="sex"
+          value="male"
+          required
+          bind:group={sex}
+          oninput={() => onInput('sex')}
+        />
+        Male minimums
+      </label>
+      <label class="choice">
+        <input
+          type="radio"
+          name="sex"
+          value="female"
+          required
+          bind:group={sex}
+          oninput={() => onInput('sex')}
+        />
+        Female minimums
+      </label>
+      {#if errors.sex}
+        <span class="error" id="f-sex-error">
+          <span class="sym" aria-hidden="true">⚠</span>{errors.sex}
+        </span>
+      {/if}
+    </fieldset>
+
+    {@render field('age', 'Age', 'Whole years, 17 or older.', true, 'numeric')}
+
+    {#if variant}
+      <label class="choice">
+        <input
+          type="checkbox"
+          name="variant"
+          bind:checked={useVariant}
+          oninput={() => (stale = results !== null)}
+        />
+        {variant.label}
+      </label>
+    {/if}
+
+    {#if orgBody.length > 0}
+      <fieldset>
+        <legend>Body measurements</legend>
+        <p class="hint">
+          Measure your waist at the navel. The waist-to-height ratio is checked against the rule of
+          the organization you chose.
+        </p>
+        {@render field(
+          'height',
+          `Height (${system === 'us' ? 'inches' : 'centimeters'})`,
+          system === 'us' ? 'For example 70 for 5 ft 10 in.' : 'For example 178.',
+          false,
+          'decimal',
+        )}
+        {@render field(
+          'waist',
+          `Waist (${system === 'us' ? 'inches' : 'centimeters'})`,
+          system === 'us' ? 'For example 33.' : 'For example 84.',
+          false,
+          'decimal',
+        )}
+        {@render field(
+          'weight',
+          `Weight, optional (${system === 'us' ? 'pounds' : 'kilograms'})`,
+          'Only used to show your BMI for information. It is never used to judge your results.',
+          false,
+          'decimal',
+        )}
+      </fieldset>
+    {/if}
+
+    {#each orgPoints as standard (standard.id)}
+      <fieldset>
+        <legend>{standard.name}</legend>
+        <p class="hint">
+          {#if standard.groups.length > 0}
+            This test is scored in points. Fill in the events you have tested, one for each part; if
+            you fill in more than one for a part, the best one counts. The waist-to-height ratio
+            below adds its own points.
           {:else}
-            Enter a result for every event to compare your total with the {item.result.minTotal} points
-            required.
+            This test is scored in points. Fill in the events you have tested; leave the others
+            empty.
           {/if}
         </p>
-      {:else}
-        <p class="status-line">
-          <span class={`status ${item.result.totalStatus === 'meets' ? 'meets' : 'below'}`}>
-            <span class="sym" aria-hidden="true">
-              {item.result.totalStatus === 'meets' ? '✓' : '✗'}
-            </span>{item.result.totalStatus === 'meets' ? 'Meets' : 'Below'} the total required: {item
-              .result.totalPoints} of {item.result.minTotal} points
-          </span>
-        </p>
-        {#if item.result.totalStatus === 'below' && item.result.totalPoints >= item.result.minTotal}
+        {#each standard.events as event (event.id)}
+          {@render field(
+            eventKey(standard.id, event.id),
+            event.name,
+            `Enter ${unitHint(event.unit, system)}.`,
+            false,
+            event.unit === 'seconds' ? 'text' : 'decimal',
+          )}
+        {/each}
+      </fieldset>
+    {/each}
+
+    {#each orgStandards as standard (standard.id)}
+      <fieldset>
+        <legend>{standard.name}</legend>
+        <p class="hint">Fill in the events you have tested. Leave the others empty.</p>
+        {#each standard.events as event (event.id)}
+          {@render field(
+            eventKey(standard.id, event.id),
+            event.name,
+            `Enter ${unitHint(event.unit, system)}.`,
+            false,
+            event.unit === 'seconds' ? 'text' : 'decimal',
+          )}
+        {/each}
+      </fieldset>
+    {/each}
+
+    <button type="submit">Compare with the official minimums</button>
+  </form>
+
+  <div class="side">
+    {#if results}
+      <section class="results" aria-labelledby="results-title">
+        <h2 id="results-title" tabindex="-1" bind:this={resultsHeading}>
+          Results for {results.org.name}
+        </h2>
+        {#if stale}
           <p class="notice">
-            The total is enough, but {item.result.eventsBelowMinimum === 1
-              ? 'one event is'
-              : `${item.result.eventsBelowMinimum} events are`} below its minimum, which fails the test.
+            You changed something after this comparison. Press the button again to update it.
           </p>
         {/if}
-      {/if}
-      {#if item.standard.rule.summary}
-        <p class="caveat">{item.standard.rule.summary}</p>
-      {/if}
-      {#if item.result.caveat}
-        <p class="caveat">{item.result.caveat}</p>
-      {/if}
-      <p class="source">
-        Source: {item.standard.source.document}{item.standard.source.documentDate
-          ? ` (${item.standard.source.documentDate})`
-          : ''}. Checked against the official document on {item.standard.source.verifiedAt}.
-        {#if item.standard.source.url}
-          <a href={item.standard.source.url} target="_blank" rel="noopener noreferrer">
-            Official source (opens in a new tab)
-          </a>
-        {/if}
-      </p>
-    {/each}
 
-    {#each results.items as item (item.standard.id)}
-      <h3>{item.standard.name}</h3>
-      {#if item.result.enteredCount > 0}
-        <p class="count">
-          {item.result.metCount} of {item.result.enteredCount} entered
-          {item.result.enteredCount === 1 ? 'event meets' : 'events meet'} the minimum.
-          {#if item.result.enteredCount < item.result.totalCount}
-            {item.result.totalCount - item.result.enteredCount} not entered.
-          {/if}
-        </p>
-      {/if}
-      <ul class="event-list">
-        {#each item.result.events as ev (ev.eventId)}
-          <li class={`event ${ev.status}`}>
-            <span class="event-name">{ev.eventName}</span>
-            <span class="status">
-              <span class="sym" aria-hidden="true">{symbol(ev.status)}</span>{statusLabel(
-                ev.status,
-              )}
-            </span>
-            {#if ev.value !== undefined && ev.minimum !== undefined}
-              <span class="detail">
-                Your result: {formatValue(ev.unit, ev.value, results.system)}. Minimum: {formatValue(
-                  ev.unit,
-                  ev.minimum,
-                  results.system,
+        {#each results.points as item (item.standard.id)}
+          <h3>{item.standard.name}</h3>
+          {#if item.result.scoredCount > 0}
+            <p class="count">
+              {#if item.result.groups.length > 0}
+                {item.result.scoredCount} of {item.result.totalCount} parts scored. Points counted so
+                far:
+                {item.result.totalPoints} of {item.result.groups.reduce(
+                  (s, g) => s + g.maxPoints,
+                  0,
                 )}.
-                {describeMargin(ev, results.system)}
+                {#if item.result.eventsBelowMinimum > 0}
+                  {plural(item.result.eventsBelowMinimum, 'part')} below the minimum, which scores zero.
+                {/if}
+              {:else}
+                {item.result.scoredCount} of {item.result.totalCount} events scored. Points counted so
+                far:
+                {item.result.totalPoints}.
+                {#if item.result.eventsBelowMinimum > 0}
+                  {plural(item.result.eventsBelowMinimum, 'event')} below the per-event minimum of
+                  {plural(item.result.minPerEvent, 'point')}.
+                {/if}
+              {/if}
+            </p>
+          {/if}
+          {#if item.result.groups.length > 0}
+            <ul class="event-list">
+              {#each item.result.groups as part (part.id)}
+                <li class={`event ${partClass(part)}`}>
+                  <span class="event-name">{part.label}</span>
+                  <span class="status">
+                    <span class="sym" aria-hidden="true">
+                      {part.status !== 'scored' ? '–' : part.meetsMinimum === false ? '✗' : '✓'}
+                    </span>{partStatus(part)}
+                  </span>
+                  {#if part.status === 'scored'}
+                    <span class="detail">
+                      {part.points} of {part.maxPoints} points{part.eventName
+                        ? ' from ' + part.eventName
+                        : ''}.
+                    </span>
+                  {/if}
+                </li>
+              {/each}
+            </ul>
+          {/if}
+          <ul class="event-list">
+            {#each item.result.events as ev (ev.eventId)}
+              <li class={`event ${pointsClass(ev)}`}>
+                <span class="event-name">{ev.eventName}</span>
+                <span class="status">
+                  <span class="sym" aria-hidden="true">
+                    {ev.status === 'scored' ? (ev.meetsEventMinimum ? '✓' : '✗') : '–'}
+                  </span>{pointsStatus(ev)}
+                </span>
+                {#if ev.status === 'scored' && ev.value !== undefined && ev.points !== undefined}
+                  <span class="detail">
+                    Your result: {formatValue(ev.unit, ev.value, results.system)}. It earns {plural(
+                      ev.points,
+                      'point',
+                    )}{ev.level ? ` (${ev.level})` : ''}{ev.multiplier !== 1
+                      ? ` (counted ${ev.multiplier === 2 ? 'twice' : ev.multiplier + ' times'} in the total: ${ev.countedPoints})`
+                      : ''}. {#if item.result.groups.length === 0}At least {plural(
+                        ev.minPoints,
+                        'point',
+                      )} needed in this event.{/if}
+                  </span>
+                {/if}
+              </li>
+            {/each}
+          </ul>
+          {#if item.result.totalStatus === 'incomplete'}
+            <p class="notice">
+              {#if item.result.groups.length > 0}
+                Enter a result for every part to compare your total with the {item.result.minTotal} points
+                required.
+              {:else}
+                Enter a result for every event to compare your total with the {item.result.minTotal} points
+                required.
+              {/if}
+            </p>
+          {:else}
+            <p class="status-line">
+              <span class={`status ${item.result.totalStatus === 'meets' ? 'meets' : 'below'}`}>
+                <span class="sym" aria-hidden="true">
+                  {item.result.totalStatus === 'meets' ? '✓' : '✗'}
+                </span>{item.result.totalStatus === 'meets' ? 'Meets' : 'Below'} the total required: {item
+                  .result.totalPoints} of {item.result.minTotal} points
               </span>
-            {:else if ev.minimum !== undefined}
-              <span class="detail">
-                Minimum: {formatValue(ev.unit, ev.minimum, results.system)}.
-              </span>
+            </p>
+            {#if item.result.totalStatus === 'below' && item.result.totalPoints >= item.result.minTotal}
+              <p class="notice">
+                The total is enough, but {item.result.eventsBelowMinimum === 1
+                  ? 'one event is'
+                  : `${item.result.eventsBelowMinimum} events are`} below its minimum, which fails the
+                test.
+              </p>
             {/if}
-          </li>
+          {/if}
+          {#if item.standard.rule.summary}
+            <p class="caveat">{item.standard.rule.summary}</p>
+          {/if}
+          {#if item.result.caveat}
+            <p class="caveat">{item.result.caveat}</p>
+          {/if}
+          <p class="source">
+            Source: {item.standard.source.document}{item.standard.source.documentDate
+              ? ` (${item.standard.source.documentDate})`
+              : ''}. Checked against the official document on {item.standard.source.verifiedAt}.
+            {#if item.standard.source.url}
+              <a href={item.standard.source.url} target="_blank" rel="noopener noreferrer">
+                Official source (opens in a new tab)
+              </a>
+            {/if}
+          </p>
         {/each}
-      </ul>
-      {#if item.result.completeness === 'minimums-only' && item.result.caveat}
-        <p class="caveat"><strong>Not the whole requirement.</strong> {item.result.caveat}</p>
-      {/if}
-      <p class="source">
-        Source: {item.standard.source.document}{item.standard.source.documentDate
-          ? ` (${item.standard.source.documentDate})`
-          : ''}. Checked against the official document on {item.standard.source.verifiedAt}.
-        {#if item.standard.source.url}
-          <a href={item.standard.source.url} target="_blank" rel="noopener noreferrer">
-            Official source (opens in a new tab)
-          </a>
-        {/if}
-      </p>
-    {/each}
 
-    {#each results.body as entry (entry.rule.id)}
-      <h3>{entry.rule.name}</h3>
-      <p class="status-line">
-        <span class={`status ${entry.result.status === 'within' ? 'meets' : 'below'}`}>
-          <span class="sym" aria-hidden="true">{entry.result.status === 'within' ? '✓' : '✗'}</span>
-          {entry.result.status === 'within' ? 'Within the limit' : 'Not within the limit'}
-        </span>
-      </p>
-      <p class="detail">
-        Your waist-to-height ratio is {entry.result.ratio.toFixed(4)} (waist divided by height). The limit
-        is {entry.result.atLimit === 'within'
-          ? `${entry.result.limit} or less`
-          : `below ${entry.result.limit}`}.
-        {#if entry.result.usedWaistInches !== undefined && entry.result.usedHeightInches !== undefined}
-          The standard rounds measurements down, so it uses a height of {entry.result
-            .usedHeightInches}
-          in and a waist of {entry.result.usedWaistInches} in.
-        {/if}
-        {#if entry.result.comparedRatio !== entry.result.ratio}
-          It is rounded down to {entry.result.comparedRatio} for the comparison.
-        {/if}
-      </p>
-      {#if entry.result.status === 'over'}
-        <p class="caveat">{entry.result.ifOver}</p>
-      {/if}
-      {#if entry.rule.notes.length > 0}
-        <ul class="notes">
-          {#each entry.rule.notes as note (note)}
-            <li>{note}</li>
-          {/each}
-        </ul>
-      {/if}
-      <p class="source">
-        Source: {entry.rule.source.document}. Checked against the official document on {entry.rule
-          .source.verifiedAt}.
-        {#if entry.rule.source.url}
-          <a href={entry.rule.source.url} target="_blank" rel="noopener noreferrer">
-            Official source (opens in a new tab)
-          </a>
-        {/if}
-      </p>
-    {/each}
+        {#each results.items as item (item.standard.id)}
+          <h3>{item.standard.name}</h3>
+          {#if item.result.enteredCount > 0}
+            <p class="count">
+              {item.result.metCount} of {item.result.enteredCount} entered
+              {item.result.enteredCount === 1 ? 'event meets' : 'events meet'} the minimum.
+              {#if item.result.enteredCount < item.result.totalCount}
+                {item.result.totalCount - item.result.enteredCount} not entered.
+              {/if}
+            </p>
+          {/if}
+          <ul class="event-list">
+            {#each item.result.events as ev (ev.eventId)}
+              <li class={`event ${ev.status}`}>
+                <span class="event-name">{ev.eventName}</span>
+                <span class="status">
+                  <span class="sym" aria-hidden="true">{symbol(ev.status)}</span>{statusLabel(
+                    ev.status,
+                  )}
+                </span>
+                {#if ev.value !== undefined && ev.minimum !== undefined}
+                  <span class="detail">
+                    Your result: {formatValue(ev.unit, ev.value, results.system)}. Minimum: {formatValue(
+                      ev.unit,
+                      ev.minimum,
+                      results.system,
+                    )}.
+                    {describeMargin(ev, results.system)}
+                  </span>
+                {:else if ev.minimum !== undefined}
+                  <span class="detail">
+                    Minimum: {formatValue(ev.unit, ev.minimum, results.system)}.
+                  </span>
+                {/if}
+              </li>
+            {/each}
+          </ul>
+          {#if item.result.completeness === 'minimums-only' && item.result.caveat}
+            <p class="caveat"><strong>Not the whole requirement.</strong> {item.result.caveat}</p>
+          {/if}
+          <p class="source">
+            Source: {item.standard.source.document}{item.standard.source.documentDate
+              ? ` (${item.standard.source.documentDate})`
+              : ''}. Checked against the official document on {item.standard.source.verifiedAt}.
+            {#if item.standard.source.url}
+              <a href={item.standard.source.url} target="_blank" rel="noopener noreferrer">
+                Official source (opens in a new tab)
+              </a>
+            {/if}
+          </p>
+        {/each}
 
-    {#if results.bmi !== undefined}
-      <h3>Body mass index (information only)</h3>
-      <p class="detail">
-        Your BMI is {results.bmi.toFixed(1)}. BMI does not measure fitness and is not used to judge
-        any result above.
-      </p>
+        {#each results.body as entry (entry.rule.id)}
+          <h3>{entry.rule.name}</h3>
+          <p class="status-line">
+            <span class={`status ${entry.result.status === 'within' ? 'meets' : 'below'}`}>
+              <span class="sym" aria-hidden="true">
+                {entry.result.status === 'within' ? '✓' : '✗'}
+              </span>
+              {entry.result.status === 'within' ? 'Within the limit' : 'Not within the limit'}
+            </span>
+          </p>
+          <p class="detail">
+            Your waist-to-height ratio is {entry.result.ratio.toFixed(4)} (waist divided by height). The
+            limit is {entry.result.atLimit === 'within'
+              ? `${entry.result.limit} or less`
+              : `below ${entry.result.limit}`}.
+            {#if entry.result.usedWaistInches !== undefined && entry.result.usedHeightInches !== undefined}
+              The standard rounds measurements down, so it uses a height of {entry.result
+                .usedHeightInches}
+              in and a waist of {entry.result.usedWaistInches} in.
+            {/if}
+            {#if entry.result.comparedRatio !== entry.result.ratio}
+              It is rounded down to {entry.result.comparedRatio} for the comparison.
+            {/if}
+          </p>
+          {#if entry.result.status === 'over'}
+            <p class="caveat">{entry.result.ifOver}</p>
+          {/if}
+          {#if entry.rule.notes.length > 0}
+            <ul class="notes">
+              {#each entry.rule.notes as note (note)}
+                <li>{note}</li>
+              {/each}
+            </ul>
+          {/if}
+          <p class="source">
+            Source: {entry.rule.source.document}. Checked against the official document on {entry
+              .rule.source.verifiedAt}.
+            {#if entry.rule.source.url}
+              <a href={entry.rule.source.url} target="_blank" rel="noopener noreferrer">
+                Official source (opens in a new tab)
+              </a>
+            {/if}
+          </p>
+        {/each}
+
+        {#if results.bmi !== undefined}
+          <h3>Body mass index (information only)</h3>
+          <p class="detail">
+            Your BMI is {results.bmi.toFixed(1)}. BMI does not measure fitness and is not used to
+            judge any result above.
+          </p>
+        {/if}
+
+        {#if results.org.pending.length > 0}
+          <p class="caveat">
+            <strong>Not included yet for {results.org.shortName}:</strong>
+            {results.org.pending.join('; ')}.
+          </p>
+        {/if}
+
+        <p class="disclaimer">
+          This is a comparison of numbers you typed with published minimums. It is not medical
+          advice and does not predict whether you will be selected. If you feel pain, dizziness or
+          chest discomfort while testing, stop and talk to a health professional. Check the official
+          source before you rely on any number.
+        </p>
+      </section>
+    {:else}
+      <aside class="placeholder" aria-labelledby="placeholder-title">
+        <h2 id="placeholder-title">Your comparison</h2>
+        <p>
+          Choose an organization, enter your age and at least one result, then press the button. The
+          comparison appears here, event by event, with the official source for each number.
+        </p>
+      </aside>
     {/if}
-
-    {#if results.org.pending.length > 0}
-      <p class="caveat">
-        <strong>Not included yet for {results.org.shortName}:</strong>
-        {results.org.pending.join('; ')}.
-      </p>
-    {/if}
-
-    <p class="disclaimer">
-      This is a comparison of numbers you typed with published minimums. It is not medical advice
-      and does not predict whether you will be selected. If you feel pain, dizziness or chest
-      discomfort while testing, stop and talk to a health professional. Check the official source
-      before you rely on any number.
-    </p>
-  </section>
-{/if}
+  </div>
+</div>
 
 <style>
   fieldset {
@@ -903,6 +924,58 @@
     color: var(--warn);
     font-weight: 600;
     font-size: 0.95rem;
+  }
+
+  .layout {
+    display: grid;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  @media (min-width: 64rem) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      gap: 2rem;
+    }
+
+    .side .results {
+      margin-block-start: 0;
+    }
+  }
+
+  .placeholder {
+    padding: 1.25rem;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    color: var(--muted);
+  }
+
+  .placeholder h2 {
+    margin-block: 0 0.5rem;
+    font-size: 1.15rem;
+    color: var(--fg);
+  }
+
+  .placeholder p {
+    margin: 0;
+  }
+
+  fieldset.inline {
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  }
+
+  fieldset.inline > legend,
+  fieldset.inline > .hint,
+  fieldset.inline > .error {
+    grid-column: 1 / -1;
+  }
+
+  .field input[type='text'] {
+    max-inline-size: 16rem;
+  }
+
+  #f-age {
+    max-inline-size: 8rem;
   }
 
   .tool,
